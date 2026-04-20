@@ -9,3 +9,6 @@ Desktop.ini
 # Local reference material (not part of repo)
 _raw_source/
 _research/
+
+# Local tooling (preview MCP)
+.claude/
