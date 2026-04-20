@@ -177,6 +177,40 @@ a, button { transition: color var(--transition-interactive), background var(--tr
 
 .theme-toggle:hover { color: var(--color-text); background: var(--color-surface-offset); }
 
+/* ========== PAGE NAV ========== */
+.page-nav {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 64px;
+  z-index: 999;
+}
+
+.page-nav-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  display: flex;
+  gap: var(--space-6);
+}
+
+.page-nav-link {
+  padding: var(--space-3) 0;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition-interactive), border-color var(--transition-interactive);
+}
+
+.page-nav-link:hover { color: var(--color-text); }
+
+.page-nav-link.active {
+  color: var(--color-text);
+  border-bottom-color: var(--color-accent);
+}
+
 /* ========== STATS BAR ========== */
 .stats-bar {
   display: grid;
