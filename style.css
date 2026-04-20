@@ -192,6 +192,7 @@ a, button { transition: color var(--transition-interactive), background var(--tr
   padding: 0 var(--space-6);
   display: flex;
   gap: var(--space-6);
+  flex-wrap: wrap;
 }
 
 .page-nav-link {
@@ -209,6 +210,86 @@ a, button { transition: color var(--transition-interactive), background var(--tr
 .page-nav-link.active {
   color: var(--color-text);
   border-bottom-color: var(--color-accent);
+}
+
+/* Grouped dropdown nav */
+.nav-group {
+  position: relative;
+  padding: var(--space-3) 0;
+}
+
+.nav-group-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  padding: 0;
+  border-bottom: 2px solid transparent;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.nav-group-btn::after {
+  content: "▾";
+  font-size: 10px;
+  opacity: 0.7;
+  margin-left: 2px;
+}
+
+.nav-group:hover .nav-group-btn,
+.nav-group.active .nav-group-btn {
+  color: var(--color-text);
+}
+
+.nav-group.active .nav-group-btn {
+  border-bottom-color: var(--color-accent);
+  padding-bottom: calc(var(--space-3) - 2px);
+}
+
+.nav-group-menu {
+  position: absolute;
+  top: 100%;
+  left: -8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  min-width: 200px;
+  padding: var(--space-2) 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity var(--transition-interactive), transform var(--transition-interactive), visibility 0s linear 180ms;
+  z-index: 1001;
+}
+
+.nav-group:hover .nav-group-menu,
+.nav-group:focus-within .nav-group-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity var(--transition-interactive), transform var(--transition-interactive), visibility 0s;
+}
+
+.nav-group-menu a {
+  display: block;
+  padding: var(--space-2) var(--space-4);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  white-space: nowrap;
+}
+
+.nav-group-menu a:hover {
+  background: var(--color-surface-2);
+  color: var(--color-text);
+}
+
+.nav-group-menu a.active {
+  color: var(--color-accent);
+  font-weight: 600;
 }
 
 /* ========== STATS BAR ========== */

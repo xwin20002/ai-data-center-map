@@ -60,8 +60,22 @@
 
 <nav class="page-nav">
   <div class="page-nav-inner">
-    <a href="./" class="page-nav-link">AI Data Centers</a>
-    <a href="./fab-5nm.html" class="page-nav-link active">Sub-5nm Fabs</a>
+    <div class="nav-group">
+      <button class="nav-group-btn" aria-haspopup="true">AI Infra</button>
+      <div class="nav-group-menu" role="menu">
+        <a href="./">AI Data Centers</a>
+        <a href="./gpu-cluster.html">GPU Clusters</a>
+        <a href="./subsea-cable.html">Subsea Cables</a>
+      </div>
+    </div>
+    <div class="nav-group active">
+      <button class="nav-group-btn" aria-haspopup="true">Semi Supply Chain</button>
+      <div class="nav-group-menu" role="menu">
+        <a href="./fab-5nm.html" class="active">Sub-5nm Fabs</a>
+        <a href="./packaging.html">Advanced Packaging</a>
+        <a href="./hbm.html">HBM Capacity</a>
+      </div>
+    </div>
   </div>
 </nav>
 

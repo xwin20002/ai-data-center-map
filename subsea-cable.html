@@ -1,27 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!--
-   ______                            __
-  / ____/___  ____ ___  ____  __  __/ /____  _____
- / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
-/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
-\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
-                    /_/
-        Created with Perplexity Computer
-        https://www.perplexity.ai/computer
--->
-
-<!-- Perplexity Computer Attribution — SEO Meta Tags -->
-<meta name="generator" content="Perplexity Computer">
-<meta name="author" content="Perplexity Computer">
-<meta property="og:see_also" content="https://www.perplexity.ai/computer">
-<link rel="author" href="https://www.perplexity.ai/computer">
+<!-- Adapted from Perplexity Computer template / https://www.perplexity.ai/computer -->
+<meta name="generator" content="Perplexity Computer (template)">
+<meta name="author" content="Jason Yang">
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Data Center Map — Global Construction Tracker</title>
-<meta name="description" content="Interactive map of all AI data centers currently being built worldwide. Explore locations, investments, capacity, and status.">
+<title>Subsea Cable Landings — Hyperscaler AI Backbone</title>
+<meta name="description" content="Interactive map of major subsea cable landing stations serving AI and cloud traffic. Hyperscaler-owned, consortium, and national builds.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +22,7 @@
 <header class="site-header">
   <div class="header-inner">
     <div class="logo-group">
-      <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" aria-label="AI Data Center Map logo">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" aria-label="Subsea Cable Map logo">
         <rect x="2" y="6" width="28" height="20" rx="3" stroke="currentColor" stroke-width="2"/>
         <circle cx="9" cy="16" r="2.5" fill="currentColor"/>
         <circle cx="16" cy="16" r="2.5" fill="currentColor"/>
@@ -47,12 +34,12 @@
         <line x1="16" y1="18.5" x2="16" y2="21" stroke="currentColor" stroke-width="1.5"/>
         <line x1="23" y1="18.5" x2="23" y2="21" stroke="currentColor" stroke-width="1.5"/>
       </svg>
-      <h1 class="logo-text">AI Data Center Map</h1>
+      <h1 class="logo-text">Subsea Cable Landings</h1>
     </div>
     <div class="header-controls">
       <div class="search-box">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="search-input" placeholder="Search projects...">
+        <input type="text" id="search-input" placeholder="Search landings...">
       </div>
       <button data-theme-toggle aria-label="Switch to dark mode" class="theme-toggle">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -66,9 +53,9 @@
     <div class="nav-group active">
       <button class="nav-group-btn" aria-haspopup="true">AI Infra</button>
       <div class="nav-group-menu" role="menu">
-        <a href="./" class="active">AI Data Centers</a>
+        <a href="./">AI Data Centers</a>
         <a href="./gpu-cluster.html">GPU Clusters</a>
-        <a href="./subsea-cable.html">Subsea Cables</a>
+        <a href="./subsea-cable.html" class="active">Subsea Cables</a>
       </div>
     </div>
     <div class="nav-group">
@@ -86,15 +73,15 @@
   <section class="stats-bar">
     <div class="stat-item">
       <span class="stat-value" id="stat-total">0</span>
-      <span class="stat-label">Projects Tracked</span>
+      <span class="stat-label">Landings Tracked</span>
     </div>
     <div class="stat-item">
-      <span class="stat-value" id="stat-investment">$0T+</span>
+      <span class="stat-value" id="stat-investment">$0B+</span>
       <span class="stat-label">Total Investment</span>
     </div>
     <div class="stat-item">
-      <span class="stat-value" id="stat-capacity">0 GW</span>
-      <span class="stat-label">Planned Capacity</span>
+      <span class="stat-value" id="stat-capacity">0 Tbps</span>
+      <span class="stat-label">Total Capacity</span>
     </div>
     <div class="stat-item">
       <span class="stat-value" id="stat-countries">0</span>
@@ -104,20 +91,20 @@
 
   <section class="filters-bar">
     <div class="filter-group">
-      <button class="filter-btn active" data-filter="all">All Projects</button>
-      <button class="filter-btn" data-filter="stargate">Stargate</button>
-      <button class="filter-btn" data-filter="hyperscaler">Hyperscalers</button>
-      <button class="filter-btn" data-filter="neocloud">Neoclouds</button>
-      <button class="filter-btn" data-filter="sovereign">Sovereign / Gov</button>
-      <button class="filter-btn" data-filter="independent">Independent</button>
+      <button class="filter-btn active" data-filter="all">All Landings</button>
+      <button class="filter-btn" data-filter="hyperscaler">Hyperscaler</button>
+      <button class="filter-btn" data-filter="consortium">Consortium</button>
+      <button class="filter-btn" data-filter="national">National</button>
+      <button class="filter-btn" data-filter="other-private">Other-private</button>
     </div>
     <div class="filter-group">
       <button class="filter-btn" data-region="all" data-active="true">Global</button>
       <button class="filter-btn" data-region="north-america">N. America</button>
       <button class="filter-btn" data-region="europe">Europe</button>
       <button class="filter-btn" data-region="asia-pacific">Asia-Pacific</button>
-      <button class="filter-btn" data-region="middle-east">Middle East</button>
+      <button class="filter-btn" data-region="africa">Africa</button>
       <button class="filter-btn" data-region="latam">Latin America</button>
+      <button class="filter-btn" data-region="oceania">Oceania</button>
     </div>
   </section>
 
@@ -127,28 +114,27 @@
 
   <section class="legend-section">
     <div class="legend-inner">
-      <h3 class="legend-title">Project Categories</h3>
+      <h3 class="legend-title">Ownership Type</h3>
       <div class="legend-items">
-        <div class="legend-item"><span class="legend-dot" style="background:#ef4444;"></span> Stargate (OpenAI / SoftBank / Oracle)</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#3b82f6;"></span> Hyperscalers (Google, Meta, Microsoft, Amazon)</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#8b5cf6;"></span> Neoclouds (CoreWeave, xAI, Anthropic)</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#f59e0b;"></span> Sovereign / Government-backed</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#10b981;"></span> Independent (Vantage, AVAIO, Compass, etc.)</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#3b82f6;"></span> Hyperscaler-owned (Google, Meta, Microsoft)</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#8b5cf6;"></span> Consortium (multi-carrier)</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#f59e0b;"></span> National (gov-backed)</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#10b981;"></span> Other-private</div>
       </div>
-      <p class="legend-note">Circle size represents relative power capacity (MW). Data compiled from public announcements as of March 2026.</p>
+      <p class="legend-note">Circle size represents total design Tbps of cables landing at the site. Investment figures are each owner's share and are mostly estimates.</p>
     </div>
   </section>
 
   <section class="data-table-section">
-    <h2 class="section-title">All Projects</h2>
+    <h2 class="section-title">All Landings</h2>
     <div class="table-wrapper">
       <table id="data-table">
         <thead>
           <tr>
-            <th data-sort="project">Project</th>
-            <th data-sort="company">Company</th>
+            <th data-sort="project">Landing</th>
+            <th data-sort="company">Owner</th>
             <th data-sort="location">Location</th>
-            <th data-sort="investment">Investment</th>
+            <th data-sort="investment">Cables</th>
             <th data-sort="capacity">Capacity</th>
             <th data-sort="status">Status</th>
           </tr>
@@ -161,11 +147,11 @@
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <p class="footer-note">Data compiled from public announcements, SEC filings, and press releases. Updated March 2026.</p>
-    <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" class="footer-attribution">Created with Perplexity Computer</a>
+    <p class="footer-note">Data compiled from TeleGeography Submarine Cable Map, operator press releases, and industry press. Investment figures are mostly estimated shares.</p>
+    <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" class="footer-attribution">Template originally from Perplexity Computer</a>
   </div>
 </footer>
 
-<script src="./app.js"></script>
+<script src="./app-subsea-cable.js"></script>
 </body>
 </html>
