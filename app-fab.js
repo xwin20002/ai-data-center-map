@@ -1,13 +1,14 @@
-/* ========== SUB-5NM FAB DATA (PLACEHOLDER — replace with researched values) ==========
+/* ========== SUB-5NM FAB DATA ==========
 
-Schema notes (diff from app.js):
-  - capacityWafers replaces capacityMW (integer, wafers per month)
-  - nodes: multi-node string, e.g. "3nm, 5nm"
-  - category: "foundry" or "idm"
-  - investment: still a string like "$17B"
-  - "size" field omitted (not meaningful for fabs)
+Schema:
+  - capacityWafers: integer, wafers per month (steady-state or full-ramp target)
+  - nodes: comma-separated string (e.g. "3nm, 5nm")
+  - category: "foundry" (TSMC, Samsung Foundry, Rapidus) or "idm" (Intel)
+  - investment: string like "$17B" (announced or estimated total capex)
 
-All numbers below are rough industry estimates; VERIFY BEFORE SHARING.
+Compiled April 2026 from TSMC / Samsung / Intel / Rapidus public releases +
+industry analysis (TrendForce, Tom's Hardware, DigiTimes, SemiWiki).
+Capacity figures are planned / full-ramp targets, not all operational today.
 ========== */
 
 const dataCenters = [
@@ -17,50 +18,101 @@ const dataCenters = [
     location: "Tainan Science Park, Taiwan",
     lat: 23.0042,
     lng: 120.2279,
-    nodes: "3nm, 5nm",
-    capacity: "~150K wpm",
-    capacityWafers: 150000,
-    investment: "$25B",
+    nodes: "5nm, 4nm, 3nm",
+    capacity: "~200K wpm (full ramp)",
+    capacityWafers: 200000,
+    investment: "$25B+",
     status: "Operational",
-    expected: "Ramping since 2020",
-    details: "TSMC's flagship leading-edge site. Phase 1-4 for 5nm (N5/N5P/N4), Phase 5-8 for 3nm (N3/N3E/N3P). Largest sub-5nm capacity in the world.",
+    expected: "3nm reaches 180-200K wpm by end 2026",
+    details: "TSMC's flagship leading-edge site. Phase 1-4 for N5/N5P/N4, Phase 5-8 for N3/N3E/N3P. Largest sub-5nm capacity in the world. 3nm currently the dominant process.",
     category: "foundry",
     region: "asia-pacific",
-    source: "https://www.tsmc.com/english/news-events/newsroom"
+    source: "https://globalsemiresearch.substack.com/p/decoding-tsmcs-advanced-process-roadmap"
   },
   {
-    project: "Fab 21 (Phase 1-2)",
+    project: "Fab 20 (Baoshan)",
+    company: "TSMC",
+    location: "Hsinchu, Taiwan",
+    lat: 24.7880,
+    lng: 120.9946,
+    nodes: "2nm (N2)",
+    capacity: "~60K wpm by end 2026",
+    capacityWafers: 60000,
+    investment: "$20B",
+    status: "Under Construction",
+    expected: "Trial 2025, 2nm ramp 2026",
+    details: "TSMC's 2nm R&D + mass production base. Combined with Fab 22, targets 120-130K wpm by end 2026. 2026 initial capacity fully booked by Apple/AMD/Qualcomm/MediaTek/Nvidia.",
+    category: "foundry",
+    region: "asia-pacific",
+    source: "https://www.smbom.com/news/42476"
+  },
+  {
+    project: "Fab 22",
+    company: "TSMC",
+    location: "Kaohsiung, Taiwan",
+    lat: 22.7560,
+    lng: 120.3000,
+    nodes: "2nm (N2)",
+    capacity: "~60K wpm by end 2026",
+    capacityWafers: 60000,
+    investment: "$15B",
+    status: "Under Construction",
+    expected: "2nm ramp 2026",
+    details: "Second TSMC 2nm site, complementing Fab 20. Combined Hsinchu+Kaohsiung 2nm capacity expected to surge toward 200K wpm by 2028.",
+    category: "foundry",
+    region: "asia-pacific",
+    source: "https://semiwiki.com/semiconductor-manufacturers/tsmc/367995-tsmc-and-the-race-for-2nm-capacity/"
+  },
+  {
+    project: "Fab 21 (Phase 1-3)",
     company: "TSMC",
     location: "Phoenix, Arizona, USA",
     lat: 33.7361,
     lng: -112.1259,
-    nodes: "4nm, 3nm",
-    capacity: "~20K wpm (Phase 1)",
-    capacityWafers: 20000,
-    investment: "$40B+",
-    status: "Under Construction",
-    expected: "Phase 1 production 2025",
-    details: "US CHIPS Act flagship. Phase 1 N4 in volume production 2025, Phase 2 N3 in 2028. Phase 3 approved for 2nm.",
+    nodes: "4nm, 3nm, 2nm",
+    capacity: "~40K wpm (all phases)",
+    capacityWafers: 40000,
+    investment: "$65B",
+    status: "Operational",
+    expected: "P1 N4 ramped 2025, P2 N3 2028, P3 N2 2030",
+    details: "US CHIPS Act flagship. Phase 1 N4 in volume production. Phase 2 N3 under construction. Phase 3 approved for 2nm. Largest single TSMC investment outside Taiwan.",
     category: "foundry",
     region: "north-america",
     source: "https://www.tsmc.com/english/news-events/newsroom"
   },
   {
-    project: "S5 Line (V1/V2)",
+    project: "S5 Hwaseong (V1/V2)",
     company: "Samsung Foundry",
     location: "Hwaseong, South Korea",
     lat: 37.2046,
     lng: 126.8102,
-    nodes: "5nm, 4nm, 3nm GAA",
-    capacity: "~40K wpm",
-    capacityWafers: 40000,
+    nodes: "5nm, 4nm, 3nm GAA, 2nm",
+    capacity: "~70K wpm",
+    capacityWafers: 70000,
     investment: "$18B",
     status: "Operational",
-    expected: "3nm GAA ramp from 2022",
-    details: "World's first Gate-All-Around (GAA) 3nm production. Serves Samsung LSI internal + external customers.",
+    expected: "2nm line installing, 7K wpm by Q1 2025",
+    details: "World's first Gate-All-Around (GAA) 3nm production (2022). Multiple nodes coexist. 2nm equipment being installed. Serves Samsung LSI internal + external customers.",
     category: "foundry",
     region: "asia-pacific",
-    source: "https://news.samsung.com/global/"
+    source: "https://news.samsung.com/global/samsung-begins-chip-production-using-3nm-process-technology-with-gaa-architecture"
+  },
+  {
+    project: "Pyeongtaek P3/P4",
+    company: "Samsung Foundry",
+    location: "Pyeongtaek, South Korea",
+    lat: 37.0046,
+    lng: 127.0558,
+    nodes: "3nm GAA, 2nm (planned)",
+    capacity: "~30K wpm (foundry)",
+    capacityWafers: 30000,
+    investment: "$30B+",
+    status: "Operational",
+    expected: "P4 Ph2 foundry resumes 2026, 2nm 2027+",
+    details: "Samsung's largest fab site globally. P3 operational 3nm, P4 mixed DRAM/foundry. P4 Phase 2 foundry line resumes investment 2026 per Samsung. HBM4 base die allocation ~50%+ of Pyeongtaek foundry capacity.",
+    category: "foundry",
+    region: "asia-pacific",
+    source: "https://www.trendforce.com/news/2024/10/04/news-despite-3nm-struggles-samsung-plans-to-speed-up-2nm1-4nm-expansion-in-hwaseong-and-pyeongtaek-next-year/"
   },
   {
     project: "Taylor Fab",
@@ -73,45 +125,79 @@ const dataCenters = [
     capacityWafers: 50000,
     investment: "$25B",
     status: "Under Construction",
-    expected: "2026-2027 ramp",
-    details: "Delayed from 2024 target. US CHIPS Act funded. 2nm capacity planned for 2027+.",
+    expected: "Delayed; ramp 2026-2027",
+    details: "US CHIPS Act funded ($6.4B grant). Originally targeted 2024 but delayed due to customer demand uncertainty. 2nm capacity planned for 2027+.",
     category: "foundry",
     region: "north-america",
     source: "https://news.samsung.com/global/"
   },
   {
-    project: "Fab 52 / Fab 62",
+    project: "Fab 52 (Ocotillo)",
     company: "Intel",
     location: "Chandler, Arizona, USA",
     lat: 33.3176,
     lng: -111.8416,
-    nodes: "Intel 20A, 18A",
-    capacity: "~30K wpm (planned)",
-    capacityWafers: 30000,
+    nodes: "Intel 18A",
+    capacity: "~40K wpm (10K wafer starts/week)",
+    capacityWafers: 40000,
     investment: "$32B",
-    status: "Under Construction",
-    expected: "18A ramp 2025",
-    details: "First high-volume Intel 18A (1.8nm class) node with RibbonFET and PowerVia. Serves Intel Products + foundry customers.",
+    status: "Operational",
+    expected: "Mass production started late 2025",
+    details: "First high-volume Intel 18A (1.8nm class) site with RibbonFET + PowerVia. Panther Lake CPUs ramping. Yield ~78% Q4 2025, targeting >85% by Q2 2026. Rivals combined TSMC Arizona Phase 1+2 capacity.",
     category: "idm",
     region: "north-america",
-    source: "https://www.intc.com/"
+    source: "https://www.trendforce.com/news/2025/12/24/news-intel-fab-52-reportedly-rivals-tsmc-arizona-phase-1-and-2-combined-capacity-on-more-advanced-18a/"
   },
   {
-    project: "Pyeongtaek P3/P4",
-    company: "Samsung Foundry",
-    location: "Pyeongtaek, South Korea",
-    lat: 37.0046,
-    lng: 127.0558,
-    nodes: "3nm GAA, 2nm (planned)",
+    project: "Fab 62 (Ocotillo)",
+    company: "Intel",
+    location: "Chandler, Arizona, USA",
+    lat: 33.3200,
+    lng: -111.8500,
+    nodes: "Intel 18A, future nodes",
     capacity: "~30K wpm (planned)",
     capacityWafers: 30000,
-    investment: "$30B+",
+    investment: "$20B",
     status: "Under Construction",
-    expected: "3nm ramp 2025, 2nm 2027",
-    details: "Samsung's largest fab site globally. P3 operational, P4 under construction. Also houses DRAM/NAND lines on adjacent phases.",
+    expected: "Ready ~2028",
+    details: "Sister fab to Fab 52 at Ocotillo campus. Will extend 18A + future Intel 14A. Part of Arizona CHIPS Act multi-fab cluster.",
+    category: "idm",
+    region: "north-america",
+    source: "https://ithy.com/article/intel-fab-schedule-juflnj4g"
+  },
+  {
+    project: "Fab 34",
+    company: "Intel",
+    location: "Leixlip, Ireland",
+    lat: 53.3645,
+    lng: -6.5000,
+    nodes: "Intel 4, Intel 3",
+    capacity: "~40K wpm",
+    capacityWafers: 40000,
+    investment: "$18B",
+    status: "Operational",
+    expected: "Ramped since Sept 2023",
+    details: "Intel's first high-volume EUV site (Intel 4 = 4nm-class). Produces Core Ultra PC chips and Xeon server chips. Intel repurchased 49% stake from Apollo for $14.2B in April 2026.",
+    category: "idm",
+    region: "europe",
+    source: "https://newsroom.intel.com/manufacturing/new-fab-ireland-high-volume-production-intel-4-technology"
+  },
+  {
+    project: "IIM-1 (Chitose)",
+    company: "Rapidus",
+    location: "Chitose, Hokkaido, Japan",
+    lat: 42.8208,
+    lng: 141.6526,
+    nodes: "2nm GAA",
+    capacity: "25K wpm (by FY2028)",
+    capacityWafers: 25000,
+    investment: "$23B+",
+    status: "Under Construction",
+    expected: "Pilot 2025, HVM H2-2027",
+    details: "Japan's state-backed leading-edge foundry bet. GAA 2nm co-developed with IBM. Cleanroom activated mid-2025, EUV tools installed. Ramps from 6K to 25K wpm in first year of HVM. Funded by Toyota, SoftBank, Sony, NTT, NEC, Kioxia + METI.",
     category: "foundry",
     region: "asia-pacific",
-    source: "https://news.samsung.com/global/"
+    source: "https://www.tomshardware.com/tech-industry/semiconductors/rapidus-targets-2nm-mass-production-in-2027-with-a-four-times-capacity-ramp"
   }
 ];
 
