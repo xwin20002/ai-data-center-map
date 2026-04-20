@@ -5,3 +5,6 @@ Desktop.ini
 .env
 .env.local
 *.log
+
+# Local reference material (not part of repo)
+_raw_source/
