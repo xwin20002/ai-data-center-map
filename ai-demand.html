@@ -134,10 +134,11 @@
             <th data-sort="country">Country</th>
             <th data-sort="region">Region</th>
             <th data-sort="tokens">Monthly Tokens</th>
+            <th data-sort="perCapita">Tokens/capita</th>
             <th data-sort="personal">Personal %</th>
             <th data-sort="enterprise">Enterprise %</th>
             <th data-sort="mix">Mix</th>
-            <th data-sort="customers">Top 3 Customers</th>
+            <th data-sort="customers">Top 5 Customers</th>
           </tr>
         </thead>
         <tbody id="table-body"></tbody>
@@ -148,11 +149,11 @@
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <p class="footer-note">Personal and enterprise adoption rates are anchored to Stanford HAI AI Index 2025, McKinsey State of AI 2025, and IBM Global AI Adoption Index. Monthly token estimates are derived from Similarweb ChatGPT traffic × GDP × adoption proxies — error bars are material (±40% for China due to lack of public metering).</p>
+    <p class="footer-note">Personal and enterprise adoption rates are anchored to Stanford HAI AI Index 2025, McKinsey State of AI 2025, and IBM Global AI Adoption Index. Monthly token estimates are derived from Similarweb ChatGPT traffic × GDP × adoption proxies — error bars are material (±40% for China due to lack of public metering). Per-capita tokens = monthly tokens ÷ population (World Bank / UN DESA 2024 or national statistics office).</p>
     <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" class="footer-attribution">Template originally from Perplexity Computer</a>
   </div>
 </footer>
 
-<script src="./app-ai-demand.js"></script>
+<script src="./app-ai-demand.js?v=20260424"></script>
 </body>
 </html>

@@ -4,7 +4,9 @@ Schema:
   - estMonthlyTokens: string (scientific notation), monthly token consumption
   - personalAdoption: integer %, % of adults using AI tools (Stanford 2025)
   - enterpriseAdoption: integer %, % of companies deployed AI (Stanford/McKinsey)
-  - topCustomers: array of exactly 3 HQ-in-country companies { name, category }
+  - population: number, millions (World Bank / UN / national stats 2024-25)
+  - perCapitaTokens: integer, monthly tokens per person (derived)
+  - topCustomers: array of exactly 5 HQ-in-country companies { name, category }
   - categoryMix: "consumer-heavy" | "enterprise-heavy" | "mixed"
   - region: "North America" | "Europe" | "APAC" | "Other"
 
@@ -14,21 +16,22 @@ Marker color  = intensity (personalAdoption tier).
 ========== */
 
 const dataCenters = [
-  {country:"United States",code:"US",lat:39.8283,lng:-98.5795,region:"North America",estMonthlyTokens:"3.2e14",personalAdoption:52,enterpriseAdoption:72,topCustomers:[{name:"Microsoft",category:"enterprise-saas"},{name:"Meta",category:"consumer"},{name:"Alphabet (Google)",category:"enterprise-saas"}],categoryMix:"enterprise-heavy",details:"全球最大 AI token 消費國，佔 ChatGPT 流量約 18-20%。Copilot、Gemini、Claude 等在大型企業滲透率最高，Fortune 500 幾乎全面 PoC。推估基於 Similarweb 流量 × API 企業用量。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report"},
-  {country:"China",code:"CN",lat:35.8617,lng:104.1954,region:"APAC",estMonthlyTokens:"2.1e14",personalAdoption:41,enterpriseAdoption:58,topCustomers:[{name:"ByteDance (Doubao)",category:"consumer"},{name:"Tencent",category:"consumer"},{name:"Alibaba",category:"ecommerce"}],categoryMix:"consumer-heavy",details:"因 GPT 系列被牆，生態由 Doubao、Kimi、DeepSeek、文心一言主導，消費者 app 使用量極高（Doubao MAU 破億）。企業採用以電商、短影音、客服為主。推估以本土 LLM 用量 × DAU 推得；無公開 API metering，誤差 ±40%。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report"},
-  {country:"India",code:"IN",lat:20.5937,lng:78.9629,region:"APAC",estMonthlyTokens:"7.5e13",personalAdoption:47,enterpriseAdoption:59,topCustomers:[{name:"Tata Consultancy Services",category:"enterprise-saas"},{name:"Infosys",category:"enterprise-saas"},{name:"Reliance Jio",category:"telecom"}],categoryMix:"mixed",details:"全球 ChatGPT 第二大流量國（Similarweb 約 8-10%），IT 服務業深度導入 AI coding assistant。政府推 IndiaAI Mission 並投入 Bhashini 多語模型。消費端成長最快。",source:"https://indiaai.gov.in/"},
-  {country:"Japan",code:"JP",lat:36.2048,lng:138.2529,region:"APAC",estMonthlyTokens:"6.8e13",personalAdoption:28,enterpriseAdoption:48,topCustomers:[{name:"SoftBank",category:"telecom"},{name:"Rakuten",category:"ecommerce"},{name:"NTT Data",category:"enterprise-saas"}],categoryMix:"enterprise-heavy",details:"政府親 AI（經產省 Sakana AI 補貼），企業採用率成長快但個人採用偏低（語言與文化保守）。Copilot 在大型商社導入積極，金融與製造業 use case 最多。",source:"https://www.meti.go.jp/english/policy/mono_info_service/information_economy/ai.html"},
-  {country:"United Kingdom",code:"GB",lat:55.3781,lng:-3.4360,region:"Europe",estMonthlyTokens:"5.2e13",personalAdoption:49,enterpriseAdoption:63,topCustomers:[{name:"HSBC",category:"finance"},{name:"BBC",category:"media"},{name:"Sage Group",category:"enterprise-saas"}],categoryMix:"mixed",details:"歐洲 AI 消費最活躍市場，金融城深度導入 Copilot 與 Claude。政府發表 AI Opportunities Action Plan 並設立 AI Safety Institute。倫敦是歐洲最大 LLM API 消費城市。",source:"https://www.gov.uk/government/publications/ai-opportunities-action-plan"},
-  {country:"Germany",code:"DE",lat:51.1657,lng:10.4515,region:"Europe",estMonthlyTokens:"4.8e13",personalAdoption:35,enterpriseAdoption:61,topCustomers:[{name:"SAP",category:"enterprise-saas"},{name:"Siemens",category:"manufacturing"},{name:"Deutsche Telekom",category:"telecom"}],categoryMix:"enterprise-heavy",details:"製造業 + SaaS 雙主軸，SAP Joule 與 Siemens Industrial Copilot 為代表 use case。受 EU AI Act 影響，enterprise 導入偏向 on-prem 或歐洲雲。個人採用略低於歐洲平均。",source:"https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"},
-  {country:"France",code:"FR",lat:46.2276,lng:2.2137,region:"Europe",estMonthlyTokens:"3.6e13",personalAdoption:37,enterpriseAdoption:55,topCustomers:[{name:"BNP Paribas",category:"finance"},{name:"L'Oreal",category:"consumer"},{name:"Capgemini",category:"enterprise-saas"}],categoryMix:"mixed",details:"歐洲主權 AI 核心，Mistral 本土模型帶動 API 消費。政府 France 2030 計畫投入 AI 基礎設施，LVMH、L'Oreal 等奢侈品牌積極導入生成式 AI marketing。",source:"https://mistral.ai/"},
-  {country:"Brazil",code:"BR",lat:-14.2350,lng:-51.9253,region:"Other",estMonthlyTokens:"2.9e13",personalAdoption:54,enterpriseAdoption:41,topCustomers:[{name:"Itau Unibanco",category:"finance"},{name:"Nubank",category:"finance"},{name:"Magazine Luiza",category:"ecommerce"}],categoryMix:"consumer-heavy",details:"拉美最大 AI 消費市場，個人 ChatGPT 使用率歐美水準（葡語用戶全球第二）。銀行業 AI 導入領先（Itau、Nubank），企業整體採用率受中小企 IT 預算限制偏低。",source:"https://www.similarweb.com/website/chatgpt.com/"},
-  {country:"Indonesia",code:"ID",lat:-0.7893,lng:113.9213,region:"APAC",estMonthlyTokens:"1.8e13",personalAdoption:45,enterpriseAdoption:38,topCustomers:[{name:"GoTo (Gojek + Tokopedia)",category:"ecommerce"},{name:"Bank Central Asia",category:"finance"},{name:"Telkomsel",category:"telecom"}],categoryMix:"consumer-heavy",details:"東南亞最大 AI 消費市場（人口紅利 + 手機 AI app 高滲透），GoTo 與銀行業加速導入客服 AI。推估以行動網路 MAU × AI app penetration 推得；Bahasa 在地化是關鍵 use case。",source:"https://www.oecd.ai/"},
-  {country:"South Korea",code:"KR",lat:35.9078,lng:127.7669,region:"APAC",estMonthlyTokens:"3.4e13",personalAdoption:43,enterpriseAdoption:60,topCustomers:[{name:"Samsung Electronics",category:"manufacturing"},{name:"Naver",category:"consumer"},{name:"SK Telecom",category:"telecom"}],categoryMix:"mixed",details:"本土 LLM 強勢（Naver HyperCLOVA X、LG EXAONE），Samsung 半導體與家電深度整合 Galaxy AI。政府 K-AI 戰略投入 9 兆韓元基礎設施補貼。",source:"https://english.msit.go.kr/"},
-  {country:"Canada",code:"CA",lat:56.1304,lng:-106.3468,region:"North America",estMonthlyTokens:"2.6e13",personalAdoption:46,enterpriseAdoption:58,topCustomers:[{name:"Shopify",category:"ecommerce"},{name:"Royal Bank of Canada",category:"finance"},{name:"Cohere",category:"enterprise-saas"}],categoryMix:"mixed",details:"AI 研究重鎮（Vector、Mila），Shopify 全面 AI-first 重組、Cohere 為本土 frontier lab。Pan-Canadian AI Strategy 累計投入超過 CAD 2B；RBC 金融 AI 導入領先北美。",source:"https://ised-isde.canada.ca/site/ai-strategy/en"},
-  {country:"Australia",code:"AU",lat:-25.2744,lng:133.7751,region:"APAC",estMonthlyTokens:"1.9e13",personalAdoption:42,enterpriseAdoption:54,topCustomers:[{name:"Commonwealth Bank of Australia",category:"finance"},{name:"Atlassian",category:"enterprise-saas"},{name:"Canva",category:"enterprise-saas"}],categoryMix:"enterprise-heavy",details:"Canva 與 Atlassian 為全球 AI SaaS 代表；CBA 在亞太銀行 AI 導入名列前茅。政府發表 Voluntary AI Safety Standard，礦業與金融業 use case 最成熟。",source:"https://www.industry.gov.au/science-technology-and-innovation/technology/artificial-intelligence"},
-  {country:"Mexico",code:"MX",lat:23.6345,lng:-102.5528,region:"North America",estMonthlyTokens:"1.4e13",personalAdoption:48,enterpriseAdoption:40,topCustomers:[{name:"BBVA Mexico",category:"finance"},{name:"Grupo Bimbo",category:"manufacturing"},{name:"Televisa",category:"media"}],categoryMix:"consumer-heavy",details:"西語市場 AI 消費重鎮（ChatGPT 西語流量僅次西班牙），Nearshoring 帶動製造業 AI 投資。推估以西語 ChatGPT 流量 × 人口比重推得；政府尚無全國性 AI 戰略。",source:"https://www.similarweb.com/website/chatgpt.com/"},
-  {country:"Singapore",code:"SG",lat:1.3521,lng:103.8198,region:"APAC",estMonthlyTokens:"1.2e13",personalAdoption:56,enterpriseAdoption:74,topCustomers:[{name:"DBS Bank",category:"finance"},{name:"Sea Group",category:"ecommerce"},{name:"Grab",category:"consumer"}],categoryMix:"enterprise-heavy",details:"人均 AI 使用率全球頂級，IMDA 推動 National AI Strategy 2.0 與 SEA-LION 本土模型。DBS 為亞太銀行 AI 標竿（每年 AI-led revenue 逾 SGD 750M）。token/adult 比顯著高於區域平均。",source:"https://www.smartnation.gov.sg/nais/"},
-  {country:"Israel",code:"IL",lat:31.0461,lng:34.8516,region:"Other",estMonthlyTokens:"1.1e13",personalAdoption:51,enterpriseAdoption:65,topCustomers:[{name:"Check Point Software",category:"enterprise-saas"},{name:"Wix",category:"enterprise-saas"},{name:"AI21 Labs",category:"enterprise-saas"}],categoryMix:"enterprise-heavy",details:"人均 AI startup 密度全球最高，AI21 與 D-ID 為本土 frontier 代表。Cybersecurity 與 SaaS 深度整合 LLM；政府 National AI Program 投入約 USD 500M 基礎建設。",source:"https://www.startupnationcentral.org/"}
+  {country:"United States",code:"US",lat:39.8283,lng:-98.5795,region:"North America",estMonthlyTokens:"3.2e14",personalAdoption:52,enterpriseAdoption:72,population:335,perCapitaTokens:955224,topCustomers:[{name:"Microsoft",category:"enterprise-saas"},{name:"Alphabet (Google)",category:"enterprise-saas"},{name:"Meta",category:"consumer"},{name:"Amazon",category:"ecommerce"},{name:"Apple",category:"consumer"}],categoryMix:"enterprise-heavy",details:"全球最大 AI token 消費國，佔 ChatGPT 流量約 18-20%。Copilot、Gemini、Claude 等在大型企業滲透率最高，Fortune 500 幾乎全面 PoC。推估基於 Similarweb 流量 × API 企業用量。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report",populationSource:"https://data.worldbank.org/indicator/SP.POP.TOTL?locations=US"},
+  {country:"China",code:"CN",lat:35.8617,lng:104.1954,region:"APAC",estMonthlyTokens:"2.1e14",personalAdoption:41,enterpriseAdoption:58,population:1410,perCapitaTokens:148936,topCustomers:[{name:"ByteDance (Doubao)",category:"consumer"},{name:"Alibaba",category:"ecommerce"},{name:"Tencent",category:"consumer"},{name:"Baidu",category:"enterprise-saas"},{name:"Huawei",category:"telecom"}],categoryMix:"consumer-heavy",details:"因 GPT 系列被牆，生態由 Doubao、Kimi、DeepSeek、文心一言主導，消費者 app 使用量極高（Doubao MAU 破億）。企業採用以電商、短影音、客服為主。推估以本土 LLM 用量 × DAU 推得。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report",populationSource:"https://data.worldbank.org/indicator/SP.POP.TOTL?locations=CN"},
+  {country:"India",code:"IN",lat:20.5937,lng:78.9629,region:"APAC",estMonthlyTokens:"7.5e13",personalAdoption:47,enterpriseAdoption:59,population:1440,perCapitaTokens:52083,topCustomers:[{name:"Tata Consultancy Services",category:"enterprise-saas"},{name:"Infosys",category:"enterprise-saas"},{name:"Reliance Jio",category:"telecom"},{name:"HCLTech",category:"enterprise-saas"},{name:"Wipro",category:"enterprise-saas"}],categoryMix:"mixed",details:"全球 ChatGPT 第二大流量國（Similarweb 約 8-10%），IT 服務業深度導入 AI coding assistant。政府推 IndiaAI Mission 並投入 Bhashini 多語模型。消費端成長最快。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report",populationSource:"https://data.worldbank.org/indicator/SP.POP.TOTL?locations=IN"},
+  {country:"Japan",code:"JP",lat:36.2048,lng:138.2529,region:"APAC",estMonthlyTokens:"6.8e13",personalAdoption:28,enterpriseAdoption:48,population:124.5,perCapitaTokens:546185,topCustomers:[{name:"SoftBank",category:"telecom"},{name:"NTT Data",category:"enterprise-saas"},{name:"Rakuten",category:"ecommerce"},{name:"Toyota",category:"manufacturing"},{name:"Sony",category:"media"}],categoryMix:"enterprise-heavy",details:"政府親 AI（經產省 Sakana AI 補貼），企業採用率成長快但個人採用偏低（語言與文化保守）。Copilot 在大型商社導入積極，金融與製造業 use case 最多。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report",populationSource:"https://data.worldbank.org/indicator/SP.POP.TOTL?locations=JP"},
+  {country:"United Kingdom",code:"GB",lat:55.3781,lng:-3.436,region:"Europe",estMonthlyTokens:"5.2e13",personalAdoption:49,enterpriseAdoption:63,population:68.3,perCapitaTokens:761347,topCustomers:[{name:"HSBC",category:"finance"},{name:"Barclays",category:"finance"},{name:"BBC",category:"media"},{name:"Sage Group",category:"enterprise-saas"},{name:"BT Group",category:"telecom"}],categoryMix:"mixed",details:"歐洲 AI 消費最活躍市場，金融城深度導入 Copilot 與 Claude。政府發表 AI Opportunities Action Plan 並設立 AI Safety Institute。倫敦是歐洲最大 LLM API 消費城市。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report",populationSource:"https://data.worldbank.org/indicator/SP.POP.TOTL?locations=GB"},
+  {country:"Germany",code:"DE",lat:51.1657,lng:10.4515,region:"Europe",estMonthlyTokens:"4.8e13",personalAdoption:35,enterpriseAdoption:61,population:84.5,perCapitaTokens:568047,topCustomers:[{name:"SAP",category:"enterprise-saas"},{name:"Siemens",category:"manufacturing"},{name:"Deutsche Telekom",category:"telecom"},{name:"Volkswagen",category:"manufacturing"},{name:"Allianz",category:"finance"}],categoryMix:"enterprise-heavy",details:"製造業 + SaaS 雙主軸，SAP Joule 與 Siemens Industrial Copilot 為代表 use case。受 EU AI Act 影響，enterprise 導入偏向 on-prem 或歐洲雲。個人採用略低於歐洲平均。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report",populationSource:"https://data.worldbank.org/indicator/SP.POP.TOTL?locations=DE"},
+  {country:"France",code:"FR",lat:46.2276,lng:2.2137,region:"Europe",estMonthlyTokens:"3.6e13",personalAdoption:37,enterpriseAdoption:55,population:68.2,perCapitaTokens:527859,topCustomers:[{name:"BNP Paribas",category:"finance"},{name:"Capgemini",category:"enterprise-saas"},{name:"L'Oreal",category:"consumer"},{name:"LVMH",category:"consumer"},{name:"Orange",category:"telecom"}],categoryMix:"mixed",details:"歐洲主權 AI 核心，Mistral 本土模型帶動 API 消費。政府 France 2030 計畫投入 AI 基礎設施，LVMH、L'Oreal 等奢侈品牌積極導入生成式 AI marketing。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report",populationSource:"https://data.worldbank.org/indicator/SP.POP.TOTL?locations=FR"},
+  {country:"Brazil",code:"BR",lat:-14.235,lng:-51.9253,region:"Other",estMonthlyTokens:"2.9e13",personalAdoption:54,enterpriseAdoption:41,population:212.6,perCapitaTokens:136406,topCustomers:[{name:"Itau Unibanco",category:"finance"},{name:"Nubank",category:"finance"},{name:"Magazine Luiza",category:"ecommerce"},{name:"Banco Bradesco",category:"finance"},{name:"Petrobras",category:"manufacturing"}],categoryMix:"consumer-heavy",details:"拉美最大 AI 消費市場，個人 ChatGPT 使用率歐美水準（葡語用戶全球第二）。銀行業 AI 導入領先（Itau、Nubank），企業整體採用率受中小企 IT 預算限制偏低。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report",populationSource:"https://data.worldbank.org/indicator/SP.POP.TOTL?locations=BR"},
+  {country:"Indonesia",code:"ID",lat:-0.7893,lng:113.9213,region:"APAC",estMonthlyTokens:"1.8e13",personalAdoption:45,enterpriseAdoption:38,population:283.5,perCapitaTokens:63492,topCustomers:[{name:"GoTo (Gojek + Tokopedia)",category:"ecommerce"},{name:"Bank Central Asia",category:"finance"},{name:"Telkomsel",category:"telecom"},{name:"Bank Mandiri",category:"finance"},{name:"Blibli / Traveloka",category:"ecommerce"}],categoryMix:"consumer-heavy",details:"東南亞最大 AI 消費市場（人口紅利 + 手機 AI app 高滲透），GoTo 與銀行業加速導入客服 AI。推估以行動網路 MAU × AI app penetration 推得；Bahasa 在地化是關鍵 use case。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report",populationSource:"https://data.worldbank.org/indicator/SP.POP.TOTL?locations=ID"},
+  {country:"South Korea",code:"KR",lat:35.9078,lng:127.7669,region:"APAC",estMonthlyTokens:"3.4e13",personalAdoption:43,enterpriseAdoption:60,population:51.7,perCapitaTokens:657640,topCustomers:[{name:"Samsung Electronics",category:"manufacturing"},{name:"Naver",category:"consumer"},{name:"SK Telecom",category:"telecom"},{name:"LG AI Research (LG Group)",category:"manufacturing"},{name:"Kakao",category:"consumer"}],categoryMix:"mixed",details:"本土 LLM 強勢（Naver HyperCLOVA X、LG EXAONE），Samsung 半導體與家電深度整合 Galaxy AI。政府 K-AI 戰略投入 9 兆韓元基礎設施補貼。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report",populationSource:"https://kostat.go.kr/ansk/"},
+  {country:"Canada",code:"CA",lat:56.1304,lng:-106.3468,region:"North America",estMonthlyTokens:"2.6e13",personalAdoption:46,enterpriseAdoption:58,population:40.1,perCapitaTokens:648379,topCustomers:[{name:"Shopify",category:"ecommerce"},{name:"Royal Bank of Canada",category:"finance"},{name:"Cohere",category:"enterprise-saas"},{name:"TD Bank",category:"finance"},{name:"Bell Canada (BCE)",category:"telecom"}],categoryMix:"mixed",details:"AI 研究重鎮（Vector、Mila），Shopify 全面 AI-first 重組、Cohere 為本土 frontier lab。Pan-Canadian AI Strategy 累計投入超過 CAD 2B；RBC 金融 AI 導入領先北美。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report",populationSource:"https://www.statcan.gc.ca/en/start"},
+  {country:"Australia",code:"AU",lat:-25.2744,lng:133.7751,region:"APAC",estMonthlyTokens:"1.9e13",personalAdoption:42,enterpriseAdoption:54,population:26.6,perCapitaTokens:714286,topCustomers:[{name:"Commonwealth Bank of Australia",category:"finance"},{name:"Atlassian",category:"enterprise-saas"},{name:"Canva",category:"enterprise-saas"},{name:"Telstra",category:"telecom"},{name:"BHP",category:"manufacturing"}],categoryMix:"enterprise-heavy",details:"Canva 與 Atlassian 為全球 AI SaaS 代表；CBA 在亞太銀行 AI 導入名列前茅。政府發表 Voluntary AI Safety Standard，礦業與金融業 use case 最成熟。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report",populationSource:"https://www.abs.gov.au/statistics/people/population"},
+  {country:"Mexico",code:"MX",lat:23.6345,lng:-102.5528,region:"North America",estMonthlyTokens:"1.4e13",personalAdoption:48,enterpriseAdoption:40,population:130,perCapitaTokens:107692,topCustomers:[{name:"BBVA Mexico",category:"finance"},{name:"Grupo Bimbo",category:"manufacturing"},{name:"Televisa",category:"media"},{name:"America Movil",category:"telecom"},{name:"Mercado Libre Mexico",category:"ecommerce"}],categoryMix:"consumer-heavy",details:"西語市場 AI 消費重鎮（ChatGPT 西語流量僅次西班牙），Nearshoring 帶動製造業 AI 投資。推估以西語 ChatGPT 流量 × 人口比重推得；政府尚無全國性 AI 戰略。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report",populationSource:"https://www.inegi.org.mx/temas/estructura/"},
+  {country:"Singapore",code:"SG",lat:1.3521,lng:103.8198,region:"APAC",estMonthlyTokens:"1.2e13",personalAdoption:56,enterpriseAdoption:74,population:5.92,perCapitaTokens:2027027,topCustomers:[{name:"DBS Bank",category:"finance"},{name:"Sea Group",category:"ecommerce"},{name:"Grab",category:"consumer"},{name:"Singtel",category:"telecom"},{name:"OCBC Bank",category:"finance"}],categoryMix:"enterprise-heavy",details:"人均 AI 使用率全球頂級，IMDA 推動 National AI Strategy 2.0 與 SEA-LION 本土模型。DBS 為亞太銀行 AI 標竿（每年 AI-led revenue 逾 SGD 750M）。token/adult 比顯著高於區域平均。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report",populationSource:"https://www.singstat.gov.sg/find-data/search-by-theme/population/population-and-population-structure/latest-data"},
+  {country:"Israel",code:"IL",lat:31.0461,lng:34.8516,region:"Other",estMonthlyTokens:"1.1e13",personalAdoption:51,enterpriseAdoption:65,population:9.9,perCapitaTokens:1111111,topCustomers:[{name:"Check Point Software",category:"enterprise-saas"},{name:"Wix",category:"enterprise-saas"},{name:"AI21 Labs",category:"enterprise-saas"},{name:"Monday.com",category:"enterprise-saas"},{name:"Bank Hapoalim",category:"finance"}],categoryMix:"enterprise-heavy",details:"人均 AI startup 密度全球最高，AI21 與 D-ID 為本土 frontier 代表。Cybersecurity 與 SaaS 深度整合 LLM；政府 National AI Program 投入約 USD 500M 基礎建設。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report",populationSource:"https://www.cbs.gov.il/en/Pages/default.aspx"},
+  {country:"Taiwan",code:"TW",lat:23.6978,lng:120.9605,region:"APAC",estMonthlyTokens:"1.8e13",personalAdoption:40,enterpriseAdoption:58,population:23.4,perCapitaTokens:769231,topCustomers:[{name:"TSMC",category:"manufacturing"},{name:"Foxconn (Hon Hai)",category:"manufacturing"},{name:"MediaTek",category:"manufacturing"},{name:"Appier",category:"enterprise-saas"},{name:"Cathay Financial Holdings",category:"finance"}],categoryMix:"enterprise-heavy",details:"半導體製造驅動企業端 AI 採購（TSMC 內部 GB200/H100 cluster 用於製程良率與 EDA），Foxconn 同時是 NVIDIA AI server 最大代工廠與內部工廠 AI 的採用者。消費端缺本土 LLM，主要仰賴 GPT/Claude/Gemini；Appier 為本土 AI SaaS 獨角獸（東京上市）代表。",source:"https://hai.stanford.edu/ai-index/2025-ai-index-report",populationSource:"https://www.ris.gov.tw/app/en"}
 ];
 
 /* ========== MAP INITIALIZATION ========== */
@@ -124,6 +127,13 @@ function formatTokens(str) {
   return String(n);
 }
 
+/* Format per-capita tokens (integer, can reach millions) */
+function formatPerCap(n) {
+  if (n >= 1e6) return (n / 1e6).toFixed(2) + "M";
+  if (n >= 1e3) return (n / 1e3).toFixed(0) + "K";
+  return String(n);
+}
+
 function renderCustomers(customers) {
   return customers.map(c => {
     const color = categoryColors[c.category] || "#8a8f9f";
@@ -159,11 +169,15 @@ function addMarkers(data) {
         <div class="popup-details">
           <span class="popup-detail-label">Monthly Tokens</span>
           <span class="popup-detail-value">${formatTokens(dc.estMonthlyTokens)}</span>
+          <span class="popup-detail-label">Population</span>
+          <span class="popup-detail-value">${dc.population}M</span>
+          <span class="popup-detail-label">Tokens / capita</span>
+          <span class="popup-detail-value">${formatPerCap(dc.perCapitaTokens)} / mo</span>
           <span class="popup-detail-label">Personal Adoption</span>
           <span class="popup-detail-value">${dc.personalAdoption}% of adults</span>
           <span class="popup-detail-label">Enterprise Adoption</span>
           <span class="popup-detail-value">${dc.enterpriseAdoption}% of companies</span>
-          <span class="popup-detail-label">Top Customers</span>
+          <span class="popup-detail-label">Top 5 Customers</span>
           <span class="popup-detail-value">${renderCustomers(dc.topCustomers)}</span>
         </div>
         <div style="margin-top:12px;font-size:12px;color:var(--color-text-muted);line-height:1.5;">${dc.details}</div>
@@ -172,7 +186,7 @@ function addMarkers(data) {
     `;
 
     marker.bindPopup(popupContent, { maxWidth: 380, minWidth: 280 });
-    marker.bindTooltip(`${dc.country} · ${dc.personalAdoption}% / ${dc.enterpriseAdoption}%`, {
+    marker.bindTooltip(`${dc.country} · ${formatPerCap(dc.perCapitaTokens)}/mo · ${dc.personalAdoption}%/${dc.enterpriseAdoption}%`, {
       direction: "top",
       offset: [0, -radius],
       className: "custom-tooltip"
@@ -215,6 +229,7 @@ function renderTable(data) {
       <td style="font-weight:600;">${dc.country}</td>
       <td>${dc.region}</td>
       <td style="font-family:var(--font-mono);font-size:var(--text-xs);">${formatTokens(dc.estMonthlyTokens)}</td>
+      <td style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-muted);">${formatPerCap(dc.perCapitaTokens)}</td>
       <td style="font-family:var(--font-mono);font-size:var(--text-xs);color:${color};">${dc.personalAdoption}%</td>
       <td style="font-family:var(--font-mono);font-size:var(--text-xs);">${dc.enterpriseAdoption}%</td>
       <td><span class="status-badge status-groundbreaking" style="background:${color}22;color:${color};">${mixLabels[dc.categoryMix]}</span></td>
@@ -312,10 +327,16 @@ document.querySelectorAll("th[data-sort]").forEach(th => {
     rows.sort((a, b) => {
       const cellA = a.children[getColIndex(col)].textContent.trim();
       const cellB = b.children[getColIndex(col)].textContent.trim();
-      if (["tokens","personal","enterprise"].includes(col)) {
-        const nA = parseFloat(cellA.replace(/[^0-9.]/g,"")) || 0;
-        const nB = parseFloat(cellB.replace(/[^0-9.]/g,"")) || 0;
-        return sortAsc ? nA - nB : nB - nA;
+      if (["tokens","perCapita","personal","enterprise"].includes(col)) {
+        // Parse "2.03M", "955K", "52%" etc. into comparable number
+        const parseVal = s => {
+          const m = s.match(/^([\d.]+)\s*([KMTBG]?)/);
+          if (!m) return 0;
+          const base = parseFloat(m[1]);
+          const mult = { T:1e12, B:1e9, G:1e9, M:1e6, K:1e3, "":1 }[m[2]] || 1;
+          return base * mult;
+        };
+        return sortAsc ? parseVal(cellA) - parseVal(cellB) : parseVal(cellB) - parseVal(cellA);
       }
       return sortAsc ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
     });
@@ -325,7 +346,7 @@ document.querySelectorAll("th[data-sort]").forEach(th => {
 });
 
 function getColIndex(col) {
-  const map = { country: 0, region: 1, tokens: 2, personal: 3, enterprise: 4, mix: 5, customers: 6 };
+  const map = { country: 0, region: 1, tokens: 2, perCapita: 3, personal: 4, enterprise: 5, mix: 6, customers: 7 };
   return map[col] || 0;
 }
 
