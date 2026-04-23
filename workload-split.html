@@ -7,8 +7,8 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Power &amp; Nuclear for AI — Hyperscaler Energy Deals</title>
-<meta name="description" content="Interactive map of major power and nuclear PPAs signed by hyperscalers and AI-focused operators. Nuclear restarts, SMRs, gas peakers, renewables, and behind-the-meter builds.">
+<title>AI Workload Split — Training / Inference / Idle by Country</title>
+<meta name="description" content="Country-level estimate of how AI data center capacity is split between training, inference, and idle / reserve workloads across 15 countries.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,15 +22,16 @@
 <header class="site-header">
   <div class="header-inner">
     <div class="logo-group">
-      <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" aria-label="Power and Nuclear AI logo">
-        <path d="M16 3 L9 15 h5 l-3 14 14-18 h-6 l3-8 z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"/>
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" aria-label="Workload Split logo">
+        <circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="2" fill="none"/>
+        <path d="M16 5 v11 l8 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
       </svg>
-      <h1 class="logo-text">Power &amp; Nuclear for AI</h1>
+      <h1 class="logo-text">AI Workload Split</h1>
     </div>
     <div class="header-controls">
       <div class="search-box">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="search-input" placeholder="Search deals...">
+        <input type="text" id="search-input" placeholder="Search countries...">
       </div>
       <button data-theme-toggle aria-label="Switch to dark mode" class="theme-toggle">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -41,13 +42,13 @@
 
 <nav class="page-nav">
   <div class="page-nav-inner">
-    <div class="nav-group active">
+    <div class="nav-group">
       <button class="nav-group-btn" aria-haspopup="true">AI Infra</button>
       <div class="nav-group-menu" role="menu">
         <a href="./">AI Data Centers</a>
         <a href="./gpu-cluster.html">GPU Clusters</a>
         <a href="./subsea-cable.html">Subsea Cables</a>
-        <a href="./power-ai.html" class="active">Power &amp; Nuclear</a>
+        <a href="./power-ai.html">Power &amp; Nuclear</a>
       </div>
     </div>
     <div class="nav-group">
@@ -59,11 +60,11 @@
         <a href="./euv.html">EUV Tools</a>
       </div>
     </div>
-    <div class="nav-group">
+    <div class="nav-group active">
       <button class="nav-group-btn" aria-haspopup="true">AI Demand</button>
       <div class="nav-group-menu" role="menu">
         <a href="./token-production.html">Token Production</a>
-        <a href="./workload-split.html">Workload Split</a>
+        <a href="./workload-split.html" class="active">Workload Split</a>
         <a href="./ai-demand.html">AI Demand</a>
       </div>
     </div>
@@ -74,37 +75,34 @@
   <section class="stats-bar">
     <div class="stat-item">
       <span class="stat-value" id="stat-total">0</span>
-      <span class="stat-label">Deals Tracked</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-value" id="stat-investment">$0B+</span>
-      <span class="stat-label">Total Investment</span>
+      <span class="stat-label">Countries</span>
     </div>
     <div class="stat-item">
       <span class="stat-value" id="stat-capacity">0 MW</span>
-      <span class="stat-label">Total Committed Power</span>
+      <span class="stat-label">Total AI Capacity</span>
     </div>
     <div class="stat-item">
-      <span class="stat-value" id="stat-countries">0</span>
-      <span class="stat-label">Countries</span>
+      <span class="stat-value" id="stat-train">0%</span>
+      <span class="stat-label">Avg Training %</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value" id="stat-infer">0%</span>
+      <span class="stat-label">Avg Inference %</span>
     </div>
   </section>
 
   <section class="filters-bar">
     <div class="filter-group">
-      <button class="filter-btn active" data-filter="all">All Deals</button>
-      <button class="filter-btn" data-filter="nuclear-restart">Nuclear Restart</button>
-      <button class="filter-btn" data-filter="nuclear-smr">Nuclear SMR</button>
-      <button class="filter-btn" data-filter="gas">Gas</button>
-      <button class="filter-btn" data-filter="renewable">Renewable</button>
-      <button class="filter-btn" data-filter="behind-meter">Behind-the-meter</button>
+      <button class="filter-btn active" data-filter="all">All Countries</button>
+      <button class="filter-btn" data-filter="training-heavy">Training-heavy</button>
+      <button class="filter-btn" data-filter="inference-heavy">Inference-heavy</button>
+      <button class="filter-btn" data-filter="balanced">Balanced</button>
     </div>
     <div class="filter-group">
       <button class="filter-btn" data-region="all" data-active="true">Global</button>
-      <button class="filter-btn" data-region="north-america">N. America</button>
-      <button class="filter-btn" data-region="europe">Europe</button>
-      <button class="filter-btn" data-region="asia-pacific">Asia-Pacific</button>
-      <button class="filter-btn" data-region="middle-east">Middle East</button>
+      <button class="filter-btn" data-region="North America">N. America</button>
+      <button class="filter-btn" data-region="Europe">Europe</button>
+      <button class="filter-btn" data-region="APAC">APAC</button>
     </div>
   </section>
 
@@ -114,30 +112,29 @@
 
   <section class="legend-section">
     <div class="legend-inner">
-      <h3 class="legend-title">Power Source</h3>
+      <h3 class="legend-title">Dominant Workload</h3>
       <div class="legend-items">
-        <div class="legend-item"><span class="legend-dot" style="background:#ef4444;"></span> Nuclear restart (existing PWR)</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#f59e0b;"></span> Nuclear SMR (new build)</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#8b5cf6;"></span> Gas (peaker / baseload)</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#10b981;"></span> Renewable (solar / wind / hydro)</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#3b82f6;"></span> Behind-the-meter (on-site gen)</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#ef4444;"></span> Training-heavy (train &gt; 50%)</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#3b82f6;"></span> Inference-heavy (infer &gt; 50%)</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#8a8f9f;"></span> Balanced (no workload &gt; 50%)</div>
       </div>
-      <p class="legend-note">Circle size represents MW committed to the offtaker. Investment figures are each operator's disclosed or estimated spend and are mostly estimates.</p>
+      <p class="legend-note">Circle size represents total AI MW; circle color represents dominant workload. All splits are country-level estimates — hyperscalers do not publish per-country workload breakdowns.</p>
     </div>
   </section>
 
   <section class="data-table-section">
-    <h2 class="section-title">All Deals</h2>
+    <h2 class="section-title">Workload by Country</h2>
     <div class="table-wrapper">
       <table id="data-table">
         <thead>
           <tr>
-            <th data-sort="project">Deal</th>
-            <th data-sort="company">Offtaker</th>
-            <th data-sort="location">Location</th>
-            <th data-sort="investment">Fuel</th>
-            <th data-sort="capacity">Capacity</th>
-            <th data-sort="status">Status</th>
+            <th data-sort="country">Country</th>
+            <th data-sort="region">Region</th>
+            <th data-sort="totalMW">Total MW</th>
+            <th data-sort="trainPct">Train %</th>
+            <th data-sort="inferPct">Infer %</th>
+            <th data-sort="idlePct">Idle %</th>
+            <th data-sort="dominant">Dominant</th>
           </tr>
         </thead>
         <tbody id="table-body"></tbody>
@@ -148,11 +145,11 @@
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <p class="footer-note">Data compiled from operator press releases, SEC filings, and industry press (Reuters, Bloomberg, FT, Data Center Frontier, Utility Dive). MW figures reflect committed AI/DC offtake, not plant nameplate.</p>
+    <p class="footer-note">Workload splits are country-level estimates derived from SemiAnalysis industry reports, IEA Energy &amp; AI 2025, and hyperscaler public statements. Individual operators may diverge significantly from these averages.</p>
     <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" class="footer-attribution">Template originally from Perplexity Computer</a>
   </div>
 </footer>
 
-<script src="./app-power-ai.js"></script>
+<script src="./app-workload-split.js"></script>
 </body>
 </html>
