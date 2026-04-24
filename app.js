@@ -864,6 +864,38 @@ const dataCenters = [
   }
 ];
 
+/* ========== TAIWAN SUPPLY-CHAIN CROSS-REFERENCE ==========
+ * Hand-curated reverse-index: DC project name → Taiwan supplier(s).
+ * Scope is intentionally narrow — only 1:1 name-level matches with
+ * public disclosure. Platform-level indirect exposure (e.g. any GB200
+ * DC implicitly uses Delta 2308 PSUs) is NOT asserted here to avoid
+ * over-claiming. See power-tw.html for the full supplier view.
+ */
+const TW_CROSSREF = {
+  "Stargate I (Flagship)": [
+    {
+      ticker: "1519",
+      tw_name: "華城",
+      en_name: "Fortune Electric",
+      category: "transformer",
+      grade: "A",
+      revenue_twd_mn: 2000,
+      note: "525kV GSU transformer shipment (disclosed 2025)"
+    }
+  ],
+  "Stargate — Lordstown": [
+    {
+      ticker: "1519",
+      tw_name: "華城",
+      en_name: "Fortune Electric",
+      category: "transformer",
+      grade: "B",
+      revenue_twd_mn: null,
+      note: "Early small order (Stargate Ohio 小型先期)"
+    }
+  ]
+};
+
 /* ========== MAP INITIALIZATION ========== */
 
 const categoryColors = {
@@ -963,6 +995,25 @@ function addMarkers(data) {
       className: "pulse-marker"
     });
 
+    const twSuppliers = TW_CROSSREF[dc.project];
+    const twBlock = twSuppliers ? `
+        <div class="popup-tw-section">
+          <div class="popup-tw-header">🇹🇼 Taiwan suppliers</div>
+          <div class="popup-tw-body">
+            ${twSuppliers.map(s => `
+              <div class="popup-tw-row">
+                <span class="popup-tw-supplier">${s.ticker} ${s.tw_name}</span>
+                <span class="grade-badge grade-${s.grade}">${s.grade}</span>
+                <span class="popup-tw-cat">${s.category}</span>
+                <span class="popup-tw-rev">${s.revenue_twd_mn !== null ? "NT$" + s.revenue_twd_mn + "M" : "n/d"}</span>
+                <a href="./power-tw.html" class="popup-tw-link">more →</a>
+              </div>
+              <div class="popup-tw-note" style="font-size:10px;color:var(--color-text-muted);padding:0 0 4px 0;">${s.note}</div>
+            `).join("")}
+          </div>
+        </div>
+    ` : "";
+
     const popupContent = `
       <div class="popup-inner">
         <div class="popup-header">
@@ -984,6 +1035,7 @@ function addMarkers(data) {
           <span class="popup-detail-value">${dc.expected}</span>
         </div>
         <div style="margin-top:12px;font-size:12px;color:var(--color-text-muted);line-height:1.5;">${dc.details}</div>
+        ${twBlock}
         <div class="popup-source"><a href="${dc.source}" target="_blank" rel="noopener noreferrer">View source →</a></div>
       </div>
     `;

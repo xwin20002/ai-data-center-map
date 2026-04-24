@@ -708,6 +708,34 @@ tr:hover td { background: var(--color-surface-2); }
   color: var(--color-text-faint);
 }
 
+.last-verified-banner .banner-link {
+  color: var(--color-accent, var(--color-text));
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.last-verified-banner .banner-link:hover {
+  color: var(--color-text);
+  text-decoration-thickness: 2px;
+}
+
+/* Page-banner variant: injected into the existing 11 pages above stats-bar */
+.last-verified-banner.page-banner {
+  display: flex;
+  margin: 0 auto var(--space-4);
+  max-width: 1400px;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
+  padding-top: var(--space-3);
+  padding-bottom: var(--space-3);
+}
+
 /* Filter label prefix */
 .filter-label {
   font-size: var(--text-xs);
@@ -832,6 +860,12 @@ tr:hover td { background: var(--color-surface-2); }
 #data-table a:hover { text-decoration: underline; }
 
 /* Leaflet popup (TW variant) */
+.popup-tw-section {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--color-divider);
+}
+
 .popup-tw-header {
   font-weight: 700;
   font-size: var(--text-sm);
