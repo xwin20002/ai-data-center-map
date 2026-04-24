@@ -655,3 +655,237 @@ tr:hover td { background: var(--color-surface-2); }
   .stat-item { padding: var(--space-3); }
   .stat-value { font-size: var(--text-lg); }
 }
+
+/* ========== PHASE 3 — TAIWAN SUPPLY CHAIN ========== */
+
+/* Page intro block (title + lede + last verified banner) */
+.page-intro {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-6) 0;
+}
+
+.page-title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.page-lede {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  max-width: 1000px;
+  margin-bottom: var(--space-4);
+}
+
+.last-verified-banner {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
+}
+
+.last-verified-banner .banner-label {
+  color: var(--color-text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.last-verified-banner .banner-value {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.last-verified-banner .banner-sep {
+  color: var(--color-text-faint);
+}
+
+/* Filter label prefix */
+.filter-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-right: var(--space-2);
+  align-self: center;
+}
+
+/* Disabled nav link */
+.nav-group-menu a.nav-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* Grade badge family */
+.grade-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-mono);
+  min-width: 22px;
+  text-align: center;
+}
+
+.grade-badge.grade-A { background: rgba(16,185,129,0.18); color: #34d399; border: 1px solid rgba(16,185,129,0.4); }
+.grade-badge.grade-B { background: rgba(59,130,246,0.18); color: #60a5fa; border: 1px solid rgba(59,130,246,0.4); }
+.grade-badge.grade-C { background: rgba(245,158,11,0.18); color: #fbbf24; border: 1px solid rgba(245,158,11,0.4); }
+.grade-badge.grade-D { background: rgba(239,68,68,0.18); color: #f87171; border: 1px solid rgba(239,68,68,0.4); }
+
+/* Legend dots */
+.grade-A-dot { background: #10b981; }
+.grade-B-dot { background: #3b82f6; }
+.grade-C-dot { background: #f59e0b; }
+.grade-D-dot { background: #ef4444; }
+
+/* Supplier chip */
+.supplier-chip {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+/* Section sublede */
+.section-sublede {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: calc(-1 * var(--space-3));
+  margin-bottom: var(--space-4);
+  max-width: 900px;
+}
+
+/* Matrix table */
+#matrix-table {
+  table-layout: auto;
+  width: 100%;
+  font-size: var(--text-xs);
+}
+
+.matrix-supplier-col,
+.matrix-dc-col {
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: var(--color-surface-2);
+  position: sticky;
+  top: 0;
+}
+
+.matrix-supplier-col { width: 160px; }
+
+.matrix-cell {
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.matrix-empty { color: var(--color-text-faint); text-align: center; }
+
+.matrix-supplier-cell {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  padding-left: var(--space-3);
+}
+
+.matrix-supplier-sub {
+  font-weight: 400;
+  color: var(--color-text-muted);
+  font-size: 10px;
+}
+
+/* Flat table tweaks */
+#data-table .col-dc {
+  max-width: 260px;
+  white-space: normal;
+  line-height: 1.35;
+}
+
+#data-table .col-rev {
+  font-family: var(--font-mono);
+  text-align: right;
+  white-space: nowrap;
+}
+
+#data-table a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+#data-table a:hover { text-decoration: underline; }
+
+/* Leaflet popup (TW variant) */
+.popup-tw-header {
+  font-weight: 700;
+  font-size: var(--text-sm);
+  margin-bottom: 6px;
+  color: var(--color-text);
+}
+
+.popup-tw-body { display: flex; flex-direction: column; gap: 6px; }
+
+.popup-tw-row {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto auto;
+  gap: 6px;
+  align-items: center;
+  font-size: 11px;
+  padding: 4px 0;
+  border-bottom: 1px dashed var(--color-divider);
+}
+
+.popup-tw-row:last-child { border-bottom: none; }
+
+.popup-tw-supplier { font-family: var(--font-mono); font-weight: 600; white-space: nowrap; }
+.popup-tw-cat { color: var(--color-text-muted); font-family: var(--font-mono); font-size: 10px; }
+.popup-tw-rev { color: var(--color-text); font-family: var(--font-mono); font-weight: 500; white-space: nowrap; }
+.popup-tw-link { color: var(--color-accent); text-decoration: none; font-size: 10px; }
+.popup-tw-link:hover { text-decoration: underline; }
+
+/* Methodology section */
+.methodology-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-6);
+  border-top: 1px solid var(--color-divider);
+}
+
+.methodology-inner {
+  max-width: 1000px;
+}
+
+.methodology-list {
+  list-style: disc;
+  padding-left: var(--space-6);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.8;
+}
+
+.methodology-list strong { color: var(--color-text); }
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  .last-verified-banner { font-size: 10px; }
+  .page-intro { padding: var(--space-4); }
+  .page-title { font-size: var(--text-lg); }
+  .matrix-supplier-col { width: 120px; }
+  #matrix-table { font-size: 10px; }
+}
