@@ -8,8 +8,8 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Taiwan Supply Chain — Rack Line (AI Data Center)</title>
-<meta name="description" content="Reverse index: Taiwan rack ODM suppliers (Foxconn 2317, Quanta 2382, Wiwynn 6669, Inventec 2356) and their disclosed AI server / rack-line exposure.">
+<title>Taiwan Supply Chain — Cooling Line (AI Data Center)</title>
+<meta name="description" content="Reverse index: Taiwan cooling vendors (AVC 3017, Auras 3324, Sunon 2421) and their AI server / DC liquid + air cooling exposure.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,8 +81,8 @@
       <button class="nav-group-btn" aria-haspopup="true">Taiwan Supply Chain</button>
       <div class="nav-group-menu" role="menu">
         <a href="./power-tw.html">Power Line (TW)</a>
-        <a href="./cooling-tw.html">Cooling Line (TW)</a>
-        <a href="./rack-tw.html" class="active">Rack Line (TW)</a>
+        <a href="./cooling-tw.html" class="active">Cooling Line (TW)</a>
+        <a href="./rack-tw.html">Rack Line (TW)</a>
       </div>
     </div>
   </div>
@@ -90,14 +90,14 @@
 
 <main>
   <section class="page-intro">
-    <h2 class="page-title">Taiwan Rack-Line Suppliers &mdash; AI Server / DC Exposure</h2>
-    <p class="page-lede">反向索引：追蹤台廠 rack ODM（鴻海 2317 / 廣達 2382 / 緯穎 6669 / 英業達 2356）在全球 AI Data Center 的整機櫃 / L6/L10/L11 server 與 backend network 暴險。<strong>重要框架說明：</strong>rack ODM 業界揭露慣例為「公司整體 / AI 伺服器」aggregate 級，不揭露單一 DC 訂單。本頁 shipment 類別 (rack_assembly / l6_server / l10_server / l11_rack / backend_network) 全數無 per-DC 金額；可量化基準採各家公司整體 AI server 營收估算（見 methodology）。</p>
+    <h2 class="page-title">Taiwan Cooling-Line Suppliers &mdash; AI Server / DC Exposure</h2>
+    <p class="page-lede">反向索引：追蹤台廠散熱（奇鋐 3017 AVC / 雙鴻 3324 Auras / 建準 2421 Sunon）在全球 AI Data Center 的 cold plate / CDU / manifold / vapor chamber / heatsink / fan 暴險。<strong>重要框架說明：</strong>cooling vendor 揭露多以「公司整體 / 液冷占比 / AI server fan」aggregate 形式，少有 per-DC 訂單金額揭露。台達電 2308 CDU 已在 <a href="./power-tw.html">Power Line (TW)</a> 收錄，本頁不重複收。</p>
     <div class="last-verified-banner">
       <span class="banner-label">Last verified:</span>
-      <span class="banner-value">2026-04-25</span>
+      <span class="banner-value">2026-04-26</span>
       <span class="banner-sep">·</span>
       <span class="banner-label">Next update:</span>
-      <span class="banner-value">2026-07-25</span>
+      <span class="banner-value">2026-07-26</span>
       <span class="banner-sep">·</span>
       <span class="banner-label">Schema version:</span>
       <span class="banner-value">phase3-v1</span>
@@ -115,7 +115,7 @@
     </div>
     <div class="stat-item">
       <span class="stat-value" id="stat-revenue">NT$0</span>
-      <span class="stat-label">2025E AI Server Rev. (Aggregate)</span>
+      <span class="stat-label">2025E AI Cooling Rev. (Aggregate)</span>
     </div>
     <div class="stat-item">
       <span class="stat-value" id="stat-a-ratio">0%</span>
@@ -127,10 +127,9 @@
     <div class="filter-group">
       <span class="filter-label">Supplier:</span>
       <button class="filter-btn active" data-supplier="all">All</button>
-      <button class="filter-btn" data-supplier="2317">2317 Foxconn (鴻海)</button>
-      <button class="filter-btn" data-supplier="2382">2382 Quanta (廣達)</button>
-      <button class="filter-btn" data-supplier="6669">6669 Wiwynn (緯穎)</button>
-      <button class="filter-btn" data-supplier="2356">2356 Inventec (英業達)</button>
+      <button class="filter-btn" data-supplier="3017">3017 AVC (奇鋐)</button>
+      <button class="filter-btn" data-supplier="3324">3324 Auras (雙鴻)</button>
+      <button class="filter-btn" data-supplier="2421">2421 Sunon (建準)</button>
     </div>
     <div class="filter-group">
       <span class="filter-label">Grade:</span>
@@ -156,14 +155,14 @@
         <div class="legend-item"><span class="legend-dot grade-D-dot"></span> Grade D — Single-source / analyst estimate (bear/base/bull required)</div>
       </div>
       <p class="legend-note">
-        Rack-line 地圖落點以「ODM 自有工廠 / 擴產廠區」為主（Lordstown OH / Tennessee / El Paso TX / Juárez MX / 桃園 / 台南 / 高雄路竹），少數在具名 DC（Stargate Abilene / CoreWeave）。集團整體 / 公司營收等抽象項目不落點，但仍列於下方資料表。Grade 詳細定義見 <a href="#methodology">方法論</a>。
+        Cooling-line 地圖落點以「散熱廠自有工廠 / 擴產廠區」為主：AVC 越南 V5-V8 + 中國四廠（深圳/東莞/成都/武漢）；Auras 泰國 Phase 1+2 + 廣州/重慶/新北 + 墨西哥規劃；Sunon 高雄/越南/中國昆山。集團整體 / 公司營收等抽象項目不落點，仍列於下方資料表。
       </p>
     </div>
   </section>
 
   <section class="data-table-section">
     <h2 class="section-title">Supplier &times; DC Matrix (filtered)</h2>
-    <p class="section-sublede">列 = 台廠、欄 = 具名 shipment 對象（多為 ODM 工廠擴產項目）；儲存格 = 出貨金額（NT$ 百萬）或 # 條目數。<strong>注意：</strong>多數 shipment 沒有 per-DC 金額（rack ODM 只揭露公司整體），因此以 # 計數為主。</p>
+    <p class="section-sublede">列 = 台廠、欄 = 具名 shipment 對象（多為廠區擴產或 NVIDIA / CSP 平台）；儲存格 = 出貨金額（NT$ 百萬）或 # 條目數。<strong>注意：</strong>多數 cold plate / cdu / fan 沒有 per-DC 金額（公司只揭露整體或液冷占比），因此以 # 計數為主。</p>
     <div class="table-wrapper">
       <table id="matrix-table">
         <thead id="matrix-thead"></thead>
@@ -174,7 +173,7 @@
 
   <section class="data-table-section">
     <h2 class="section-title">All Data Points (flat)</h2>
-    <p class="section-sublede">Phase 3 S3 機櫃線總計 <span id="dp-count">0</span> 條 data-points（4 家 ODM 合計 85 筆 / Grade A 41、B 27、C 10、D 7）。</p>
+    <p class="section-sublede">Phase 3 S2 散熱線總計 <span id="dp-count">0</span> 條 data-points（3 家 cooling vendor 合計 68 筆 / Grade A 16、B 38、C 10、D 4，A+B = 79.4%）。</p>
     <div class="table-wrapper">
       <table id="data-table">
         <thead>
@@ -200,41 +199,47 @@
 
       <h4 class="methodology-subhead">Grade 分級</h4>
       <ul class="methodology-list">
-        <li><strong>Grade A</strong> — 一手公開（法說會、MOPS 公告、年報、SEC filing、OCP 產品註冊）</li>
-        <li><strong>Grade B</strong> — Tier-1 媒體深度（Bloomberg、Reuters、日經、工商時報、經濟日報、Digitimes、SemiAnalysis、TrendForce）</li>
+        <li><strong>Grade A</strong> — 一手公開（法說會、MOPS 公告、年報、SEC filing、OCP 產品註冊、公司新聞稿）</li>
+        <li><strong>Grade B</strong> — Tier-1 媒體深度（Bloomberg、Reuters、日經、工商時報、經濟日報、Digitimes、SemiAnalysis、TrendForce、UBS、KGI、Goldman Sachs 報告摘要）</li>
         <li><strong>Grade C</strong> — 多源交叉但無一手（行業會議共識、多家券商重複敘述）</li>
         <li><strong>Grade D</strong> — 單一來源或分析師推估；本頁 D 級項目皆附 Bear/Base/Bull 三情境於 notes 欄位</li>
       </ul>
 
-      <h4 class="methodology-subhead">Rack ODM 揭露限制（重要）</h4>
+      <h4 class="methodology-subhead">Cooling Vendor 揭露限制（重要）</h4>
       <ul class="methodology-list">
-        <li>四家 rack ODM（Foxconn / Quanta / Wiwynn / Inventec）<strong>皆採公司整體或 AI 伺服器整體營收揭露</strong>，不分項至單一 DC 客戶</li>
-        <li>本頁所有 shipment 類別 (rack_assembly / l6_server / l10_server / l11_rack / backend_network) 的 <code>est_revenue_twd_mn</code> 一律為 <strong>null</strong>（不可填，避免製造虛假精確度）</li>
-        <li>Stat 3「2025E AI Server Revenue (Aggregate)」採以下 per-supplier 估算加總：
+        <li>三家 cooling vendor（AVC / Auras / Sunon）<strong>多採液冷占比 / AI 伺服器整體營收揭露</strong>，不分項至單一 DC 客戶</li>
+        <li>本頁 shipment 類別 (cold_plate / cdu / heatsink / vapor_chamber / fan / manifold / quick_connect / hvac / coolant) 的 <code>est_revenue_twd_mn</code> 多為 <strong>null</strong>（避免製造虛假精確度）</li>
+        <li>Stat 3「2025E AI Cooling Revenue (Aggregate)」採以下 per-supplier 估算加總：
           <ul>
-            <li><strong>2317 Foxconn</strong> NT$1.0 兆 — 2025 前三季法說會（劉揚偉 2025/11/12）AI server 營收破兆元（Grade A）</li>
-            <li><strong>2382 Quanta</strong> NT$1.0 兆 — 2025 全年法說會 AI server 略超 1 兆，YoY +100%+（Grade A）</li>
-            <li><strong>6669 Wiwynn</strong> NT$0.475 兆 — 2025 全年合併營收 NT$950.66B × AI 占比過半 ~50%（Digitimes 2026/02/27 + estimate）</li>
-            <li><strong>2356 Inventec</strong> NT$0.20 兆 — 2025E AI server ~NT$200B (33% of total revenue)（Grade C 自有推算）</li>
-            <li>合計 ≈ <strong>NT$2.675 兆</strong>，僅在「全選」filter 下顯示完整加總；單一供應商 filter 顯示對應供應商項</li>
+            <li><strong>3017 AVC</strong> NT$391 億 — 2025 全年合併營收 NT$1,396 億 × 液冷占比 28%（業界共識，Grade C；Fubon 估 cold plate+manifold 子集約 NT$200 億）</li>
+            <li><strong>3324 Auras</strong> NT$79.1 億 — 2025 全年合併營收 NT$232.76 億 × 液冷占比 34%（公司法說會揭露，Grade A）</li>
+            <li><strong>2421 Sunon</strong> NT$40 億 — AI server fan 全年估算（公司未獨立揭露，由 Q1+Q2 法說會 AI server 業務數推算，Grade B）</li>
+            <li>合計 ≈ <strong>NT$510 億</strong>，僅在「全選」filter 下顯示完整加總；單一供應商 filter 顯示對應供應商項</li>
           </ul>
         </li>
-        <li>Wiwynn 與 Inventec 的 AI 占比為 estimate；公司未獨立揭露 AI server 全年絕對金額。Wiwynn 官方表示「AI 占比過半」、Inventec 官方表示「Q4 AI server 超過 server 業務 50%」</li>
+        <li><strong>台達電 2308 CDU 不在本頁重複收</strong> — 已在 <a href="./power-tw.html">Power Line (TW)</a> 掛多筆（PSU + CDU + HVDC + sidecar CDU），避免 double-count（vendor 主業歸屬原則）</li>
       </ul>
 
-      <h4 class="methodology-subhead">Rack ODM 客戶集中度（公開揭露）</h4>
+      <h4 class="methodology-subhead">Cooling Vendor 競合定位（公開揭露）</h4>
       <ul class="methodology-list">
-        <li><strong>Foxconn</strong> — NVIDIA GB200 NVL72 全球單月最大 rack 出貨商（2025/04 估市占 40%，TweakTown / TrendForce 引用）；客戶含 Oracle / CoreWeave / Meta / AWS</li>
-        <li><strong>Quanta</strong> — NVIDIA GB200 全球第二（市占 ~30%）；客戶含 Meta / Google / Microsoft（公司年報三大客戶各占 ~30% / 25% / 15%）</li>
-        <li><strong>Wiwynn</strong> — 2024 三大客戶占營收 49% / 28% / 21%（合計 98%），業界共識為 Meta（#1）/ Microsoft / AWS（B 級 Silba 引用 TWSE 年報）</li>
-        <li><strong>Inventec</strong> — Tier-2 ODM；AI server 客戶含 Microsoft / Meta（白牌）+ NVIDIA H100/H200/B200 platform；公司未公開揭露三大客戶名單</li>
+        <li><strong>AVC 3017 (奇鋐)</strong> — NVIDIA GB200/GB300 cold plate 雙寡頭之一（與 CoolerMaster 各 ~50% 份額）；NVLink Switch Tray ~100% 獨佔；Google TPU V8 cold plate 預計 40-45% 初始份額（Q3 2026 量產）；ASIC 第二軸（AWS Trainium >50% 份額預期）</li>
+        <li><strong>Auras 3324 (雙鴻)</strong> — Cold plate ~25% (KGI 估)、Rack Manifold ~27% (UBS 估)；Top 5 US CSP + Oracle/Supermicro/HPE 客戶；2025 Q3 突破 AWS+Meta ASIC custom cooling 訂單；In-Row L2L 1.6MW CDU 2026 Q1 開始小量出貨；Vera Rubin Group A 候選（4 家供應商之一，Auras 未官方確認）</li>
+        <li><strong>Sunon 2421 (建準)</strong> — 全球第二大散熱風扇廠（市占 ~20%）；2025 Q3 取得 NVIDIA GB200/GB300 RVL 認證；GB300 NVL72 機架風扇總值 >USD 5,000；Dell/HP/Lenovo 公開直接客戶；ASIC 線通過 ODM (鴻海/廣達/緯穎/英業達) 間接供貨 hyperscaler</li>
+      </ul>
+
+      <h4 class="methodology-subhead">三條 Taiwan Supply Chain 線交集說明</h4>
+      <ul class="methodology-list">
+        <li><a href="./power-tw.html">Power Line</a>（華城 1519 / 台達 2308 / 中興電 1513）：transformer / switchgear / GIS / PSU / HVDC / CDU（台達電在此包 CDU）</li>
+        <li><strong>Cooling Line</strong>（本頁，AVC 3017 / Auras 3324 / Sunon 2421）：cold plate / 液冷 CDU（不含台達 facility CDU）/ manifold / vapor chamber / fan</li>
+        <li><a href="./rack-tw.html">Rack Line</a>（鴻海 2317 / 廣達 2382 / 緯穎 6669 / 英業達 2356）：rack assembly / L6/L10/L11 server / backend network</li>
+        <li>三條線不重疊：每個 vendor 主業歸 1 條線；少數跨線（如台達 CDU 留 power 不來 cooling）已在 methodology 註明</li>
       </ul>
 
       <h4 class="methodology-subhead">Disclaimer</h4>
       <ul class="methodology-list">
         <li>本網站為<strong>研究與教育用途</strong>，不構成投資建議</li>
-        <li>所有具名對應僅反映公開揭露 / Tier-1 媒體報導，不代表實際訂單</li>
-        <li>原始 data points 與 source bib 公開於 repo <code>_research/phase3/rack-tw/</code> 各 agent 目錄</li>
+        <li>所有具名對應僅反映公開揭露 / Tier-1 媒體報導 / 業界共識，不代表實際訂單</li>
+        <li>原始 data points 與 source bib 公開於 repo <code>_research/phase3/cooling-tw/</code> 各 agent 目錄</li>
       </ul>
     </div>
   </section>
@@ -242,11 +247,11 @@
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <p class="footer-note">Taiwan rack-line reverse index. Data compiled 2026-04-25 from 法說會 transcripts, MOPS filings, Tier-1 media (Digitimes / 工商時報 / TrendForce / TweakTown). See methodology.</p>
+    <p class="footer-note">Taiwan cooling-line reverse index. Data compiled 2026-04-26 from 法說會 transcripts, MOPS filings, OCP registry, Tier-1 media (Digitimes / 工商時報 / TrendForce / KGI / UBS / Goldman Sachs). See methodology.</p>
     <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" class="footer-attribution">Created with Perplexity Computer</a>
   </div>
 </footer>
 
-<script src="./app-rack-tw.js?v=20260425-rack"></script>
+<script src="./app-cooling-tw.js?v=20260426-cooling"></script>
 </body>
 </html>
