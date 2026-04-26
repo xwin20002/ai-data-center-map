@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Infra — AI Chip Alternatives (vs NVIDIA)</title>
+<meta name="description" content="AI accelerator alternatives index: AMD MI300 + Google TPU + AWS Trainium + Microsoft Maia + Meta MTIA + Intel Gaudi vs NVIDIA market share trend.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<style>
+  .chart-wrap { background: var(--color-bg-card, rgba(255,255,255,0.02)); border: 1px solid var(--color-border, rgba(255,255,255,0.08)); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+  .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  @media (max-width: 900px) { .chart-grid { grid-template-columns: 1fr; } }
+  .chart-wrap svg text { fill: var(--color-text, #e5e7eb); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo-group">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none">
+        <rect x="2" y="6" width="28" height="20" rx="3" stroke="currentColor" stroke-width="2"/>
+        <circle cx="9" cy="16" r="2.5" fill="currentColor"/><circle cx="16" cy="16" r="2.5" fill="currentColor"/><circle cx="23" cy="16" r="2.5" fill="currentColor"/>
+      </svg>
+      <h1 class="logo-text">AI Data Center Map</h1>
+    </div>
+    <div class="header-controls">
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="search-input" placeholder="Search vendor / chip...">
+      </div>
+      <button data-theme-toggle aria-label="Switch theme" class="theme-toggle">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="page-nav">
+  <div class="page-nav-inner">
+    <div class="nav-group active">
+      <button class="nav-group-btn">AI Infra</button>
+      <div class="nav-group-menu" role="menu">
+        <a href="./">AI Data Centers</a>
+        <a href="./gpu-cluster.html">GPU Clusters</a>
+        <a href="./subsea-cable.html">Subsea Cables</a>
+        <a href="./power-ai.html">Power &amp; Nuclear</a>
+        <a href="./gpu-market.html">NV GPU Market</a>
+        <a href="./ai-chip-alt.html" class="active">AI Chip Alt</a>
+      </div>
+    </div>
+    <div class="nav-group"><button class="nav-group-btn">Semi Supply Chain</button><div class="nav-group-menu" role="menu"><a href="./fab-5nm.html">Sub-5nm Fabs</a><a href="./packaging.html">Advanced Packaging</a><a href="./hbm.html">HBM Capacity</a><a href="./euv.html">EUV Tools</a></div></div>
+    <div class="nav-group"><button class="nav-group-btn">AI Demand</button><div class="nav-group-menu" role="menu"><a href="./token-production.html">Token Production</a><a href="./workload-split.html">Workload Split</a><a href="./ai-demand.html">AI Demand</a><a href="./llm-market.html">LLM Market</a><a href="./local-llm.html">Local LLM (OSS)</a></div></div>
+    <div class="nav-group"><button class="nav-group-btn">Taiwan Supply Chain</button><div class="nav-group-menu" role="menu"><a href="./power-tw.html">Power Line (TW)</a><a href="./cooling-tw.html">Cooling Line (TW)</a><a href="./rack-tw.html">Rack Line (TW)</a></div></div>
+    <div class="nav-group"><button class="nav-group-btn">Components (Global)</button><div class="nav-group-menu" role="menu"><a href="./optical.html">Optical Line</a><a href="./connector.html">Connector / Cable Line</a></div></div>
+  </div>
+</nav>
+
+<main>
+  <section class="page-intro">
+    <h2 class="page-title">AI Chip Alternatives vs NVIDIA — AMD / TPU / Trainium / Maia / MTIA / Gaudi</h2>
+    <p class="page-lede">與 <a href="./gpu-market.html">NV GPU Market</a> 形成對比視角。<strong>NVIDIA 市占趨勢</strong>：2024 88% → 2025 84% → 2026 80%（小幅縮小，但 Datacenter 絕對量級仍 +55% YoY 成長）。<strong>分流去向</strong>：(1) AMD MI300/MI325 從 5% → 9%（最大規模 commercial 替代品）；(2) **Hyperscaler in-house ASIC**（Google TPU + AWS Trainium + Microsoft Maia + Meta MTIA）合計從 2% → 8%（**4x 翻倍**，最大結構性威脅）；(3) Intel Gaudi 持續邊緣化 ~0.5%。</p>
+    <div class="last-verified-banner">
+      <span class="banner-label">Last verified:</span>
+      <span class="banner-value">2026-04-27</span>
+      <span class="banner-sep">·</span>
+      <span class="banner-label">Schema:</span>
+      <span class="banner-value">phase8-aichip-v1</span>
+      <span class="banner-sep">·</span>
+      <span class="banner-label">Coverage:</span>
+      <span class="banner-value">7 vendor / 2024-2026</span>
+    </div>
+  </section>
+
+  <section class="stats-bar">
+    <div class="stat-item"><span class="stat-value" id="stat-vendors">0</span><span class="stat-label">Tracked Vendors</span></div>
+    <div class="stat-item"><span class="stat-value" id="stat-nv-share">0%</span><span class="stat-label">2026 NVIDIA Share</span></div>
+    <div class="stat-item"><span class="stat-value" id="stat-asic-share">0%</span><span class="stat-label">2026 In-house ASIC Share</span></div>
+    <div class="stat-item"><span class="stat-value" id="stat-a-ratio">0%</span><span class="stat-label">Grade-A Ratio</span></div>
+  </section>
+
+  <section class="filters-bar">
+    <div class="filter-group">
+      <span class="filter-label">Vendor:</span>
+      <button class="filter-btn active" data-vendor="all">All</button>
+      <button class="filter-btn" data-vendor="NVIDIA">🇺🇸 NVIDIA</button>
+      <button class="filter-btn" data-vendor="AMD">🇺🇸 AMD</button>
+      <button class="filter-btn" data-vendor="Google">🇺🇸 Google TPU</button>
+      <button class="filter-btn" data-vendor="AWS">🇺🇸 AWS Trainium</button>
+      <button class="filter-btn" data-vendor="Microsoft">🇺🇸 MS Maia</button>
+      <button class="filter-btn" data-vendor="Meta">🇺🇸 Meta MTIA</button>
+      <button class="filter-btn" data-vendor="Intel">🇺🇸 Intel Gaudi</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Year:</span>
+      <button class="filter-btn active" data-year="all">All</button>
+      <button class="filter-btn" data-year="2024">2024</button>
+      <button class="filter-btn" data-year="2025">2025</button>
+      <button class="filter-btn" data-year="2026">2026</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Grade:</span>
+      <button class="filter-btn active" data-grade="all">All</button>
+      <button class="filter-btn" data-grade="A">A</button><button class="filter-btn" data-grade="B">B</button><button class="filter-btn" data-grade="C">C</button><button class="filter-btn" data-grade="D">D</button>
+    </div>
+  </section>
+
+  <section class="data-table-section">
+    <h2 class="section-title">市占趨勢 + In-House ASIC 暴增</h2>
+    <div class="chart-grid">
+      <div class="chart-wrap" id="share-chart"></div>
+      <div class="chart-wrap" id="asic-chart"></div>
+    </div>
+  </section>
+
+  <section class="data-table-section">
+    <h2 class="section-title">All Data Points (flat)</h2>
+    <p class="section-sublede">Phase 8 AI Chip Alt 總計 <span id="dp-count">0</span> 條 data-points（7 vendor / 31 dp / Grade A 4、B 12、C 12、D 3，A+B = 51.6%；in-house ASIC 揭露稀導致 C/D 多）。</p>
+    <div class="table-wrapper">
+      <table id="data-table">
+        <thead><tr><th>Vendor</th><th>Metric</th><th>Year</th><th>Grade</th><th>Value</th><th>Notes</th><th>Date</th><th>Family</th></tr></thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="methodology-section" id="methodology">
+    <div class="methodology-inner">
+      <h3 class="section-title">Methodology &amp; Disclaimer</h3>
+      <h4 class="methodology-subhead">三類替代品分類</h4>
+      <ul class="methodology-list">
+        <li><strong>對外銷售</strong>（與 NVIDIA 直接競爭）：AMD MI300/MI325/MI355、Intel Gaudi 3/Falcon Shores</li>
+        <li><strong>In-house ASIC + Cloud 對外</strong>：Google TPU（Vertex AI）、AWS Trainium（Bedrock）、Microsoft Maia（Azure）</li>
+        <li><strong>In-house ASIC 純自用</strong>：Meta MTIA（Reels/Llama 推論，不對外）、Apple ANE（邊緣，本頁未收）</li>
+      </ul>
+
+      <h4 class="methodology-subhead">關鍵 insights</h4>
+      <ul class="methodology-list">
+        <li><strong>NVIDIA 護城河</strong>：CUDA 生態 + 軟硬整合 + frontier model 訓練平台。市占小幅縮小（88→80%）但絕對量級持續快速成長。</li>
+        <li><strong>AMD 是唯一規模化 commercial 替代</strong>：MI325X HBM3e 256GB（vs H200 141GB）在 LLM inference memory-bound workload 1.6x 領先 H200。客戶含 Microsoft Azure、Meta、Oracle、Dell。</li>
+        <li><strong>Hyperscaler 自家 ASIC 4x 翻倍</strong>：2024 ~2% → 2026 ~8%。Google TPU v8 Ironwood + AWS Trainium 3 + Microsoft Maia 200 + Meta MTIA Santa Barbara（廣達 ODM 6,000 rack）皆 2025-2026 量產。</li>
+        <li><strong>Anthropic + AWS Project Rainier</strong>：400K Trainium 2 cluster 訓練 Claude，是非 NVIDIA 訓練前沿 model 的最大規模實驗。</li>
+        <li><strong>Intel Gaudi 邊緣化</strong>：2024 launch Gaudi 3 號稱 vs H100 1.5x 性能/-50% 價格，但生態系敗、CUDA lock-in，2025 全年僅 ~$500M 營收（vs NVIDIA H100 ~$50B+）。</li>
+      </ul>
+
+      <h4 class="methodology-subhead">For investors / analysts</h4>
+      <ul class="methodology-list">
+        <li><strong>Watch</strong>：(1) AMD MI400 (2026 H2) 性能 vs B200，能否拿到 first 10% 市占；(2) TPU v8 Ironwood 量產進度（影響 Google AI infra 內部成本）；(3) AWS Project Rainier 完成度（Anthropic Claude 訓練 vs OpenAI GPT-5 的 cost 對比）。</li>
+        <li><strong>Risk to NVIDIA thesis</strong>：若 in-house ASIC 從 8% (2026) → 20%+ (2028)，NVIDIA datacenter 成長率將顯著減速（市占 + 絕對量級雙縮）。</li>
+      </ul>
+
+      <h4 class="methodology-subhead">Disclaimer</h4>
+      <ul class="methodology-list">
+        <li>本網站為<strong>研究與教育用途</strong>，不構成投資建議</li>
+        <li>In-house ASIC（TPU/Trainium/Maia/MTIA）多為 self-use，揭露稀；市占為 SemiAnalysis / 業界共識估算（B/C/D 級）</li>
+        <li>原始 data points 公開於 <code>_research/phase8-ai-chip-alt/</code></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-note">AI Chip Alternatives index. Data 2026-04-27 from AMD/Google/AWS/MS/Meta/Intel official + SemiAnalysis / Microsoft press / Anthropic Project Rainier announcement.</p>
+  </div>
+</footer>
+
+<script src="./app-ai-chip-alt.js?v=20260427-aichip"></script>
+</body>
+</html>
