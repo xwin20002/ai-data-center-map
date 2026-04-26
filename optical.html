@@ -8,8 +8,8 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Taiwan Supply Chain — Rack Line (AI Data Center)</title>
-<meta name="description" content="Reverse index: Taiwan rack ODM suppliers (Foxconn 2317, Quanta 2382, Wiwynn 6669, Inventec 2356) and their disclosed AI server / rack-line exposure.">
+<title>Components (Global) — Optical Line (AI Data Center)</title>
+<meta name="description" content="Global anchor index: Innolight (300308.SZ) + Coherent (COHR) — AI optical transceiver / InP laser exposure across CN + US.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +40,7 @@
     <div class="header-controls">
       <div class="search-box">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="search-input" placeholder="Search suppliers / DCs...">
+        <input type="text" id="search-input" placeholder="Search vendors / DCs...">
       </div>
       <button data-theme-toggle aria-label="Switch to dark mode" class="theme-toggle">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -77,18 +77,18 @@
         <a href="./ai-demand.html">AI Demand</a>
       </div>
     </div>
-    <div class="nav-group active">
+    <div class="nav-group">
       <button class="nav-group-btn" aria-haspopup="true">Taiwan Supply Chain</button>
       <div class="nav-group-menu" role="menu">
         <a href="./power-tw.html">Power Line (TW)</a>
         <a href="./cooling-tw.html">Cooling Line (TW)</a>
-        <a href="./rack-tw.html" class="active">Rack Line (TW)</a>
+        <a href="./rack-tw.html">Rack Line (TW)</a>
       </div>
     </div>
-    <div class="nav-group">
+    <div class="nav-group active">
       <button class="nav-group-btn" aria-haspopup="true">Components (Global)</button>
       <div class="nav-group-menu" role="menu">
-        <a href="./optical.html">Optical Line</a>
+        <a href="./optical.html" class="active">Optical Line</a>
         <a href="./connector.html">Connector / Cable Line</a>
       </div>
     </div>
@@ -97,24 +97,24 @@
 
 <main>
   <section class="page-intro">
-    <h2 class="page-title">Taiwan Rack-Line Suppliers &mdash; AI Server / DC Exposure</h2>
-    <p class="page-lede">反向索引：追蹤台廠 rack ODM（鴻海 2317 / 廣達 2382 / 緯穎 6669 / 英業達 2356）在全球 AI Data Center 的整機櫃 / L6/L10/L11 server 與 backend network 暴險。<strong>重要框架說明：</strong>rack ODM 業界揭露慣例為「公司整體 / AI 伺服器」aggregate 級，不揭露單一 DC 訂單。本頁 shipment 類別 (rack_assembly / l6_server / l10_server / l11_rack / backend_network) 全數無 per-DC 金額；可量化基準採各家公司整體 AI server 營收估算（見 methodology）。</p>
+    <h2 class="page-title">Global AI Optical Anchor Index — 800G/1.6T Transceiver + InP Laser</h2>
+    <p class="page-lede">Global anchor index：追蹤 AI optical interconnect 雙巨頭 — 🇨🇳 <strong>Innolight 中際旭創 (300308.SZ)</strong>（800G ~40%、1.6T 50-70% 全球 #1）+ 🇺🇸 <strong>Coherent (NYSE: COHR)</strong>（垂直整合 InP wafer → EML laser → transceiver 三層唯一全球玩家）。雙 anchor 既競爭（transceiver 模組）又共生（Coherent 賣 EML chip 給 Innolight）。Phase 4 Components (Global) 為先期 anchor 展示版（每條 line 1-2 vendor），後續可擴增至 9-15 vendor 完整覆蓋。</p>
     <div class="last-verified-banner">
       <span class="banner-label">Last verified:</span>
-      <span class="banner-value">2026-04-25</span>
-      <span class="banner-sep">·</span>
-      <span class="banner-label">Next update:</span>
-      <span class="banner-value">2026-07-25</span>
+      <span class="banner-value">2026-04-26</span>
       <span class="banner-sep">·</span>
       <span class="banner-label">Schema version:</span>
-      <span class="banner-value">phase3-v1</span>
+      <span class="banner-value">phase4-v1</span>
+      <span class="banner-sep">·</span>
+      <span class="banner-label">FX rate (lock):</span>
+      <span class="banner-value">USD ×31, CNY ×4.4 → TWD</span>
     </div>
   </section>
 
   <section class="stats-bar">
     <div class="stat-item">
       <span class="stat-value" id="stat-suppliers">0</span>
-      <span class="stat-label">Suppliers Tracked</span>
+      <span class="stat-label">Anchor Vendors</span>
     </div>
     <div class="stat-item">
       <span class="stat-value" id="stat-dc-projects">0</span>
@@ -122,7 +122,7 @@
     </div>
     <div class="stat-item">
       <span class="stat-value" id="stat-revenue">NT$0</span>
-      <span class="stat-label">2025E AI Server Rev. (Aggregate)</span>
+      <span class="stat-label">2025E AI Optical Rev. (Aggregate)</span>
     </div>
     <div class="stat-item">
       <span class="stat-value" id="stat-a-ratio">0%</span>
@@ -132,12 +132,10 @@
 
   <section class="filters-bar">
     <div class="filter-group">
-      <span class="filter-label">Supplier:</span>
+      <span class="filter-label">Vendor:</span>
       <button class="filter-btn active" data-supplier="all">All</button>
-      <button class="filter-btn" data-supplier="2317">2317 Foxconn (鴻海)</button>
-      <button class="filter-btn" data-supplier="2382">2382 Quanta (廣達)</button>
-      <button class="filter-btn" data-supplier="6669">6669 Wiwynn (緯穎)</button>
-      <button class="filter-btn" data-supplier="2356">2356 Inventec (英業達)</button>
+      <button class="filter-btn" data-supplier="300308">🇨🇳 300308 Innolight</button>
+      <button class="filter-btn" data-supplier="COHR">🇺🇸 COHR Coherent</button>
     </div>
     <div class="filter-group">
       <span class="filter-label">Grade:</span>
@@ -157,20 +155,20 @@
     <div class="legend-inner">
       <h3 class="legend-title">Map Legend</h3>
       <div class="legend-items">
-        <div class="legend-item"><span class="legend-dot grade-A-dot"></span> Grade A — Primary disclosure (filings, 法說會, MOPS)</div>
-        <div class="legend-item"><span class="legend-dot grade-B-dot"></span> Grade B — Tier-1 media / partner press</div>
+        <div class="legend-item"><span class="legend-dot grade-A-dot"></span> Grade A — Primary disclosure (10-K/10-Q SEC, SZSE 季報, 法說會)</div>
+        <div class="legend-item"><span class="legend-dot grade-B-dot"></span> Grade B — Tier-1 media / sell-side research (SemiAnalysis / Cignal AI / Goldman Sachs / Daiwa)</div>
         <div class="legend-item"><span class="legend-dot grade-C-dot"></span> Grade C — Cross-source consensus, no primary</div>
-        <div class="legend-item"><span class="legend-dot grade-D-dot"></span> Grade D — Single-source / analyst estimate (bear/base/bull required)</div>
+        <div class="legend-item"><span class="legend-dot grade-D-dot"></span> Grade D — Single-source / scenario estimate (Bear/Base/Bull required)</div>
       </div>
       <p class="legend-note">
-        Rack-line 地圖落點以「ODM 自有工廠 / 擴產廠區」為主（Lordstown OH / Tennessee / El Paso TX / Juárez MX / 桃園 / 台南 / 高雄路竹），少數在具名 DC（Stargate Abilene / CoreWeave）。集團整體 / 公司營收等抽象項目不落點，但仍列於下方資料表。Grade 詳細定義見 <a href="#methodology">方法論</a>。
+        Optical-line 地圖落點以 vendor 自有工廠為主：Innolight（蘇州 + 馬來西亞檳城 + 泰國 + 菲律賓）+ Coherent（Texas Sherman InP / Sweden Järfälla InP / Easton PA EML / 香港 + 越南 transceiver assembly）。Aggregate financial / market-share 行不落點，仍列於資料表。
       </p>
     </div>
   </section>
 
   <section class="data-table-section">
-    <h2 class="section-title">Supplier &times; DC Matrix (filtered)</h2>
-    <p class="section-sublede">列 = 台廠、欄 = 具名 shipment 對象（多為 ODM 工廠擴產項目）；儲存格 = 出貨金額（NT$ 百萬）或 # 條目數。<strong>注意：</strong>多數 shipment 沒有 per-DC 金額（rack ODM 只揭露公司整體），因此以 # 計數為主。</p>
+    <h2 class="section-title">Vendor &times; DC Matrix (filtered)</h2>
+    <p class="section-sublede">列 = Vendor，欄 = 具名 DC / NVIDIA platform / 廠區。儲存格：金額（NT$ 百萬）或 # 條目數。多數 transceiver / laser shipment 沒有 per-DC 揭露。</p>
     <div class="table-wrapper">
       <table id="matrix-table">
         <thead id="matrix-thead"></thead>
@@ -181,17 +179,17 @@
 
   <section class="data-table-section">
     <h2 class="section-title">All Data Points (flat)</h2>
-    <p class="section-sublede">Phase 3 S3 機櫃線總計 <span id="dp-count">0</span> 條 data-points（4 家 ODM 合計 85 筆 / Grade A 41、B 27、C 10、D 7）。</p>
+    <p class="section-sublede">Phase 4 Optical anchor 總計 <span id="dp-count">0</span> 條 data-points（2 anchor 合計 33 筆 / Grade A 13、B 14、C 4、D 2，A+B = 81.8%）。</p>
     <div class="table-wrapper">
       <table id="data-table">
         <thead>
           <tr>
-            <th>Supplier</th>
+            <th>Vendor</th>
             <th>Category</th>
             <th>DC / Context</th>
             <th>Operator</th>
             <th>Grade</th>
-            <th>Est. Rev (NT$M)</th>
+            <th>Est. Rev (NT$M / local)</th>
             <th>Date</th>
             <th>Source</th>
           </tr>
@@ -205,43 +203,51 @@
     <div class="methodology-inner">
       <h3 class="section-title">Methodology &amp; Disclaimer</h3>
 
+      <h4 class="methodology-subhead">Phase 4 Multi-Currency Framework</h4>
+      <ul class="methodology-list">
+        <li>Phase 4 vendors 跨 SZSE / NYSE / NASDAQ / TWSE，schema 含 <code>hq_listed</code> / <code>home_country</code> / <code>currency</code> / <code>est_revenue_local_mn</code> / <code>est_revenue_twd_mn</code></li>
+        <li><strong>FX rate (lock 2026-04-26)</strong>：1 USD = 31 TWD；1 CNY = 4.4 TWD（用於 cross-vendor 統一比較）</li>
+        <li>Stat 3 採 per-supplier hardcoded 2025E AI optical revenue（TWD-equivalent 加總）</li>
+      </ul>
+
       <h4 class="methodology-subhead">Grade 分級</h4>
       <ul class="methodology-list">
-        <li><strong>Grade A</strong> — 一手公開（法說會、MOPS 公告、年報、SEC filing、OCP 產品註冊）</li>
-        <li><strong>Grade B</strong> — Tier-1 媒體深度（Bloomberg、Reuters、日經、工商時報、經濟日報、Digitimes、SemiAnalysis、TrendForce）</li>
-        <li><strong>Grade C</strong> — 多源交叉但無一手（行業會議共識、多家券商重複敘述）</li>
-        <li><strong>Grade D</strong> — 單一來源或分析師推估；本頁 D 級項目皆附 Bear/Base/Bull 三情境於 notes 欄位</li>
+        <li><strong>Grade A</strong> — 一手公開（10-K/10-Q SEC filing、SZSE 季報、法說會逐字稿、官方新聞稿）</li>
+        <li><strong>Grade B</strong> — Tier-1 媒體 + sell-side research（Bloomberg / Reuters / 日經 / Digitimes / SemiAnalysis / Cignal AI / Goldman Sachs / Daiwa / KGI）</li>
+        <li><strong>Grade C</strong> — 多源券商共識，無一手</li>
+        <li><strong>Grade D</strong> — 單一來源或 scenario estimate；本頁 D 級項目皆附 Bear/Base/Bull 三情境</li>
       </ul>
 
-      <h4 class="methodology-subhead">Rack ODM 揭露限制（重要）</h4>
+      <h4 class="methodology-subhead">Stat 3 算法（per-supplier hardcoded TWD mn）</h4>
       <ul class="methodology-list">
-        <li>四家 rack ODM（Foxconn / Quanta / Wiwynn / Inventec）<strong>皆採公司整體或 AI 伺服器整體營收揭露</strong>，不分項至單一 DC 客戶</li>
-        <li>本頁所有 shipment 類別 (rack_assembly / l6_server / l10_server / l11_rack / backend_network) 的 <code>est_revenue_twd_mn</code> 一律為 <strong>null</strong>（不可填，避免製造虛假精確度）</li>
-        <li>Stat 3「2025E AI Server Revenue (Aggregate)」採以下 per-supplier 估算加總：
-          <ul>
-            <li><strong>2317 Foxconn</strong> NT$1.0 兆 — 2025 前三季法說會（劉揚偉 2025/11/12）AI server 營收破兆元（Grade A）</li>
-            <li><strong>2382 Quanta</strong> NT$1.0 兆 — 2025 全年法說會 AI server 略超 1 兆，YoY +100%+（Grade A）</li>
-            <li><strong>6669 Wiwynn</strong> NT$0.475 兆 — 2025 全年合併營收 NT$950.66B × AI 占比過半 ~50%（Digitimes 2026/02/27 + estimate）</li>
-            <li><strong>2356 Inventec</strong> NT$0.20 兆 — 2025E AI server ~NT$200B (33% of total revenue)（Grade C 自有推算）</li>
-            <li>合計 ≈ <strong>NT$2.675 兆</strong>，僅在「全選」filter 下顯示完整加總；單一供應商 filter 顯示對應供應商項</li>
-          </ul>
-        </li>
-        <li>Wiwynn 與 Inventec 的 AI 占比為 estimate；公司未獨立揭露 AI server 全年絕對金額。Wiwynn 官方表示「AI 占比過半」、Inventec 官方表示「Q4 AI server 超過 server 業務 50%」</li>
+        <li><strong>🇨🇳 300308 Innolight</strong> — NT$1,648 億（光通訊模組 RMB 374.57 億 × 4.4 = TWD 164,811 mn，FY2025 Grade A SZSE 揭露）</li>
+        <li><strong>🇺🇸 COHR Coherent</strong> — NT$775 億（FY2025 AI Datacenter exposure USD 2,500M × 31 = TWD 77,500 mn，Grade B 分析師整理）</li>
+        <li>合計 ≈ <strong>NT$2,423 億</strong>，僅在「全選」filter 下顯示完整加總；單一 vendor filter 顯示對應項</li>
       </ul>
 
-      <h4 class="methodology-subhead">Rack ODM 客戶集中度（公開揭露）</h4>
+      <h4 class="methodology-subhead">中美雙 anchor 競合定位</h4>
       <ul class="methodology-list">
-        <li><strong>Foxconn</strong> — NVIDIA GB200 NVL72 全球單月最大 rack 出貨商（2025/04 估市占 40%，TweakTown / TrendForce 引用）；客戶含 Oracle / CoreWeave / Meta / AWS</li>
-        <li><strong>Quanta</strong> — NVIDIA GB200 全球第二（市占 ~30%）；客戶含 Meta / Google / Microsoft（公司年報三大客戶各占 ~30% / 25% / 15%）</li>
-        <li><strong>Wiwynn</strong> — 2024 三大客戶占營收 49% / 28% / 21%（合計 98%），業界共識為 Meta（#1）/ Microsoft / AWS（B 級 Silba 引用 TWSE 年報）</li>
-        <li><strong>Inventec</strong> — Tier-2 ODM；AI server 客戶含 Microsoft / Meta（白牌）+ NVIDIA H100/H200/B200 platform；公司未公開揭露三大客戶名單</li>
+        <li><strong>Innolight 主項</strong>：800G/1.6T transceiver 模組規模領先；NVIDIA Mellanox + Hyperscaler 直供；ASP 較美廠低 15-25%（製造成本優勢）</li>
+        <li><strong>Coherent 主項</strong>：垂直整合 InP wafer (6-inch Texas + Sweden) → EML laser chip → transceiver 三層；NVIDIA + Cisco + Arista + EML chip 上游賣給 Innolight/Eoptolink</li>
+        <li><strong>競合既鬥又合</strong>：Coherent 賣 EML laser chip 給 Innolight → Innolight 模組成功 = Coherent 上游 chip 收入；同時兩家在 transceiver 終端產品競爭</li>
+        <li><strong>1.6T 早期市場</strong>：Innolight 50-70% 領先（B 級 SemiAnalysis / Goldman Sachs 共識），Coherent 美廠 anchor ~15-20%</li>
+      </ul>
+
+      <h4 class="methodology-subhead">Phase 4 Anchor 範圍說明</h4>
+      <ul class="methodology-list">
+        <li>Phase 4 為「Components (Global)」先期 anchor 展示版，每條 line 取 1-2 個 anchor vendor</li>
+        <li>Optical line 完整覆蓋（後續擴增）：Innolight + Coherent + Lumentum + AAOI + Fabrinet + 天孚通信 + 聯亞 3081 + 華星光 4979 + 眾達 4977（共 9 vendors）</li>
+        <li>Connector line（另頁）：Amphenol + 後續 TE Connectivity + 嘉澤 3533 + 信邦 3023 + 健和興 3003 + 凡甲 3526</li>
+        <li>受 SDK 環境限制（subagent Write 受擋），phase 4 改由主 opus 直寫，scope 縮小至每條 line 1-2 anchor</li>
       </ul>
 
       <h4 class="methodology-subhead">Disclaimer</h4>
       <ul class="methodology-list">
         <li>本網站為<strong>研究與教育用途</strong>，不構成投資建議</li>
-        <li>所有具名對應僅反映公開揭露 / Tier-1 媒體報導，不代表實際訂單</li>
-        <li>原始 data points 與 source bib 公開於 repo <code>_research/phase3/rack-tw/</code> 各 agent 目錄</li>
+        <li>所有具名對應僅反映公開揭露 / Tier-1 媒體報導 / 業界共識，不代表實際訂單</li>
+        <li>Innolight Top 5 客戶比例（NVIDIA 30-35% / Google 15-20% etc.）為業界推算（B 級），公司不官方揭露</li>
+        <li>Coherent 10-K 僅揭露 "no single customer >10%"，AI datacenter exposure 為分析師估算</li>
+        <li>原始 data points 與 source bib 公開於 repo <code>_research/phase4-components/optical/</code> 各 agent 目錄</li>
       </ul>
     </div>
   </section>
@@ -249,11 +255,11 @@
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <p class="footer-note">Taiwan rack-line reverse index. Data compiled 2026-04-25 from 法說會 transcripts, MOPS filings, Tier-1 media (Digitimes / 工商時報 / TrendForce / TweakTown). See methodology.</p>
+    <p class="footer-note">Global AI Optical anchor index. Data compiled 2026-04-26 from SEC 10-K/10-Q, SZSE 季報, OFC 2025/GTC 2025, Tier-1 media (SemiAnalysis / Cignal AI / Digitimes / TrendForce). See methodology.</p>
     <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" class="footer-attribution">Created with Perplexity Computer</a>
   </div>
 </footer>
 
-<script src="./app-rack-tw.js?v=20260425-rack"></script>
+<script src="./app-optical.js?v=20260426-optical"></script>
 </body>
 </html>

@@ -8,8 +8,8 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Taiwan Supply Chain — Rack Line (AI Data Center)</title>
-<meta name="description" content="Reverse index: Taiwan rack ODM suppliers (Foxconn 2317, Quanta 2382, Wiwynn 6669, Inventec 2356) and their disclosed AI server / rack-line exposure.">
+<title>Components (Global) — Connector / Cable Line (AI Data Center)</title>
+<meta name="description" content="Global anchor index: Amphenol (NYSE: APH) — AI server NVL72 high-speed connector + cable supplier.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +40,7 @@
     <div class="header-controls">
       <div class="search-box">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="search-input" placeholder="Search suppliers / DCs...">
+        <input type="text" id="search-input" placeholder="Search vendors / DCs...">
       </div>
       <button data-theme-toggle aria-label="Switch to dark mode" class="theme-toggle">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -77,19 +77,19 @@
         <a href="./ai-demand.html">AI Demand</a>
       </div>
     </div>
-    <div class="nav-group active">
+    <div class="nav-group">
       <button class="nav-group-btn" aria-haspopup="true">Taiwan Supply Chain</button>
       <div class="nav-group-menu" role="menu">
         <a href="./power-tw.html">Power Line (TW)</a>
         <a href="./cooling-tw.html">Cooling Line (TW)</a>
-        <a href="./rack-tw.html" class="active">Rack Line (TW)</a>
+        <a href="./rack-tw.html">Rack Line (TW)</a>
       </div>
     </div>
-    <div class="nav-group">
+    <div class="nav-group active">
       <button class="nav-group-btn" aria-haspopup="true">Components (Global)</button>
       <div class="nav-group-menu" role="menu">
         <a href="./optical.html">Optical Line</a>
-        <a href="./connector.html">Connector / Cable Line</a>
+        <a href="./connector.html" class="active">Connector / Cable Line</a>
       </div>
     </div>
   </div>
@@ -97,24 +97,24 @@
 
 <main>
   <section class="page-intro">
-    <h2 class="page-title">Taiwan Rack-Line Suppliers &mdash; AI Server / DC Exposure</h2>
-    <p class="page-lede">反向索引：追蹤台廠 rack ODM（鴻海 2317 / 廣達 2382 / 緯穎 6669 / 英業達 2356）在全球 AI Data Center 的整機櫃 / L6/L10/L11 server 與 backend network 暴險。<strong>重要框架說明：</strong>rack ODM 業界揭露慣例為「公司整體 / AI 伺服器」aggregate 級，不揭露單一 DC 訂單。本頁 shipment 類別 (rack_assembly / l6_server / l10_server / l11_rack / backend_network) 全數無 per-DC 金額；可量化基準採各家公司整體 AI server 營收估算（見 methodology）。</p>
+    <h2 class="page-title">Global AI Connector / Cable Anchor Index — NVL72 High-Speed Interconnect</h2>
+    <p class="page-lede">Global anchor index：追蹤 AI server NVL72 機架內 high-speed connector + cable 主供 — 🇺🇸 <strong>Amphenol (NYSE: APH)</strong>，全球高速 connector 第一（市占 30-35%），NVIDIA GB200/GB300 NVL72 + Rubin platform 主供。每 NVL72 機架內含 ~5,000 條 cable + connector。Phase 4 Components (Global) anchor 展示版，後續可擴增 TE Connectivity (TEL) + 嘉澤 3533 + 信邦 3023 + 健和興 3003 + 凡甲 3526 共 6 vendor。</p>
     <div class="last-verified-banner">
       <span class="banner-label">Last verified:</span>
-      <span class="banner-value">2026-04-25</span>
-      <span class="banner-sep">·</span>
-      <span class="banner-label">Next update:</span>
-      <span class="banner-value">2026-07-25</span>
+      <span class="banner-value">2026-04-26</span>
       <span class="banner-sep">·</span>
       <span class="banner-label">Schema version:</span>
-      <span class="banner-value">phase3-v1</span>
+      <span class="banner-value">phase4-v1</span>
+      <span class="banner-sep">·</span>
+      <span class="banner-label">FX rate (lock):</span>
+      <span class="banner-value">USD ×31, CNY ×4.4 → TWD</span>
     </div>
   </section>
 
   <section class="stats-bar">
     <div class="stat-item">
       <span class="stat-value" id="stat-suppliers">0</span>
-      <span class="stat-label">Suppliers Tracked</span>
+      <span class="stat-label">Anchor Vendors</span>
     </div>
     <div class="stat-item">
       <span class="stat-value" id="stat-dc-projects">0</span>
@@ -122,7 +122,7 @@
     </div>
     <div class="stat-item">
       <span class="stat-value" id="stat-revenue">NT$0</span>
-      <span class="stat-label">2025E AI Server Rev. (Aggregate)</span>
+      <span class="stat-label">2025E AI Connector Rev. (Aggregate)</span>
     </div>
     <div class="stat-item">
       <span class="stat-value" id="stat-a-ratio">0%</span>
@@ -132,12 +132,9 @@
 
   <section class="filters-bar">
     <div class="filter-group">
-      <span class="filter-label">Supplier:</span>
+      <span class="filter-label">Vendor:</span>
       <button class="filter-btn active" data-supplier="all">All</button>
-      <button class="filter-btn" data-supplier="2317">2317 Foxconn (鴻海)</button>
-      <button class="filter-btn" data-supplier="2382">2382 Quanta (廣達)</button>
-      <button class="filter-btn" data-supplier="6669">6669 Wiwynn (緯穎)</button>
-      <button class="filter-btn" data-supplier="2356">2356 Inventec (英業達)</button>
+      <button class="filter-btn" data-supplier="APH">🇺🇸 APH Amphenol</button>
     </div>
     <div class="filter-group">
       <span class="filter-label">Grade:</span>
@@ -157,20 +154,20 @@
     <div class="legend-inner">
       <h3 class="legend-title">Map Legend</h3>
       <div class="legend-items">
-        <div class="legend-item"><span class="legend-dot grade-A-dot"></span> Grade A — Primary disclosure (filings, 法說會, MOPS)</div>
-        <div class="legend-item"><span class="legend-dot grade-B-dot"></span> Grade B — Tier-1 media / partner press</div>
+        <div class="legend-item"><span class="legend-dot grade-A-dot"></span> Grade A — Primary disclosure (10-K/10-Q SEC, 8-K, NVIDIA GTC session)</div>
+        <div class="legend-item"><span class="legend-dot grade-B-dot"></span> Grade B — Tier-1 media / sell-side (Evercore / Goldman / FPX research)</div>
         <div class="legend-item"><span class="legend-dot grade-C-dot"></span> Grade C — Cross-source consensus, no primary</div>
-        <div class="legend-item"><span class="legend-dot grade-D-dot"></span> Grade D — Single-source / analyst estimate (bear/base/bull required)</div>
+        <div class="legend-item"><span class="legend-dot grade-D-dot"></span> Grade D — Scenario estimate (Bear/Base/Bull required)</div>
       </div>
       <p class="legend-note">
-        Rack-line 地圖落點以「ODM 自有工廠 / 擴產廠區」為主（Lordstown OH / Tennessee / El Paso TX / Juárez MX / 桃園 / 台南 / 高雄路竹），少數在具名 DC（Stargate Abilene / CoreWeave）。集團整體 / 公司營收等抽象項目不落點，但仍列於下方資料表。Grade 詳細定義見 <a href="#methodology">方法論</a>。
+        Connector-line 地圖落點以 Amphenol HQ + 收購 CCS + NVIDIA HQ（platform alignment）為主。Aggregate financial / market position 行不落點。
       </p>
     </div>
   </section>
 
   <section class="data-table-section">
-    <h2 class="section-title">Supplier &times; DC Matrix (filtered)</h2>
-    <p class="section-sublede">列 = 台廠、欄 = 具名 shipment 對象（多為 ODM 工廠擴產項目）；儲存格 = 出貨金額（NT$ 百萬）或 # 條目數。<strong>注意：</strong>多數 shipment 沒有 per-DC 金額（rack ODM 只揭露公司整體），因此以 # 計數為主。</p>
+    <h2 class="section-title">Vendor &times; DC Matrix (filtered)</h2>
+    <p class="section-sublede">列 = Vendor，欄 = 具名 platform / DC。Amphenol 多以 NVL72 / Rubin platform aggregate 暴險揭露。</p>
     <div class="table-wrapper">
       <table id="matrix-table">
         <thead id="matrix-thead"></thead>
@@ -181,17 +178,17 @@
 
   <section class="data-table-section">
     <h2 class="section-title">All Data Points (flat)</h2>
-    <p class="section-sublede">Phase 3 S3 機櫃線總計 <span id="dp-count">0</span> 條 data-points（4 家 ODM 合計 85 筆 / Grade A 41、B 27、C 10、D 7）。</p>
+    <p class="section-sublede">Phase 4 Connector anchor 總計 <span id="dp-count">0</span> 條 data-points（1 anchor 12 筆 / Grade A 2、B 7、C 2、D 1，A+B = 75%）。</p>
     <div class="table-wrapper">
       <table id="data-table">
         <thead>
           <tr>
-            <th>Supplier</th>
+            <th>Vendor</th>
             <th>Category</th>
             <th>DC / Context</th>
             <th>Operator</th>
             <th>Grade</th>
-            <th>Est. Rev (NT$M)</th>
+            <th>Est. Rev (NT$M / local)</th>
             <th>Date</th>
             <th>Source</th>
           </tr>
@@ -205,43 +202,46 @@
     <div class="methodology-inner">
       <h3 class="section-title">Methodology &amp; Disclaimer</h3>
 
-      <h4 class="methodology-subhead">Grade 分級</h4>
+      <h4 class="methodology-subhead">Phase 4 Multi-Currency Framework</h4>
       <ul class="methodology-list">
-        <li><strong>Grade A</strong> — 一手公開（法說會、MOPS 公告、年報、SEC filing、OCP 產品註冊）</li>
-        <li><strong>Grade B</strong> — Tier-1 媒體深度（Bloomberg、Reuters、日經、工商時報、經濟日報、Digitimes、SemiAnalysis、TrendForce）</li>
-        <li><strong>Grade C</strong> — 多源交叉但無一手（行業會議共識、多家券商重複敘述）</li>
-        <li><strong>Grade D</strong> — 單一來源或分析師推估；本頁 D 級項目皆附 Bear/Base/Bull 三情境於 notes 欄位</li>
+        <li>同 <a href="./optical.html#methodology">Optical Line methodology</a>：schema 含 multi-currency 欄位、FX rate lock 2026-04-26</li>
+        <li>Stat 3 採 per-supplier hardcoded 2025E AI connector revenue（TWD-equivalent）</li>
       </ul>
 
-      <h4 class="methodology-subhead">Rack ODM 揭露限制（重要）</h4>
+      <h4 class="methodology-subhead">Stat 3 算法</h4>
       <ul class="methodology-list">
-        <li>四家 rack ODM（Foxconn / Quanta / Wiwynn / Inventec）<strong>皆採公司整體或 AI 伺服器整體營收揭露</strong>，不分項至單一 DC 客戶</li>
-        <li>本頁所有 shipment 類別 (rack_assembly / l6_server / l10_server / l11_rack / backend_network) 的 <code>est_revenue_twd_mn</code> 一律為 <strong>null</strong>（不可填，避免製造虛假精確度）</li>
-        <li>Stat 3「2025E AI Server Revenue (Aggregate)」採以下 per-supplier 估算加總：
-          <ul>
-            <li><strong>2317 Foxconn</strong> NT$1.0 兆 — 2025 前三季法說會（劉揚偉 2025/11/12）AI server 營收破兆元（Grade A）</li>
-            <li><strong>2382 Quanta</strong> NT$1.0 兆 — 2025 全年法說會 AI server 略超 1 兆，YoY +100%+（Grade A）</li>
-            <li><strong>6669 Wiwynn</strong> NT$0.475 兆 — 2025 全年合併營收 NT$950.66B × AI 占比過半 ~50%（Digitimes 2026/02/27 + estimate）</li>
-            <li><strong>2356 Inventec</strong> NT$0.20 兆 — 2025E AI server ~NT$200B (33% of total revenue)（Grade C 自有推算）</li>
-            <li>合計 ≈ <strong>NT$2.675 兆</strong>，僅在「全選」filter 下顯示完整加總；單一供應商 filter 顯示對應供應商項</li>
-          </ul>
-        </li>
-        <li>Wiwynn 與 Inventec 的 AI 占比為 estimate；公司未獨立揭露 AI server 全年絕對金額。Wiwynn 官方表示「AI 占比過半」、Inventec 官方表示「Q4 AI server 超過 server 業務 50%」</li>
+        <li><strong>🇺🇸 APH Amphenol</strong> — NT$2,015 億（FY2025 IT Datacom segment USD 6,500M × 31 = TWD 201,500 mn，Grade B 法人估）</li>
+        <li>Note: TE Connectivity (TEL) + Lotes 嘉澤 (3533.TW) 等次強供應商待後續加入；Molex / Samtec 私有不上市，揭露稀，仍排除在 phase 4</li>
       </ul>
 
-      <h4 class="methodology-subhead">Rack ODM 客戶集中度（公開揭露）</h4>
+      <h4 class="methodology-subhead">AI DC Interconnect 三類產品</h4>
       <ul class="methodology-list">
-        <li><strong>Foxconn</strong> — NVIDIA GB200 NVL72 全球單月最大 rack 出貨商（2025/04 估市占 40%，TweakTown / TrendForce 引用）；客戶含 Oracle / CoreWeave / Meta / AWS</li>
-        <li><strong>Quanta</strong> — NVIDIA GB200 全球第二（市占 ~30%）；客戶含 Meta / Google / Microsoft（公司年報三大客戶各占 ~30% / 25% / 15%）</li>
-        <li><strong>Wiwynn</strong> — 2024 三大客戶占營收 49% / 28% / 21%（合計 98%），業界共識為 Meta（#1）/ Microsoft / AWS（B 級 Silba 引用 TWSE 年報）</li>
-        <li><strong>Inventec</strong> — Tier-2 ODM；AI server 客戶含 Microsoft / Meta（白牌）+ NVIDIA H100/H200/B200 platform；公司未公開揭露三大客戶名單</li>
+        <li><strong>DAC</strong> (Direct Attach Cable, passive copper, &lt;3m)：Amphenol 主導，NVL72 內 ~3,000+ 條</li>
+        <li><strong>AEC</strong> (Active Electric Cable with retimer, 3-7m)：Amphenol 主導，NVL72 內 ~1,500 條</li>
+        <li><strong>AOC</strong> (Active Optical Cable, &gt;7m)：與 Innolight / Coherent 競合，NVL72 內 ~500 條</li>
+        <li><strong>High-speed connector</strong>（PAM4 backplane, 224G/448G）：Amphenol 主導，NVL72 內 ~10,000+</li>
+      </ul>
+
+      <h4 class="methodology-subhead">與 Optical Line 的 cross-product 對位</h4>
+      <ul class="methodology-list">
+        <li>NVIDIA NVLink 升級路徑：copper short-reach (Amphenol) + optical long-reach (Innolight/Coherent) 兩極</li>
+        <li>Rubin 2026 H2 Rubin Ultra NVL576：可能採 CPO 替代 copper short-reach (>10m)，但 <3m DAC 預期維持 copper 直到 2028+</li>
+        <li>Amphenol 暴險 = NVIDIA capex direct leverage，但 CPO 採用速度為下一輪結構性風險</li>
+      </ul>
+
+      <h4 class="methodology-subhead">Phase 4 Anchor 範圍說明</h4>
+      <ul class="methodology-list">
+        <li>本頁僅 Amphenol 1 anchor，後續 phase 4 expansion 將加入：</li>
+        <li>美廠次強：TE Connectivity (NYSE: TEL) — high-speed I/O 第二強，市占 20-25%</li>
+        <li>台廠 connector：嘉澤 3533 (CPU/GPU socket 龍頭) + 信邦 3023 + 健和興 3003 + 凡甲 3526</li>
+        <li>排除：Molex (Koch 私有，無 ticker) + Samtec (私有，無 ticker) — 揭露稀，不適合 reverse index</li>
       </ul>
 
       <h4 class="methodology-subhead">Disclaimer</h4>
       <ul class="methodology-list">
         <li>本網站為<strong>研究與教育用途</strong>，不構成投資建議</li>
-        <li>所有具名對應僅反映公開揭露 / Tier-1 媒體報導，不代表實際訂單</li>
-        <li>原始 data points 與 source bib 公開於 repo <code>_research/phase3/rack-tw/</code> 各 agent 目錄</li>
+        <li>Amphenol 10-K 揭露 "no single customer >10%"，NVIDIA 比例為業界推算 ~25-30%</li>
+        <li>原始 data points 與 source bib 公開於 repo <code>_research/phase4-components/connector/</code></li>
       </ul>
     </div>
   </section>
@@ -249,11 +249,11 @@
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <p class="footer-note">Taiwan rack-line reverse index. Data compiled 2026-04-25 from 法說會 transcripts, MOPS filings, Tier-1 media (Digitimes / 工商時報 / TrendForce / TweakTown). See methodology.</p>
+    <p class="footer-note">Global AI Connector / Cable anchor index. Data compiled 2026-04-26 from SEC 10-K/10-Q, GTC 2024 sessions, Tier-1 media (Evercore / Simply Wall St / FPX research). See methodology.</p>
     <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" class="footer-attribution">Created with Perplexity Computer</a>
   </div>
 </footer>
 
-<script src="./app-rack-tw.js?v=20260425-rack"></script>
+<script src="./app-connector.js?v=20260426-connector"></script>
 </body>
 </html>
