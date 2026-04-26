@@ -3,7 +3,7 @@
  *   Meta Llama (US, Llama community license)
  *   DeepSeek (CN, MIT license since V3.1)
  *   Alibaba Qwen (CN, Apache 2.0 since Qwen 3)
- * Data 2026-04-26 · _research/phase6-local-llm/local-llm.jsonl (45 records)
+ * Data 2026-04-26 · _research/phase6-local-llm/local-llm.jsonl (54 records)
  *
  * Visualization: OpenRouter share trend + HF download trend + benchmark + license pie
  */
@@ -280,6 +280,60 @@ const DATA = [
     "agent": "agent-meta-llama"
   },
   {
+    "provider": "Meta",
+    "ticker": "META",
+    "model_family": "Llama",
+    "line": "local-llm",
+    "category": "architecture_moe_share",
+    "year": 2024,
+    "value": 0,
+    "unit": "percent",
+    "hq_country": "US",
+    "license": "Llama 3 community",
+    "is_public": "public",
+    "grade": "A",
+    "source_url": "https://ai.meta.com/blog/meta-llama-3/",
+    "source_date": "2024-04",
+    "notes": "2024 hero models 全 dense: Llama 3 8B/70B (Apr), Llama 3.1 8B/70B/405B (Jul), Llama 3.2 1B/3B/vision (Sep), Llama 3.3 70B (Dec)。MoE 占 0%。",
+    "agent": "agent-meta-llama"
+  },
+  {
+    "provider": "Meta",
+    "ticker": "META",
+    "model_family": "Llama",
+    "line": "local-llm",
+    "category": "architecture_moe_share",
+    "year": 2025,
+    "value": 50,
+    "unit": "percent",
+    "hq_country": "US",
+    "license": "Llama 3 community",
+    "is_public": "public",
+    "grade": "A",
+    "source_url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
+    "source_date": "2025-04",
+    "notes": "2025 architecture pivot: Llama 4 Scout (109B MoE/17B active) + Maverick (400B MoE/17B active) 全部 MoE。Llama 3.3 70B dense 仍是 long tail。MoE 占新 release 100%，使用占約 50%。",
+    "agent": "agent-meta-llama"
+  },
+  {
+    "provider": "Meta",
+    "ticker": "META",
+    "model_family": "Llama",
+    "line": "local-llm",
+    "category": "architecture_moe_share",
+    "year": 2026,
+    "value": 80,
+    "unit": "percent",
+    "hq_country": "US",
+    "license": "Llama 3 community",
+    "is_public": "public",
+    "grade": "B",
+    "source_url": "https://ai.meta.com/",
+    "source_date": "2026-04",
+    "notes": "2026 Q1 deployment 80% MoE (Llama 4 Maverick 主力 + Scout 邊緣)。Llama 3.x dense 退至 niche use cases (latency-critical edge)。Llama 5 Behemoth ~2T MoE planned Q3 2026 將進一步推升至 90%+。",
+    "agent": "agent-meta-llama"
+  },
+  {
     "provider": "DeepSeek",
     "ticker": "DEEPSEEK-PRIVATE",
     "model_family": "DeepSeek",
@@ -547,6 +601,60 @@ const DATA = [
     "source_url": "https://www.deepseek.com/",
     "source_date": "2026-04",
     "notes": "DeepSeek 戰略：(1) 量化基金 High-Flyer 全資投入 AI lab; (2) 自有 GPU cluster (10K+ A100/H800) 訓練; (3) 激進開源 + MIT license = 中國 AI 反美封鎖戰術; (4) 訓練成本 60-200x 比美國 frontier lab 低，重構 GPU economics; (5) R1 reasoning OSS 引發 NVIDIA 股價 -17% 單日 (Jan 2025)。",
+    "agent": "agent-deepseek"
+  },
+  {
+    "provider": "DeepSeek",
+    "ticker": "DEEPSEEK-PRIVATE",
+    "model_family": "DeepSeek",
+    "line": "local-llm",
+    "category": "architecture_moe_share",
+    "year": 2024,
+    "value": 100,
+    "unit": "percent",
+    "hq_country": "CN",
+    "license": "DeepSeek License",
+    "is_public": "private",
+    "grade": "A",
+    "source_url": "https://github.com/deepseek-ai/DeepSeek-V3/blob/main/DeepSeek_V3.pdf",
+    "source_date": "2024-12",
+    "notes": "DeepSeek MoE-first 策略: V2 (236B/21B), Coder V2 (MoE), V3 (671B/37B)。100% MoE 自始至終。V3 用 Multi-head Latent Attention (MLA) + DeepSeekMoE 創新架構降訓練成本至 5.6M USD。",
+    "agent": "agent-deepseek"
+  },
+  {
+    "provider": "DeepSeek",
+    "ticker": "DEEPSEEK-PRIVATE",
+    "model_family": "DeepSeek",
+    "line": "local-llm",
+    "category": "architecture_moe_share",
+    "year": 2025,
+    "value": 95,
+    "unit": "percent",
+    "hq_country": "CN",
+    "license": "MIT",
+    "is_public": "private",
+    "grade": "A",
+    "source_url": "https://github.com/deepseek-ai/DeepSeek-R1",
+    "source_date": "2025-01",
+    "notes": "2025 R1 為 MoE (基於 V3-Base 671B MoE)。R1-Distill (1.5B-70B dense) 為 distill 後產物，採 dense 架構。整體 MoE 占 95% (R1 主力 + Distill 邊緣)。",
+    "agent": "agent-deepseek"
+  },
+  {
+    "provider": "DeepSeek",
+    "ticker": "DEEPSEEK-PRIVATE",
+    "model_family": "DeepSeek",
+    "line": "local-llm",
+    "category": "architecture_moe_share",
+    "year": 2026,
+    "value": 98,
+    "unit": "percent",
+    "hq_country": "CN",
+    "license": "MIT",
+    "is_public": "private",
+    "grade": "A",
+    "source_url": "https://github.com/deepseek-ai/",
+    "source_date": "2026-04",
+    "notes": "2026 V4 (~1T MoE planned) 持續 MoE-first。R1-Distill dense 變體仍占 ~2% (邊緣 dense)。MoE 比重最高的 OSS family。",
     "agent": "agent-deepseek"
   },
   {
@@ -818,6 +926,60 @@ const DATA = [
     "source_date": "2026-04",
     "notes": "Alibaba Qwen 戰略：(1) Alibaba Cloud Vertex 自家服務 + 開源 dual-axis（model_studio）; (2) 中國市場主導 + 國際擴張; (3) Apache 2.0 license 是 enterprise 採用 gate (vs Llama community license 限制 >700M MAU); (4) Coding 專用模型 (Qwen3-Coder) 強化 dev 生態; (5) 規模 + size 多元化覆蓋從 edge (0.5B) 到 frontier (480B MoE)。",
     "agent": "agent-qwen"
+  },
+  {
+    "provider": "Alibaba",
+    "ticker": "BABA",
+    "model_family": "Qwen",
+    "line": "local-llm",
+    "category": "architecture_moe_share",
+    "year": 2024,
+    "value": 0,
+    "unit": "percent",
+    "hq_country": "CN",
+    "license": "Qwen License",
+    "is_public": "public",
+    "grade": "A",
+    "source_url": "https://github.com/QwenLM/Qwen2.5",
+    "source_date": "2024-09",
+    "notes": "Qwen 2.5 全 dense: 0.5B/1.5B/3B/7B/14B/32B/72B 全部 dense 架構。2024 全範圍 dense，無 MoE。",
+    "agent": "agent-qwen"
+  },
+  {
+    "provider": "Alibaba",
+    "ticker": "BABA",
+    "model_family": "Qwen",
+    "line": "local-llm",
+    "category": "architecture_moe_share",
+    "year": 2025,
+    "value": 40,
+    "unit": "percent",
+    "hq_country": "CN",
+    "license": "Apache 2.0",
+    "is_public": "public",
+    "grade": "A",
+    "source_url": "https://github.com/QwenLM/Qwen3",
+    "source_date": "2025-04",
+    "notes": "2025 Qwen 2.5-Max (Jan, MoE) 為 Qwen 第一個大型 MoE。Qwen 3 (Apr, 0.6B-235B 含 MoE 與 dense 混合)。QwQ-32B 仍 dense reasoning。2025 整體 MoE 占約 40%。",
+    "agent": "agent-qwen"
+  },
+  {
+    "provider": "Alibaba",
+    "ticker": "BABA",
+    "model_family": "Qwen",
+    "line": "local-llm",
+    "category": "architecture_moe_share",
+    "year": 2026,
+    "value": 70,
+    "unit": "percent",
+    "hq_country": "CN",
+    "license": "Apache 2.0",
+    "is_public": "public",
+    "grade": "B",
+    "source_url": "https://github.com/QwenLM/Qwen3-Coder",
+    "source_date": "2026-04",
+    "notes": "2026 Q1 Qwen3-Coder-480B MoE (35B active) + Qwen 3 235B MoE 為主力，Qwen 3 dense 系列 (0.6B-32B) 仍是 long tail。MoE 占 deployment ~70%。Coding 場域 100% MoE。",
+    "agent": "agent-qwen"
   }
 ];
 
@@ -1024,8 +1186,9 @@ function renderFlatTable(rows) {
 function renderAll() {
   const rows = getFiltered();
   renderStats(rows);
-  renderTrendChart(rows, 'openrouter_share',     'share-chart',    'OpenRouter Usage Share Trend (2024-2026)', 30, '%');
-  renderTrendChart(rows, 'hf_downloads_monthly', 'download-chart', 'HuggingFace Monthly Downloads (2024-2026)', 60, 'M');
+  renderTrendChart(rows, 'openrouter_share',       'share-chart',    'OpenRouter Usage Share Trend (2024-2026)', 30, '%');
+  renderTrendChart(rows, 'hf_downloads_monthly',   'download-chart', 'HuggingFace Monthly Downloads (2024-2026)', 60, 'M');
+  renderTrendChart(rows, 'architecture_moe_share', 'arch-chart',     'Dense vs MoE Architecture Trend (% MoE)', 100, '%');
   renderBenchmarkInferenceChart(rows);
   renderLicenseChart(rows);
   renderFlatTable(rows);

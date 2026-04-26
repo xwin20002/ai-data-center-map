@@ -170,6 +170,12 @@
   </section>
 
   <section class="data-table-section">
+    <h2 class="section-title">架構趨勢 — Dense vs MoE 比重 (% MoE)</h2>
+    <p class="section-sublede">2024 → 2026 三年 industry MoE 從 ~33% → ~83%。DeepSeek MoE-first 自始至終（V2/V3/R1/V4 全 MoE），Meta + Qwen 在 2025 跟進轉型。MoE 經濟學：用「總參數量」買能力，「active 參數量」買 inference 成本，兩者解耦是 frontier scale 的核心架構創新。</p>
+    <div class="chart-wrap" id="arch-chart"></div>
+  </section>
+
+  <section class="data-table-section">
     <h2 class="section-title">能力 + 成本 + License (2026)</h2>
     <div class="chart-grid">
       <div class="chart-wrap" id="benchmark-cost-chart"></div>
@@ -179,7 +185,7 @@
 
   <section class="data-table-section">
     <h2 class="section-title">All Data Points (flat)</h2>
-    <p class="section-sublede">Phase 6 local LLM 總計 <span id="dp-count">0</span> 條 data-points（3 anchor / 45 dp / Grade A 23、B 18、C 4，A+B = 91.1%）。可用 filter (family / year / grade) 篩選。</p>
+    <p class="section-sublede">Phase 6 local LLM 總計 <span id="dp-count">0</span> 條 data-points（3 anchor / 54 dp / Grade A 30、B 19、C 4、D 1，A+B = 90.7%；2026-04-26 update: 加入 Dense vs MoE architecture trend 9 條）。可用 filter (family / year / grade) 篩選。</p>
     <div class="table-wrapper">
       <table id="data-table">
         <thead>
