@@ -8,8 +8,8 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Demand — LLM Market Share &amp; Revenue</title>
-<meta name="description" content="LLM market index: OpenAI (GPT) + Anthropic (Claude) + Google (Gemini) — ARR / MAU / market share trend 2023-2026.">
+<title>AI Demand — Local / Open-Source LLM Market</title>
+<meta name="description" content="Open-source LLM index: Meta Llama + DeepSeek + Alibaba Qwen — OpenRouter share / HF downloads / parameter range / license trend 2024-2026.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +44,7 @@
     <div class="header-controls">
       <div class="search-box">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="search-input" placeholder="Search providers / metrics...">
+        <input type="text" id="search-input" placeholder="Search providers / models...">
       </div>
       <button data-theme-toggle aria-label="Switch to dark mode" class="theme-toggle">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -79,8 +79,8 @@
         <a href="./token-production.html">Token Production</a>
         <a href="./workload-split.html">Workload Split</a>
         <a href="./ai-demand.html">AI Demand</a>
-        <a href="./llm-market.html" class="active">LLM Market</a>
-        <a href="./local-llm.html">Local LLM (OSS)</a>
+        <a href="./llm-market.html">LLM Market</a>
+        <a href="./local-llm.html" class="active">Local LLM (OSS)</a>
       </div>
     </div>
     <div class="nav-group">
@@ -103,32 +103,32 @@
 
 <main>
   <section class="page-intro">
-    <h2 class="page-title">LLM Market — GPT vs Claude vs Gemini (ARR + MAU + Market Share Trend 2023-2026)</h2>
-    <p class="page-lede">三大 LLM provider 的 <strong>產地 / B2C / B2B / 總合營收 / 市佔趨勢</strong>。<strong>關鍵故事 (2026 Q1)</strong>：Anthropic ARR $30B 反超 OpenAI $25B（雖 OpenAI 全年 target $29.4B 仍可能追平）；Google Gemini consumer 市占從 2025 Jan 5.7% 暴增 4x 至 2026 Jan 21.5%。三家皆 🇺🇸 美國總部，但 OpenAI/Anthropic 為私有公司、Google (GOOG) 為 NASDAQ 上市。揭露品質差異大：Anthropic + OpenAI 公開 ARR (A 級)；Google 不獨立揭露 Gemini 營收（多為 C 級推算）。</p>
+    <h2 class="page-title">Local LLM Market — Llama vs DeepSeek vs Qwen (Open-Source 三巨頭)</h2>
+    <p class="page-lede">與 <a href="./llm-market.html">LLM Market (closed-source)</a> 形成對比 — 三大 OSS LLM family（OpenRouter 用量 >10% 才入選）：🇺🇸 <strong>Meta Llama</strong>（HF 累計下載 #1，最廣 size 覆蓋）、🇨🇳 <strong>DeepSeek</strong>（V3 訓練成本僅 $5.6M 重構業界 economics，2026 Q1 HF 月下載反超 Llama）、🇨🇳 <strong>Alibaba Qwen</strong>（Apache 2.0 + Qwen3-Coder 480B MoE，亞洲 + coding 主導）。<strong>關鍵故事 (2024→2026)</strong>：DeepSeek 從 3% 用量爆增至 22%（接近 Meta 23%），三足鼎立形成；OSS inference cost 較 frontier closed 便宜 5-30x。Mistral / Phi / Gemma 等 <10% 暫不收入。</p>
     <div class="last-verified-banner">
       <span class="banner-label">Last verified:</span>
       <span class="banner-value">2026-04-26</span>
       <span class="banner-sep">·</span>
       <span class="banner-label">Schema:</span>
-      <span class="banner-value">phase5-llm-v1</span>
+      <span class="banner-value">phase6-local-llm-v1</span>
       <span class="banner-sep">·</span>
-      <span class="banner-label">Data range:</span>
-      <span class="banner-value">2023-2027F</span>
+      <span class="banner-label">Inclusion:</span>
+      <span class="banner-value">OpenRouter usage &ge; 10%</span>
     </div>
   </section>
 
   <section class="stats-bar">
     <div class="stat-item">
       <span class="stat-value" id="stat-providers">0</span>
-      <span class="stat-label">Anchor Providers</span>
+      <span class="stat-label">Anchor OSS Families</span>
     </div>
     <div class="stat-item">
-      <span class="stat-value" id="stat-arr-2025">$0</span>
-      <span class="stat-label">2025 Total ARR</span>
+      <span class="stat-value" id="stat-share">0%</span>
+      <span class="stat-label">2026 OpenRouter Combined Share</span>
     </div>
     <div class="stat-item">
-      <span class="stat-value" id="stat-arr-2026">$0</span>
-      <span class="stat-label">2026 Total ARR</span>
+      <span class="stat-value" id="stat-downloads">0</span>
+      <span class="stat-label">2026 HF Total Downloads/mo</span>
     </div>
     <div class="stat-item">
       <span class="stat-value" id="stat-a-ratio">0%</span>
@@ -138,11 +138,11 @@
 
   <section class="filters-bar">
     <div class="filter-group">
-      <span class="filter-label">Provider:</span>
+      <span class="filter-label">Family:</span>
       <button class="filter-btn active" data-provider="all">All</button>
-      <button class="filter-btn" data-provider="OpenAI">🇺🇸 OpenAI (GPT)</button>
-      <button class="filter-btn" data-provider="Anthropic">🇺🇸 Anthropic (Claude)</button>
-      <button class="filter-btn" data-provider="Google (Alphabet)">🇺🇸 Google (Gemini)</button>
+      <button class="filter-btn" data-provider="Meta">🇺🇸 Meta (Llama)</button>
+      <button class="filter-btn" data-provider="DeepSeek">🇨🇳 DeepSeek</button>
+      <button class="filter-btn" data-provider="Alibaba">🇨🇳 Alibaba (Qwen)</button>
     </div>
     <div class="filter-group">
       <span class="filter-label">Year:</span>
@@ -162,26 +162,29 @@
   </section>
 
   <section class="data-table-section">
-    <h2 class="section-title">ARR Trend (Total Revenue, 2023-2026)</h2>
-    <div class="chart-wrap" id="trend-chart"></div>
+    <h2 class="section-title">市佔趨勢 — OpenRouter Usage Share + HuggingFace Downloads</h2>
+    <div class="chart-grid">
+      <div class="chart-wrap" id="share-chart"></div>
+      <div class="chart-wrap" id="download-chart"></div>
+    </div>
   </section>
 
   <section class="data-table-section">
-    <h2 class="section-title">B2B/B2C Mix &amp; Market Share (2026)</h2>
+    <h2 class="section-title">能力 + 成本 + License (2026)</h2>
     <div class="chart-grid">
-      <div class="chart-wrap" id="donut-chart"></div>
-      <div class="chart-wrap" id="share-chart"></div>
+      <div class="chart-wrap" id="benchmark-cost-chart"></div>
+      <div class="chart-wrap" id="license-chart"></div>
     </div>
   </section>
 
   <section class="data-table-section">
     <h2 class="section-title">All Data Points (flat)</h2>
-    <p class="section-sublede">Phase 5 LLM market 總計 <span id="dp-count">0</span> 條 data-points（3 anchor / 61 dp / Grade A 32、B 15、C 11、D 3，A+B = 77.0%）。可用 filter (provider / year / grade) 篩選。</p>
+    <p class="section-sublede">Phase 6 local LLM 總計 <span id="dp-count">0</span> 條 data-points（3 anchor / 45 dp / Grade A 23、B 18、C 4，A+B = 91.1%）。可用 filter (family / year / grade) 篩選。</p>
     <div class="table-wrapper">
       <table id="data-table">
         <thead>
           <tr>
-            <th>Provider</th>
+            <th>Family</th>
             <th>Metric</th>
             <th>Year</th>
             <th>Grade</th>
@@ -200,50 +203,59 @@
     <div class="methodology-inner">
       <h3 class="section-title">Methodology &amp; Disclaimer</h3>
 
-      <h4 class="methodology-subhead">Schema (phase5-llm-v1)</h4>
+      <h4 class="methodology-subhead">納入準則</h4>
       <ul class="methodology-list">
-        <li>每行 = 「某 provider 在某年某 metric 的數值」。schema 與 phase 3/4 supply chain 不同（provider 取代 supplier_ticker，year 取代 dc_project，多種 unit）</li>
-        <li>Categories：<code>ARR_total / ARR_B2B / ARR_B2C / MAU_consumer / paying_subscribers / market_share_consumer / market_share_enterprise / model_release / valuation / compute_capex / enterprise_customers / api_requests / killer_app</code></li>
-        <li>Units：<code>USD_mn</code>（百萬美元）、<code>M_users</code>（百萬用戶）、<code>percent</code>、<code>USD_per_month</code>、<code>businesses</code>、<code>B_per_month</code>、<code>models</code></li>
+        <li><strong>OpenRouter 月用量 &ge; 10%</strong> 才納入本頁（Mistral / Phi / Gemma / Yi / Cohere 等 &lt;10% 暫不收）</li>
+        <li>2026 Q1 三家 anchor 合計 OpenRouter 用量 ~61%（Meta 23 + DeepSeek 22 + Qwen 16），剩 ~39% 為 long tail</li>
       </ul>
 
-      <h4 class="methodology-subhead">Grade 分級</h4>
+      <h4 class="methodology-subhead">衡量維度（4 軸）</h4>
       <ul class="methodology-list">
-        <li><strong>A</strong> — 公司直接揭露（CEO/CFO 公開聲明、官方新聞稿、Series F/G 投資揭露）</li>
-        <li><strong>B</strong> — Tier-1 媒體（TechCrunch / Bloomberg / The Information）+ sell-side research summary</li>
-        <li><strong>C</strong> — 多源券商共識，特別是 Google Gemini-attributable revenue（Google 不獨立揭露）</li>
-        <li><strong>D</strong> — 2027 forecast 含 Bear/Base/Bull 三情境</li>
+        <li><strong>市佔</strong>：OpenRouter usage share + HuggingFace 月下載（兩個獨立 proxy 交叉驗證）</li>
+        <li><strong>最紅的模型</strong>：每年 hero model 列表（含 size + release date）</li>
+        <li><strong>模型大小</strong>：parameter range (smallest dense → largest MoE)</li>
+        <li><strong>趨勢</strong>：3 年 (2024-2026) OpenRouter share + HF download 曲線</li>
+        <li>(Bonus) Benchmark + Inference cost：MMLU 基準 vs $/1M token</li>
       </ul>
 
-      <h4 class="methodology-subhead">關鍵 Insights</h4>
+      <h4 class="methodology-subhead">關鍵 insights</h4>
       <ul class="methodology-list">
-        <li><strong>Anthropic 2026 Q1 反超</strong>：ARR $30B (Mar 2026) vs OpenAI $25B (Mar 2026)。Claude Code $2.5B ARR 為主要 driver。1,000+ enterprise 年付 >$1M。</li>
-        <li><strong>OpenAI 仍領先 consumer 市場</strong>：900M weekly active users (Mar 2026) vs Gemini 750M MAU vs Claude 50M MAU。65% chatbot traffic share。</li>
-        <li><strong>Google Gemini 暴增</strong>：Consumer 市占從 5.7% (Jan 2025) → 21.5% (Jan 2026)，4x 成長。Search / Workspace 整合是核心 distribution 優勢。</li>
-        <li><strong>B2B vs B2C 結構差異</strong>：Anthropic 90% B2B（enterprise-first）vs OpenAI 60% B2B / 40% B2C（consumer-strong）vs Google 80% B2B。</li>
-        <li><strong>Compute capex 軍備競賽</strong>：OpenAI 2025 ~$11B / Stargate $500B 五年計劃；Anthropic 4x cheaper training（vs OpenAI）；Google 自家 TPU 垂直整合 cost advantage。</li>
+        <li><strong>DeepSeek 2026 Q1 inflection</strong>：用量 22% 接近 Meta 23%。HF 月下載 55M 已反超 Meta 45M，成 OSS 月下載 #1。R1 reasoning 開源 (Jan 2025) + V3.1 改 MIT license 是兩大轉折點。</li>
+        <li><strong>Llama community license 限制</strong>：>700M MAU 用戶須申請額外授權；vs Qwen 3 Apache 2.0 + DeepSeek MIT 完全寬鬆，是 enterprise 採用 gate 的關鍵差異</li>
+        <li><strong>Inference cost 5-30x 便宜</strong>：Together.ai Llama $0.6/M、DeepSeek $0.4/M、Qwen $0.5/M；對比 GPT-5 ~$2.5/M、Claude 4.6 ~$15/M</li>
+        <li><strong>DeepSeek V3 訓練成本 $5.6M</strong>（vs OpenAI GPT-5 估 ~$1B+）— 引發業界重新評估 capex 結構，2025/01 NVIDIA 股價單日 -17% 反應</li>
+        <li><strong>Qwen 3 size 範圍最廣</strong>：0.5B → 480B MoE（含 edge 到 frontier）；Qwen3-Coder-480B-A35B Apache 2.0 是 coding-specialized OSS 領先</li>
       </ul>
 
-      <h4 class="methodology-subhead">產地分佈</h4>
+      <h4 class="methodology-subhead">License 比較</h4>
       <ul class="methodology-list">
-        <li>三家 anchor 全部 🇺🇸 美國 HQ（San Francisco / Mountain View）</li>
-        <li>缺席的 vendors（後續可加）：xAI Grok（🇺🇸 私有）、Meta Llama（🇺🇸 NASDAQ 開源）、DeepSeek（🇨🇳 私有）、Mistral（🇫🇷 EU 私有）、Cohere（🇨🇦 CA 私有）、Alibaba Qwen（🇨🇳 NYSE: BABA）</li>
-        <li>地緣政治分布：US 三巨頭 + CN 雙巨頭（DeepSeek + Qwen）+ EU/CA 補位（Mistral / Cohere）</li>
+        <li><strong>Meta Llama</strong>：Llama 3 community license（custom）— 商業可用但 >700M MAU 須申請</li>
+        <li><strong>DeepSeek</strong>：V3.1 起 MIT — 業界最寬鬆，無商業/分發限制</li>
+        <li><strong>Alibaba Qwen</strong>：Qwen 3 起 Apache 2.0 — enterprise 黃金標準（早期 Qwen 2.x 為 Qwen License 含 100M MAU 限）</li>
       </ul>
 
-      <h4 class="methodology-subhead">2027 Forecast（D 級 Bear/Base/Bull）</h4>
+      <h4 class="methodology-subhead">產地</h4>
       <ul class="methodology-list">
-        <li><strong>OpenAI 2027</strong>：Bear $35B（Anthropic 進一步分食）/ Base $50B（Stargate 兌現 + 雙位數 Hyperscaler 簽約）/ Bull $80B+（AGI 商業化 + Sora 訂閱爆發）</li>
-        <li><strong>Anthropic 2027</strong>：Bear $50B（成長收斂至 +60-80%）/ Base $80B（持續 Hyperscaler 簽約 + Code 滲透）/ Bull $120B+（Reasoning + agentic 取代多 SaaS 工具）</li>
-        <li><strong>Google 2027 Gemini-attributable</strong>：Bear $20B（Apple Search 整合受阻）/ Base $30B（Workspace AI + Cloud Vertex growth）/ Bull $50B+（Search AI 直接 monetization）</li>
+        <li>🇺🇸 美國 1 家：Meta（NASDAQ:META，廣告 monetize 不靠 model 收費）</li>
+        <li>🇨🇳 中國 2 家：DeepSeek（私有，量化基金 High-Flyer 全資）+ Alibaba（NYSE:BABA，Cloud + 開源 dual-axis）</li>
+        <li><strong>地緣政治觀察</strong>：OSS 三巨頭中國占兩家是 2024-2026 關鍵變化。中國 OSS 加速反應美對 NVIDIA 出口管制，激進開源是反封鎖戰術</li>
+        <li>缺席的 vendor（後續可加）：Mistral 🇫🇷 (~5% 用量)、Microsoft Phi 🇺🇸 (~3%)、Google Gemma 🇺🇸 (~3%)、零一萬物 Yi 🇨🇳、TAIDE 🇹🇼、NVIDIA Nemotron 🇺🇸、Cohere 🇨🇦</li>
+      </ul>
+
+      <h4 class="methodology-subhead">與 Closed-Source LLM 對比</h4>
+      <ul class="methodology-list">
+        <li>本頁的 OSS 三巨頭 vs <a href="./llm-market.html">LLM Market</a> 的 OpenAI / Anthropic / Google 形成完整 LLM 生態圖譜</li>
+        <li>Closed-source 重 ARR + MAU 商業 metrics；OSS 重 download + benchmark + license</li>
+        <li>Frontier 能力差距：MMLU 上 OSS 87-88 vs closed 88-92 (Claude 4.6 / GPT-5)，Gap 收窄至 2-5 點</li>
+        <li>市場分流：closed 主導 consumer (ChatGPT 65%) 與大型 enterprise；OSS 主導 self-host / cost-sensitive / privacy-sensitive deployment</li>
       </ul>
 
       <h4 class="methodology-subhead">Disclaimer</h4>
       <ul class="methodology-list">
         <li>本網站為<strong>研究與教育用途</strong>，不構成投資建議</li>
-        <li>OpenAI / Anthropic 為私有公司，營收估算依據官方 ARR 公告；Google Gemini-attributable 不獨立揭露，多為 sell-side 推算（C 級）</li>
-        <li>Market share 數字來自 Similarweb / SemiAnalysis / 法人共識，跨來源差異大（B/C 級）</li>
-        <li>原始 data points 公開於 repo <code>_research/phase5-llm/</code></li>
+        <li>OpenRouter share 為 estimate（OpenRouter 不公開 monthly stats，本研究依 ranking 推算）</li>
+        <li>HF 月下載依 HuggingFace public profile 估算（含 derived fine-tunes 部分計入）</li>
+        <li>原始 data points 公開於 repo <code>_research/phase6-local-llm/</code></li>
       </ul>
     </div>
   </section>
@@ -251,11 +263,11 @@
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <p class="footer-note">LLM Market index. Data compiled 2026-04-26 from official press releases (OpenAI / Anthropic / Google), TechCrunch / SaaStr / Sacra / Business of Apps. See methodology.</p>
+    <p class="footer-note">Local / Open-Source LLM index. Data compiled 2026-04-26 from HuggingFace stats, OpenRouter rankings, official model release blogs (Meta AI / DeepSeek / Qwen). See methodology.</p>
     <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" class="footer-attribution">Created with Perplexity Computer</a>
   </div>
 </footer>
 
-<script src="./app-llm-market.js?v=20260426-llm"></script>
+<script src="./app-local-llm.js?v=20260426-localllm"></script>
 </body>
 </html>
