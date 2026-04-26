@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Infra — Country Compute Race (US vs CN)</title>
+<meta name="description" content="National AI compute scale: US vs CN dual methodology (CAICT FP16 + Epoch AI GPU cluster) + China domestic chip share trend 2024-2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<style>
+  .chart-wrap { background: var(--color-bg-card, rgba(255,255,255,0.02)); border: 1px solid var(--color-border, rgba(255,255,255,0.08)); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+  .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  @media (max-width: 900px) { .chart-grid { grid-template-columns: 1fr; } }
+  .chart-wrap svg text { fill: var(--color-text, #e5e7eb); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo-group">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none">
+        <rect x="2" y="6" width="28" height="20" rx="3" stroke="currentColor" stroke-width="2"/>
+        <circle cx="9" cy="16" r="2.5" fill="currentColor"/><circle cx="16" cy="16" r="2.5" fill="currentColor"/><circle cx="23" cy="16" r="2.5" fill="currentColor"/>
+      </svg>
+      <h1 class="logo-text">AI Data Center Map</h1>
+    </div>
+    <div class="header-controls">
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="search-input" placeholder="Search country / methodology...">
+      </div>
+      <button data-theme-toggle aria-label="Switch theme" class="theme-toggle">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="page-nav">
+  <div class="page-nav-inner">
+    <div class="nav-group active">
+      <button class="nav-group-btn">AI Infra</button>
+      <div class="nav-group-menu" role="menu">
+        <a href="./">AI Data Centers</a>
+        <a href="./gpu-cluster.html">GPU Clusters</a>
+        <a href="./subsea-cable.html">Subsea Cables</a>
+        <a href="./power-ai.html">Power &amp; Nuclear</a>
+        <a href="./gpu-market.html">NV GPU Market</a>
+        <a href="./ai-chip-alt.html">AI Chip Alt</a>
+        <a href="./country-compute.html" class="active">Country Compute Race</a>
+      </div>
+    </div>
+    <div class="nav-group"><button class="nav-group-btn">Semi Supply Chain</button><div class="nav-group-menu" role="menu"><a href="./fab-5nm.html">Sub-5nm Fabs</a><a href="./packaging.html">Advanced Packaging</a><a href="./hbm.html">HBM Capacity</a><a href="./euv.html">EUV Tools</a></div></div>
+    <div class="nav-group"><button class="nav-group-btn">AI Demand</button><div class="nav-group-menu" role="menu"><a href="./token-production.html">Token Production</a><a href="./workload-split.html">Workload Split</a><a href="./ai-demand.html">AI Demand</a><a href="./llm-market.html">LLM Market</a><a href="./local-llm.html">Local LLM (OSS)</a></div></div>
+    <div class="nav-group"><button class="nav-group-btn">Taiwan Supply Chain</button><div class="nav-group-menu" role="menu"><a href="./power-tw.html">Power Line (TW)</a><a href="./cooling-tw.html">Cooling Line (TW)</a><a href="./rack-tw.html">Rack Line (TW)</a></div></div>
+    <div class="nav-group"><button class="nav-group-btn">Components (Global)</button><div class="nav-group-menu" role="menu"><a href="./optical.html">Optical Line</a><a href="./connector.html">Connector / Cable Line</a></div></div>
+  </div>
+</nav>
+
+<main>
+  <section class="page-intro">
+    <h2 class="page-title">Country Compute Race — 🇺🇸 vs 🇨🇳 國家算力對拼（CAICT vs Epoch AI 雙口徑）</h2>
+    <p class="page-lede">中美 AI 算力規模對比（2024-2026），<strong>刻意保留兩個口徑差 3-4x 的爭議</strong>：<strong>🟢 CAICT (中國信通院) FP16 智能算力</strong>口徑寬鬆，含所有 AI accelerator + 推論 + 國產 ASIC（中國 2025/06 達 <strong>782 EFlops</strong>）；<strong>🟡 Epoch AI</strong> 嚴格只計 NVIDIA datacenter GPU equivalent（中國同期估 ~200 EFlops）。<strong>兩者都有效，回答的是不同問題</strong>：CAICT 答「total intelligent compute deployed」，Epoch 答「frontier training capacity」。**核心故事**：(1) 中美 gap CAICT 口徑從 2.4x → 1.65x（縮小），Epoch 口徑維持 ~2.5-2.9x（仍大）；(2) 中國國產晶片占比 2024 18% → 2026 55%（出口管制倒逼）。</p>
+    <div class="last-verified-banner">
+      <span class="banner-label">Last verified:</span>
+      <span class="banner-value">2026-04-27</span>
+      <span class="banner-sep">·</span>
+      <span class="banner-label">Schema:</span>
+      <span class="banner-value">phase9-country-v1</span>
+      <span class="banner-sep">·</span>
+      <span class="banner-label">Methodologies:</span>
+      <span class="banner-value">CAICT FP16 + Epoch AI GPU</span>
+    </div>
+  </section>
+
+  <section class="stats-bar">
+    <div class="stat-item"><span class="stat-value" id="stat-cn-2025">0 EF</span><span class="stat-label">2025 CN 智能算力 (CAICT)</span></div>
+    <div class="stat-item"><span class="stat-value" id="stat-us-cn-gap">0x</span><span class="stat-label">2025 US/CN gap (CAICT)</span></div>
+    <div class="stat-item"><span class="stat-value" id="stat-domestic">0%</span><span class="stat-label">2025 中國國產晶片占比</span></div>
+    <div class="stat-item"><span class="stat-value" id="stat-a-ratio">0%</span><span class="stat-label">Grade-A Ratio</span></div>
+  </section>
+
+  <section class="filters-bar">
+    <div class="filter-group">
+      <span class="filter-label">Country:</span>
+      <button class="filter-btn active" data-country="all">All</button>
+      <button class="filter-btn" data-country="US">🇺🇸 US</button>
+      <button class="filter-btn" data-country="CN">🇨🇳 CN</button>
+      <button class="filter-btn" data-country="Global">🌐 Global</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Methodology:</span>
+      <button class="filter-btn active" data-methodology="all">All</button>
+      <button class="filter-btn" data-methodology="CAICT_FP16">🟢 CAICT FP16</button>
+      <button class="filter-btn" data-methodology="Epoch_AI_GPU">🟡 Epoch AI</button>
+      <button class="filter-btn" data-methodology="vendor_breakdown">Vendor</button>
+      <button class="filter-btn" data-methodology="geopolitical">Geopolitical</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Year:</span>
+      <button class="filter-btn active" data-year="all">All</button>
+      <button class="filter-btn" data-year="2024">2024</button>
+      <button class="filter-btn" data-year="2025">2025</button>
+      <button class="filter-btn" data-year="2026">2026</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Grade:</span>
+      <button class="filter-btn active" data-grade="all">All</button>
+      <button class="filter-btn" data-grade="A">A</button><button class="filter-btn" data-grade="B">B</button><button class="filter-btn" data-grade="C">C</button><button class="filter-btn" data-grade="D">D</button>
+    </div>
+  </section>
+
+  <section class="data-table-section">
+    <h2 class="section-title">中美算力 4-line trend (CAICT × 2 + Epoch × 2)</h2>
+    <div class="chart-wrap" id="trend-chart"></div>
+  </section>
+
+  <section class="data-table-section">
+    <h2 class="section-title">口徑爭議 + 中國國產化趨勢</h2>
+    <div class="chart-grid">
+      <div class="chart-wrap" id="ratio-chart"></div>
+      <div class="chart-wrap" id="domestic-chart"></div>
+    </div>
+  </section>
+
+  <section class="data-table-section">
+    <h2 class="section-title">2025 中國國產 AI 晶片 vendor 分佈</h2>
+    <div class="chart-wrap" id="vendor-chart"></div>
+  </section>
+
+  <section class="data-table-section">
+    <h2 class="section-title">All Data Points (flat)</h2>
+    <p class="section-sublede">Phase 9 Country Compute Race 總計 <span id="dp-count">0</span> 條 data-points（CN 22 / US 6 / Global 4 = 32 dp / Grade A 7、B 15、C 9、D 1，A+B = 68.8%）。</p>
+    <div class="table-wrapper">
+      <table id="data-table">
+        <thead><tr><th>Country</th><th>Methodology</th><th>Metric</th><th>Year</th><th>Grade</th><th>Value</th><th>Notes</th><th>Source</th></tr></thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="methodology-section" id="methodology">
+    <div class="methodology-inner">
+      <h3 class="section-title">Methodology &amp; Disclaimer</h3>
+
+      <h4 class="methodology-subhead">兩個口徑都保留，回答不同問題</h4>
+      <ul class="methodology-list">
+        <li><strong>🟢 CAICT FP16 智能算力</strong>（中國信通院蓝皮书官方口徑）：含所有 AI accelerator（NVIDIA + AMD + 國產 ASIC + Google TPU + AWS Trainium 等）+ 推論 + edge + 多精度（FP16/BF16/INT8）。回答「total intelligent compute deployed」。</li>
+        <li><strong>🟡 Epoch AI GPU cluster</strong>（嚴格 frontier training 口徑）：只計 NVIDIA datacenter GPU equivalent，主要 frontier model training cluster。回答「frontier training capacity」。</li>
+        <li><strong>差距 3-4x</strong>：2025 CN 782/200 = 3.9x、US 1500/500 = 3.0x、Global 3820/1200 = 3.2x。中國端差距更大因國產 ASIC 計入比例高。</li>
+        <li><strong>哪個對</strong>？兩個都對 — 看你問的是什麼。投資 AI infra 用 CAICT；評估 frontier model training 用 Epoch。本頁刻意並陳。</li>
+      </ul>
+
+      <h4 class="methodology-subhead">中美 Gap 趨勢</h4>
+      <ul class="methodology-list">
+        <li><strong>CAICT 口徑</strong>：2024 2.44x → 2025 1.92x → 2026 1.65x（持續縮小）</li>
+        <li><strong>Epoch 口徑</strong>：2024 3.5x → 2025 2.5x → 2026 2.86x（震盪縮小）</li>
+        <li>2025/06 CAICT 揭露中國智能算力占全球 21%、美國估 ~40%、其他 ~39%</li>
+        <li>**結構性觀察**：中國 inference + edge 可能在 2027 反超美國，但 frontier training 仍落後 1-2 代</li>
+      </ul>
+
+      <h4 class="methodology-subhead">中國國產晶片 vendor 分佈（2025）</h4>
+      <ul class="methodology-list">
+        <li><strong>華為昇騰</strong>（最大）：~150 EFLOPS（占國產 55%）。Atlas 900 SuperCluster 部署 50+ 國家級智算中心。910C 2025 H2 量產 launch，性能 ~H100 60-70%。任正非公開承認單晶片落後 NVIDIA 一代但 cluster 整體性能可比 H100。</li>
+        <li><strong>寒武紀</strong>（688256.SH）：~50 EFLOPS。MLU370/590 系列 + 國家級超算中心。2025 營收估 RMB 80 億（vs 2024 RMB 12 億，+550% YoY）。</li>
+        <li><strong>海光信息</strong>（688041.SH）：~30 EFLOPS。x86 兼容 + AMD GPU 架構。2025 營收估 RMB 60 億。深算系列對標 H100。</li>
+        <li><strong>其他國產</strong>：~44 EFLOPS（壁仞 BR100 + 燧原 + 沐曦 C500 + 摩爾線程 MTT + 天數智芯 + 算豐 SOPHGO 等）。</li>
+        <li>合計 274 EFLOPS = 中國 2025 智能算力 35% (vs NVIDIA 中國特供 H20 / H800 殘留 ~49%)</li>
+      </ul>
+
+      <h4 class="methodology-subhead">美對中出口管制時間線</h4>
+      <ul class="methodology-list">
+        <li>2022/10：限制 H100 / A100（首輪 BIS 禁令）</li>
+        <li>2023/10：擴大限制 + 禁 H800 / A800（中國特供版被堵）</li>
+        <li>2024/12：進一步限制 H20 + 高頻寬 HBM3e（FLOP/s × HBM 帶寬複合阈值）</li>
+        <li>2025/12：Trump 政策轉向「限量但不全斷」，重啟 H200 對中銷售（25% 關稅 + 限量 5K-10K modules）</li>
+        <li>2026 Q1：GB200/B200/B300 仍全面禁運</li>
+        <li>**中國回應**：政策推動 2026 國產 AI 算力比例破 50% + 寒武紀/海光 IPO 後融資擴產 + 華為昇騰全棧生態加快</li>
+      </ul>
+
+      <h4 class="methodology-subhead">Disclaimer</h4>
+      <ul class="methodology-list">
+        <li>本網站為<strong>研究與教育用途</strong>，不構成投資建議</li>
+        <li>CAICT 蓝皮书官方數據為 A/B 級，但 Epoch AI 推算為自有方法（B/C 級）</li>
+        <li>中國國產 vendor breakdown 多為券商估算（C/D 級），主因公司不揭露具體 cluster 部署量</li>
+        <li>原始 data points 公開於 <code>_research/phase9-country-compute/</code></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-note">Country Compute Race index. Data 2026-04-27 from CAICT 蓝皮书 (中國信通院 2024/2025 蓝皮书) + Epoch AI compute trends + 華為 / 寒武紀 / 海光官方公告 + BIS 出口管制公告.</p>
+  </div>
+</footer>
+
+<script src="./app-country-compute.js?v=20260427-country"></script>
+</body>
+</html>
