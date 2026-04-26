@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Demand — LLM Market Share &amp; Revenue</title>
+<meta name="description" content="LLM market index: OpenAI (GPT) + Anthropic (Claude) + Google (Gemini) — ARR / MAU / market share trend 2023-2026.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<style>
+  .chart-wrap { background: var(--color-bg-card, rgba(255,255,255,0.02)); border: 1px solid var(--color-border, rgba(255,255,255,0.08)); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+  .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  @media (max-width: 900px) { .chart-grid { grid-template-columns: 1fr; } }
+  .chart-wrap svg text { fill: var(--color-text, #e5e7eb); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo-group">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" aria-label="AI Data Center Map logo">
+        <rect x="2" y="6" width="28" height="20" rx="3" stroke="currentColor" stroke-width="2"/>
+        <circle cx="9" cy="16" r="2.5" fill="currentColor"/>
+        <circle cx="16" cy="16" r="2.5" fill="currentColor"/>
+        <circle cx="23" cy="16" r="2.5" fill="currentColor"/>
+        <line x1="9" y1="11" x2="9" y2="13.5" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="16" y1="11" x2="16" y2="13.5" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="23" y1="11" x2="23" y2="13.5" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="9" y1="18.5" x2="9" y2="21" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="16" y1="18.5" x2="16" y2="21" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="23" y1="18.5" x2="23" y2="21" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+      <h1 class="logo-text">AI Data Center Map</h1>
+    </div>
+    <div class="header-controls">
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="search-input" placeholder="Search providers / metrics...">
+      </div>
+      <button data-theme-toggle aria-label="Switch to dark mode" class="theme-toggle">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="page-nav">
+  <div class="page-nav-inner">
+    <div class="nav-group">
+      <button class="nav-group-btn" aria-haspopup="true">AI Infra</button>
+      <div class="nav-group-menu" role="menu">
+        <a href="./">AI Data Centers</a>
+        <a href="./gpu-cluster.html">GPU Clusters</a>
+        <a href="./subsea-cable.html">Subsea Cables</a>
+        <a href="./power-ai.html">Power &amp; Nuclear</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-btn" aria-haspopup="true">Semi Supply Chain</button>
+      <div class="nav-group-menu" role="menu">
+        <a href="./fab-5nm.html">Sub-5nm Fabs</a>
+        <a href="./packaging.html">Advanced Packaging</a>
+        <a href="./hbm.html">HBM Capacity</a>
+        <a href="./euv.html">EUV Tools</a>
+      </div>
+    </div>
+    <div class="nav-group active">
+      <button class="nav-group-btn" aria-haspopup="true">AI Demand</button>
+      <div class="nav-group-menu" role="menu">
+        <a href="./token-production.html">Token Production</a>
+        <a href="./workload-split.html">Workload Split</a>
+        <a href="./ai-demand.html">AI Demand</a>
+        <a href="./llm-market.html" class="active">LLM Market</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-btn" aria-haspopup="true">Taiwan Supply Chain</button>
+      <div class="nav-group-menu" role="menu">
+        <a href="./power-tw.html">Power Line (TW)</a>
+        <a href="./cooling-tw.html">Cooling Line (TW)</a>
+        <a href="./rack-tw.html">Rack Line (TW)</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-btn" aria-haspopup="true">Components (Global)</button>
+      <div class="nav-group-menu" role="menu">
+        <a href="./optical.html">Optical Line</a>
+        <a href="./connector.html">Connector / Cable Line</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="page-intro">
+    <h2 class="page-title">LLM Market — GPT vs Claude vs Gemini (ARR + MAU + Market Share Trend 2023-2026)</h2>
+    <p class="page-lede">三大 LLM provider 的 <strong>產地 / B2C / B2B / 總合營收 / 市佔趨勢</strong>。<strong>關鍵故事 (2026 Q1)</strong>：Anthropic ARR $30B 反超 OpenAI $25B（雖 OpenAI 全年 target $29.4B 仍可能追平）；Google Gemini consumer 市占從 2025 Jan 5.7% 暴增 4x 至 2026 Jan 21.5%。三家皆 🇺🇸 美國總部，但 OpenAI/Anthropic 為私有公司、Google (GOOG) 為 NASDAQ 上市。揭露品質差異大：Anthropic + OpenAI 公開 ARR (A 級)；Google 不獨立揭露 Gemini 營收（多為 C 級推算）。</p>
+    <div class="last-verified-banner">
+      <span class="banner-label">Last verified:</span>
+      <span class="banner-value">2026-04-26</span>
+      <span class="banner-sep">·</span>
+      <span class="banner-label">Schema:</span>
+      <span class="banner-value">phase5-llm-v1</span>
+      <span class="banner-sep">·</span>
+      <span class="banner-label">Data range:</span>
+      <span class="banner-value">2023-2027F</span>
+    </div>
+  </section>
+
+  <section class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-value" id="stat-providers">0</span>
+      <span class="stat-label">Anchor Providers</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value" id="stat-arr-2025">$0</span>
+      <span class="stat-label">2025 Total ARR</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value" id="stat-arr-2026">$0</span>
+      <span class="stat-label">2026 Total ARR</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value" id="stat-a-ratio">0%</span>
+      <span class="stat-label">Grade-A Ratio</span>
+    </div>
+  </section>
+
+  <section class="filters-bar">
+    <div class="filter-group">
+      <span class="filter-label">Provider:</span>
+      <button class="filter-btn active" data-provider="all">All</button>
+      <button class="filter-btn" data-provider="OpenAI">🇺🇸 OpenAI (GPT)</button>
+      <button class="filter-btn" data-provider="Anthropic">🇺🇸 Anthropic (Claude)</button>
+      <button class="filter-btn" data-provider="Google (Alphabet)">🇺🇸 Google (Gemini)</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Year:</span>
+      <button class="filter-btn active" data-year="all">All</button>
+      <button class="filter-btn" data-year="2024">2024</button>
+      <button class="filter-btn" data-year="2025">2025</button>
+      <button class="filter-btn" data-year="2026">2026</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Grade:</span>
+      <button class="filter-btn active" data-grade="all">All</button>
+      <button class="filter-btn" data-grade="A">A</button>
+      <button class="filter-btn" data-grade="B">B</button>
+      <button class="filter-btn" data-grade="C">C</button>
+      <button class="filter-btn" data-grade="D">D</button>
+    </div>
+  </section>
+
+  <section class="data-table-section">
+    <h2 class="section-title">ARR Trend (Total Revenue, 2023-2026)</h2>
+    <div class="chart-wrap" id="trend-chart"></div>
+  </section>
+
+  <section class="data-table-section">
+    <h2 class="section-title">B2B/B2C Mix &amp; Market Share (2026)</h2>
+    <div class="chart-grid">
+      <div class="chart-wrap" id="donut-chart"></div>
+      <div class="chart-wrap" id="share-chart"></div>
+    </div>
+  </section>
+
+  <section class="data-table-section">
+    <h2 class="section-title">All Data Points (flat)</h2>
+    <p class="section-sublede">Phase 5 LLM market 總計 <span id="dp-count">0</span> 條 data-points（3 anchor / 61 dp / Grade A 32、B 15、C 11、D 3，A+B = 77.0%）。可用 filter (provider / year / grade) 篩選。</p>
+    <div class="table-wrapper">
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th>Provider</th>
+            <th>Metric</th>
+            <th>Year</th>
+            <th>Grade</th>
+            <th>Value</th>
+            <th>Notes</th>
+            <th>Date</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="methodology-section" id="methodology">
+    <div class="methodology-inner">
+      <h3 class="section-title">Methodology &amp; Disclaimer</h3>
+
+      <h4 class="methodology-subhead">Schema (phase5-llm-v1)</h4>
+      <ul class="methodology-list">
+        <li>每行 = 「某 provider 在某年某 metric 的數值」。schema 與 phase 3/4 supply chain 不同（provider 取代 supplier_ticker，year 取代 dc_project，多種 unit）</li>
+        <li>Categories：<code>ARR_total / ARR_B2B / ARR_B2C / MAU_consumer / paying_subscribers / market_share_consumer / market_share_enterprise / model_release / valuation / compute_capex / enterprise_customers / api_requests / killer_app</code></li>
+        <li>Units：<code>USD_mn</code>（百萬美元）、<code>M_users</code>（百萬用戶）、<code>percent</code>、<code>USD_per_month</code>、<code>businesses</code>、<code>B_per_month</code>、<code>models</code></li>
+      </ul>
+
+      <h4 class="methodology-subhead">Grade 分級</h4>
+      <ul class="methodology-list">
+        <li><strong>A</strong> — 公司直接揭露（CEO/CFO 公開聲明、官方新聞稿、Series F/G 投資揭露）</li>
+        <li><strong>B</strong> — Tier-1 媒體（TechCrunch / Bloomberg / The Information）+ sell-side research summary</li>
+        <li><strong>C</strong> — 多源券商共識，特別是 Google Gemini-attributable revenue（Google 不獨立揭露）</li>
+        <li><strong>D</strong> — 2027 forecast 含 Bear/Base/Bull 三情境</li>
+      </ul>
+
+      <h4 class="methodology-subhead">關鍵 Insights</h4>
+      <ul class="methodology-list">
+        <li><strong>Anthropic 2026 Q1 反超</strong>：ARR $30B (Mar 2026) vs OpenAI $25B (Mar 2026)。Claude Code $2.5B ARR 為主要 driver。1,000+ enterprise 年付 >$1M。</li>
+        <li><strong>OpenAI 仍領先 consumer 市場</strong>：900M weekly active users (Mar 2026) vs Gemini 750M MAU vs Claude 50M MAU。65% chatbot traffic share。</li>
+        <li><strong>Google Gemini 暴增</strong>：Consumer 市占從 5.7% (Jan 2025) → 21.5% (Jan 2026)，4x 成長。Search / Workspace 整合是核心 distribution 優勢。</li>
+        <li><strong>B2B vs B2C 結構差異</strong>：Anthropic 90% B2B（enterprise-first）vs OpenAI 60% B2B / 40% B2C（consumer-strong）vs Google 80% B2B。</li>
+        <li><strong>Compute capex 軍備競賽</strong>：OpenAI 2025 ~$11B / Stargate $500B 五年計劃；Anthropic 4x cheaper training（vs OpenAI）；Google 自家 TPU 垂直整合 cost advantage。</li>
+      </ul>
+
+      <h4 class="methodology-subhead">產地分佈</h4>
+      <ul class="methodology-list">
+        <li>三家 anchor 全部 🇺🇸 美國 HQ（San Francisco / Mountain View）</li>
+        <li>缺席的 vendors（後續可加）：xAI Grok（🇺🇸 私有）、Meta Llama（🇺🇸 NASDAQ 開源）、DeepSeek（🇨🇳 私有）、Mistral（🇫🇷 EU 私有）、Cohere（🇨🇦 CA 私有）、Alibaba Qwen（🇨🇳 NYSE: BABA）</li>
+        <li>地緣政治分布：US 三巨頭 + CN 雙巨頭（DeepSeek + Qwen）+ EU/CA 補位（Mistral / Cohere）</li>
+      </ul>
+
+      <h4 class="methodology-subhead">2027 Forecast（D 級 Bear/Base/Bull）</h4>
+      <ul class="methodology-list">
+        <li><strong>OpenAI 2027</strong>：Bear $35B（Anthropic 進一步分食）/ Base $50B（Stargate 兌現 + 雙位數 Hyperscaler 簽約）/ Bull $80B+（AGI 商業化 + Sora 訂閱爆發）</li>
+        <li><strong>Anthropic 2027</strong>：Bear $50B（成長收斂至 +60-80%）/ Base $80B（持續 Hyperscaler 簽約 + Code 滲透）/ Bull $120B+（Reasoning + agentic 取代多 SaaS 工具）</li>
+        <li><strong>Google 2027 Gemini-attributable</strong>：Bear $20B（Apple Search 整合受阻）/ Base $30B（Workspace AI + Cloud Vertex growth）/ Bull $50B+（Search AI 直接 monetization）</li>
+      </ul>
+
+      <h4 class="methodology-subhead">Disclaimer</h4>
+      <ul class="methodology-list">
+        <li>本網站為<strong>研究與教育用途</strong>，不構成投資建議</li>
+        <li>OpenAI / Anthropic 為私有公司，營收估算依據官方 ARR 公告；Google Gemini-attributable 不獨立揭露，多為 sell-side 推算（C 級）</li>
+        <li>Market share 數字來自 Similarweb / SemiAnalysis / 法人共識，跨來源差異大（B/C 級）</li>
+        <li>原始 data points 公開於 repo <code>_research/phase5-llm/</code></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-note">LLM Market index. Data compiled 2026-04-26 from official press releases (OpenAI / Anthropic / Google), TechCrunch / SaaStr / Sacra / Business of Apps. See methodology.</p>
+    <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" class="footer-attribution">Created with Perplexity Computer</a>
+  </div>
+</footer>
+
+<script src="./app-llm-market.js?v=20260426-llm"></script>
+</body>
+</html>
