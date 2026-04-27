@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Demand — Top 10 AI Stock P/E Ratio</title>
+<meta name="description" content="AI 強相關 Top 10 P/E ratio: NVDA / AMD / TSM / GOOG / AMZN / AVGO / MU / DELL / COHR / Wistron — TTM + Forward P/E + Market Cap + AI Revenue Share">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<style>
+  .chart-wrap { background: var(--color-bg-card, rgba(255,255,255,0.02)); border: 1px solid var(--color-border, rgba(255,255,255,0.08)); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+  .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  @media (max-width: 900px) { .chart-grid { grid-template-columns: 1fr; } }
+  .chart-wrap svg text { fill: var(--color-text, #e5e7eb); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo-group">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none">
+        <rect x="2" y="6" width="28" height="20" rx="3" stroke="currentColor" stroke-width="2"/>
+        <circle cx="9" cy="16" r="2.5" fill="currentColor"/><circle cx="16" cy="16" r="2.5" fill="currentColor"/><circle cx="23" cy="16" r="2.5" fill="currentColor"/>
+      </svg>
+      <h1 class="logo-text">AI Data Center Map</h1>
+    </div>
+    <div class="header-controls">
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="search-input" placeholder="Search ticker / metric...">
+      </div>
+      <button data-theme-toggle aria-label="Switch theme" class="theme-toggle">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="page-nav">
+  <div class="page-nav-inner">
+    <div class="nav-group">
+      <button class="nav-group-btn">AI Infra</button>
+      <div class="nav-group-menu" role="menu">
+        <a href="./">AI Data Centers</a>
+        <a href="./gpu-cluster.html">GPU Clusters</a>
+        <a href="./subsea-cable.html">Subsea Cables</a>
+        <a href="./power-ai.html">Power &amp; Nuclear</a>
+        <a href="./gpu-market.html">NV GPU Market</a>
+        <a href="./ai-chip-alt.html">AI Chip Alt</a>
+        <a href="./country-compute.html">Country Compute Race</a>
+      </div>
+    </div>
+    <div class="nav-group"><button class="nav-group-btn">Semi Supply Chain</button><div class="nav-group-menu" role="menu"><a href="./fab-5nm.html">Sub-5nm Fabs</a><a href="./packaging.html">Advanced Packaging</a><a href="./hbm.html">HBM Capacity</a><a href="./euv.html">EUV Tools</a></div></div>
+    <div class="nav-group active">
+      <button class="nav-group-btn">AI Demand</button>
+      <div class="nav-group-menu" role="menu">
+        <a href="./token-production.html">Token Production</a>
+        <a href="./workload-split.html">Workload Split</a>
+        <a href="./ai-demand.html">AI Demand</a>
+        <a href="./llm-market.html">LLM Market</a>
+        <a href="./local-llm.html">Local LLM (OSS)</a>
+        <a href="./ai-pe.html" class="active">AI Top-10 P/E</a>
+      </div>
+    </div>
+    <div class="nav-group"><button class="nav-group-btn">Taiwan Supply Chain</button><div class="nav-group-menu" role="menu"><a href="./power-tw.html">Power Line (TW)</a><a href="./cooling-tw.html">Cooling Line (TW)</a><a href="./rack-tw.html">Rack Line (TW)</a></div></div>
+    <div class="nav-group"><button class="nav-group-btn">Components (Global)</button><div class="nav-group-menu" role="menu"><a href="./optical.html">Optical Line</a><a href="./connector.html">Connector / Cable Line</a></div></div>
+  </div>
+</nav>
+
+<main>
+  <section class="page-intro">
+    <h2 class="page-title">AI 強相關 Top 10 P/E Ratio — TTM vs Forward + Market Cap + AI Revenue Share</h2>
+    <p class="page-lede">追蹤 10 家 AI 強相關上市公司的估值（2026 Q1-Q2 估算）：🇺🇸 <strong>NVDA / AMD / GOOG / AMZN / AVGO / MU / DELL / COHR</strong> + 🇹🇼 <strong>TSM / Wistron 3231</strong>。<strong>Forward P/E 排序（cheap → expensive）</strong>：MU 9 < DELL 14 < Wistron 15 < GOOG 22 < TSM 25 < COHR 28 < AVGO 30 < NVDA 32 = AMD 32 < AMZN 35。<strong>AI 純度排序</strong>：NVDA 88% > COHR 50% > Wistron 45% > AMD/AVGO 35% > TSM 30% > MU 30% > GOOG 25% > DELL 20% > AMZN 12%。<strong>三類觀點</strong>：(1) **Value AI play**：MU/DELL/Wistron Forward P/E 9-15（被低估？或週期/commodity 風險？）；(2) **估值合理**：TSM/NVDA/COHR；(3) **估值偏高 forward**：AMZN 35（AI capex 重壓 EPS）。</p>
+    <div class="last-verified-banner">
+      <span class="banner-label">Last verified:</span>
+      <span class="banner-value">2026-04-27</span>
+      <span class="banner-sep">·</span>
+      <span class="banner-label">Schema:</span>
+      <span class="banner-value">phase10-pe-v1</span>
+      <span class="banner-sep">·</span>
+      <span class="banner-label">Coverage:</span>
+      <span class="banner-value">10 ticker / 8 US + 2 TW</span>
+    </div>
+  </section>
+
+  <section class="stats-bar">
+    <div class="stat-item"><span class="stat-value" id="stat-vendors">10</span><span class="stat-label">Tracked Tickers</span></div>
+    <div class="stat-item"><span class="stat-value" id="stat-mcap">$0T</span><span class="stat-label">Total Market Cap</span></div>
+    <div class="stat-item"><span class="stat-value" id="stat-cheap">—</span><span class="stat-label">Cheapest Forward P/E</span></div>
+    <div class="stat-item"><span class="stat-value" id="stat-expensive">—</span><span class="stat-label">Highest Forward P/E</span></div>
+  </section>
+
+  <section class="filters-bar">
+    <div class="filter-group">
+      <span class="filter-label">Ticker:</span>
+      <button class="filter-btn active" data-ticker="all">All</button>
+      <button class="filter-btn" data-ticker="NVDA">🇺🇸 NVDA</button>
+      <button class="filter-btn" data-ticker="AMD">🇺🇸 AMD</button>
+      <button class="filter-btn" data-ticker="TSM">🇹🇼 TSM</button>
+      <button class="filter-btn" data-ticker="GOOG">🇺🇸 GOOG</button>
+      <button class="filter-btn" data-ticker="AMZN">🇺🇸 AMZN</button>
+      <button class="filter-btn" data-ticker="AVGO">🇺🇸 AVGO</button>
+      <button class="filter-btn" data-ticker="MU">🇺🇸 MU</button>
+      <button class="filter-btn" data-ticker="DELL">🇺🇸 DELL</button>
+      <button class="filter-btn" data-ticker="COHR">🇺🇸 COHR</button>
+      <button class="filter-btn" data-ticker="3231">🇹🇼 Wistron</button>
+      <button class="filter-btn" data-ticker="INSIGHT">📊 Insight</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Grade:</span>
+      <button class="filter-btn active" data-grade="all">All</button>
+      <button class="filter-btn" data-grade="A">A</button><button class="filter-btn" data-grade="B">B</button><button class="filter-btn" data-grade="C">C</button>
+    </div>
+  </section>
+
+  <section class="data-table-section">
+    <h2 class="section-title">P/E Ratio: TTM vs Forward NTM</h2>
+    <div class="chart-wrap" id="pe-chart"></div>
+  </section>
+
+  <section class="data-table-section">
+    <h2 class="section-title">Market Cap + AI Revenue Share + 1Y Return</h2>
+    <div class="chart-grid">
+      <div class="chart-wrap" id="mcap-chart"></div>
+      <div class="chart-wrap" id="airev-chart"></div>
+    </div>
+  </section>
+
+  <section class="data-table-section">
+    <h2 class="section-title">Forward P/E vs AI 純度（Scatter — 找 cheap AI play）</h2>
+    <div class="chart-wrap" id="scatter-chart"></div>
+  </section>
+
+  <section class="data-table-section">
+    <h2 class="section-title">All Data Points (flat)</h2>
+    <p class="section-sublede">Phase 10 AI Top-10 P/E 總計 <span id="dp-count">0</span> 條 data-points（10 vendor + 4 cross-vendor insights = 55 dp / Grade A 22、B 29、C 4，A+B = 92.7%）。</p>
+    <div class="table-wrapper">
+      <table id="data-table">
+        <thead><tr><th>Ticker</th><th>Company</th><th>Metric</th><th>Grade</th><th>Value</th><th>Notes</th><th>Date</th><th>Source</th></tr></thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="methodology-section" id="methodology">
+    <div class="methodology-inner">
+      <h3 class="section-title">Methodology &amp; Disclaimer</h3>
+
+      <h4 class="methodology-subhead">10 Ticker 選擇邏輯</h4>
+      <ul class="methodology-list">
+        <li>**6 半導體晶片**：NVDA (frontier GPU)、AMD (CPU+GPU)、TSM (代工)、AVGO (custom AI ASIC + 網通)、MU (HBM 記憶體)、COHR (光通訊 InP)</li>
+        <li>**2 mega-cap cloud**：GOOG (Cloud + TPU + Search AI)、AMZN (AWS + Trainium + Anthropic 持股)</li>
+        <li>**2 AI server OEM/ODM**：DELL (美 OEM 品牌)、Wistron 3231 (台 ODM)</li>
+        <li>排除：MSFT/META/AAPL（mega-cap 但 AI 暴險占比較低，分散投資不純）、SMCI（會計爭議後 trust 降低）</li>
+      </ul>
+
+      <h4 class="methodology-subhead">Forward P/E 排序（cheap → expensive）</h4>
+      <ul class="methodology-list">
+        <li>🟢 **Value AI play (P/E < 20)**：MU 9、DELL 14、Wistron 15。**警告**：可能反映 commodity / 週期風險，不純然「便宜」。</li>
+        <li>🟡 **合理估值 (P/E 20-30)**：GOOG 22、TSM 25、COHR 28。</li>
+        <li>🔴 **成長型 (P/E 30-35)**：AVGO 30、NVDA 32、AMD 32、AMZN 35。Forward EPS 估算高，看下一年是否兌現。</li>
+      </ul>
+
+      <h4 class="methodology-subhead">AI 純度排序（AI revenue share 高至低）</h4>
+      <ul class="methodology-list">
+        <li>**純 AI play**：NVDA 88%、COHR 50%、Wistron 45%</li>
+        <li>**高度 AI 暴險**：AMD 35%、AVGO 35%、TSM 30%、MU 30%</li>
+        <li>**混合 mega-cap**：GOOG 25%、DELL 20%、AMZN 12%</li>
+        <li>**注意**：純度高 ≠ 估值合理。NVDA 純 AI 88% 但 Forward 32x；GOOG 25% 不純 AI 但 Forward 22x。</li>
+      </ul>
+
+      <h4 class="methodology-subhead">TTM vs Forward gap 大者（增長預期高）</h4>
+      <ul class="methodology-list">
+        <li>**AVGO**：TTM 85 → Forward 30（gap 55x，VMware 攤銷拖累 GAAP，adjusted 後合理）</li>
+        <li>**AMD**：TTM 75 → Forward 32（gap 43x，MI355X/MI400 預期推升 EPS）</li>
+        <li>**COHR**：TTM 140 → Forward 28（gap 112x，剛從虧損轉正利潤暴增）</li>
+        <li>**MU**：TTM 14 → Forward 9（gap 5x，HBM 結構性短缺）</li>
+        <li>**NVDA**：TTM 52 → Forward 32（gap 20x，Blackwell + Rubin 持續增長）</li>
+        <li>Forward/TTM gap 越大 = 市場期望越高 = ceiling 失敗時下修壓力越大</li>
+      </ul>
+
+      <h4 class="methodology-subhead">Cross-link 觀察</h4>
+      <ul class="methodology-list">
+        <li><a href="./gpu-market.html">NV GPU Market</a>：NVDA Blackwell backlog 3.6M 支持 forward 32x 估值</li>
+        <li><a href="./ai-chip-alt.html">AI Chip Alt</a>：AMD MI300 + AVGO custom ASIC 對應 forward 32x 與 30x</li>
+        <li><a href="./optical.html">Optical Line</a>：COHR 1.6T supercycle + InP 6-inch 是 forward 28x 的 driver</li>
+        <li><a href="./rack-tw.html">Rack Line (TW)</a>：Wistron 跟鴻海/廣達/緯穎/英業達同類別，<a href="./gpu-market.html">GPU 出貨</a>是 forward 15x 的 driver</li>
+        <li><a href="./llm-market.html">LLM Market</a>：GOOG Forward 22x 反映 Gemini ARR + Cloud growth；AMZN 35x 含 Anthropic 投資價值</li>
+      </ul>
+
+      <h4 class="methodology-subhead">Disclaimer（重要）</h4>
+      <ul class="methodology-list">
+        <li>本網站為<strong>研究與教育用途，不構成投資建議</strong></li>
+        <li>P/E ratio 只是**一個估值維度**，不是 buy/sell signal。需配合 PEG / EV/EBITDA / FCF yield / DCF 等多種估值方法</li>
+        <li>所有數字為 2026 Q1-Q2 區間估算，B 級為主（Yahoo Finance / Koyfin / 法人共識）。實際 P/E 隨股價變動每日波動</li>
+        <li>AI revenue share 多為公司不獨立揭露（C 級估算），TSM/AVGO/AMD 等較難精確分項</li>
+        <li>Forward P/E 依賴 sell-side EPS 共識，若 EPS guidance 下修則 P/E 立刻變高</li>
+        <li>原始 data points 公開於 <code>_research/phase10-ai-pe/</code>，每筆 dp 含 source URL 可自行 fact-check</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-note">AI Top-10 P/E Ratio index. Data 2026-04-27 from Yahoo Finance / Koyfin / 公司 10-K / 法人共識估計. Educational use only — NOT investment advice.</p>
+  </div>
+</footer>
+
+<script src="./app-ai-pe.js?v=20260427-pe"></script>
+</body>
+</html>
