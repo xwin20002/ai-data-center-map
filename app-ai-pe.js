@@ -1,6 +1,6 @@
 /* G04 Phase 10 — AI Top-10 P/E Ratio Index
  * 10 ticker: NVDA / AMD / TSM / GOOG / AMZN / AVGO / MU / DELL / COHR / 3231 (Wistron)
- * Data 2026-04-27 · _research/phase10-ai-pe/ai-pe.jsonl (55 records)
+ * Data 2026-04-27 · _research/phase10-ai-pe/ai-pe.jsonl (105 records)
  *
  * Visualization: TTM vs Forward P/E + Market cap + AI revenue share + 1Y return
  */
@@ -830,6 +830,756 @@ const DATA = [
     "source_url": "https://www.koyfin.com/",
     "source_date": "2026-04",
     "notes": "**Investor takeaway** (educational only, NOT investment advice): (1) **被動指數**: NVDA + GOOG + AMZN 占 mega-cap 三巨頭，被動買 SPY/QQQ 已自動暴險。(2) **主動 stock pick**: 看 Forward/TTM gap 大者（AMD 75→32, AVGO 85→30）= 增長預期高。(3) **Value AI play**: MU 9, DELL 14, Wistron 15（被市場低估？或 commodity 風險？）。(4) **Watch**: 若 AI 滲透率 ceiling 提早到（vs LLM Market 頁觀察），高 forward P/E 標的 (AMZN, AMD) 修正壓力大。"
+  },
+  {
+    "ticker": "NVDA",
+    "company": "NVIDIA Corp.",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "annual_revenue",
+    "value": 60.9,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/NVDA/financials",
+    "source_date": "2023-Q4",
+    "notes": "FY24 (end Jan 2024) Datacenter $47.5B 為主"
+  },
+  {
+    "ticker": "NVDA",
+    "company": "NVIDIA Corp.",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "annual_revenue",
+    "value": 130.5,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/NVDA/financials",
+    "source_date": "2024-Q4",
+    "notes": "FY25 (end Jan 2025) Datacenter $115.2B 占 88%, +217% YoY"
+  },
+  {
+    "ticker": "NVDA",
+    "company": "NVIDIA Corp.",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "annual_revenue",
+    "value": 200,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/NVDA/financials",
+    "source_date": "2025-Q4",
+    "notes": "FY26 (end Jan 2026 forecast) 年化 ARR $200B, Blackwell 主推"
+  },
+  {
+    "ticker": "NVDA",
+    "company": "NVIDIA Corp.",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "annual_revenue",
+    "value": 260,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/NVDA/financials",
+    "source_date": "2026-Q4",
+    "notes": "FY27 forecast $260B, Rubin H2 量產 + Stargate Phase 1 兌現"
+  },
+  {
+    "ticker": "NVDA",
+    "company": "NVIDIA Corp.",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "revenue_cagr_2023_2026",
+    "value": 63,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/NVDA/financials",
+    "source_date": "2026-04",
+    "notes": "2023→2026 Revenue CAGR ~63%（最高）。AI Datacenter 占比 78% → 90% 上升。"
+  },
+  {
+    "ticker": "AMD",
+    "company": "AMD",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "annual_revenue",
+    "value": 22.7,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/AMD/financials",
+    "source_date": "2023-Q4",
+    "notes": "FY23 calendar; 全年 -3.9% YoY (PC 衰退)"
+  },
+  {
+    "ticker": "AMD",
+    "company": "AMD",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "annual_revenue",
+    "value": 25.8,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/AMD/financials",
+    "source_date": "2024-Q4",
+    "notes": "FY24 +13.7% YoY, Datacenter MI300 ramp"
+  },
+  {
+    "ticker": "AMD",
+    "company": "AMD",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "annual_revenue",
+    "value": 32,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/AMD/financials",
+    "source_date": "2025-Q4",
+    "notes": "FY25E +24% YoY, MI325X + EPYC server CPU 雙引擎"
+  },
+  {
+    "ticker": "AMD",
+    "company": "AMD",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "annual_revenue",
+    "value": 40,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/AMD/financials",
+    "source_date": "2026-Q4",
+    "notes": "FY26E +25% YoY, MI355X 量產 + MI400 H2 launch"
+  },
+  {
+    "ticker": "AMD",
+    "company": "AMD",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "revenue_cagr_2023_2026",
+    "value": 21,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/AMD/financials",
+    "source_date": "2026-04",
+    "notes": "2023→2026 Revenue CAGR ~21%。從 PC 衰退 + Datacenter 啟動。"
+  },
+  {
+    "ticker": "TSM",
+    "company": "TSMC",
+    "exchange": "NYSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "annual_revenue",
+    "value": 69.7,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/TSM/financials",
+    "source_date": "2023-Q4",
+    "notes": "FY23 NT$2.16T = $69.7B, AI 需求剛萌芽"
+  },
+  {
+    "ticker": "TSM",
+    "company": "TSMC",
+    "exchange": "NYSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "annual_revenue",
+    "value": 93,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/TSM/financials",
+    "source_date": "2024-Q4",
+    "notes": "FY24 NT$2.89T = $93B, +33% YoY (AI 帶動)"
+  },
+  {
+    "ticker": "TSM",
+    "company": "TSMC",
+    "exchange": "NYSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "annual_revenue",
+    "value": 113,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/TSM/financials",
+    "source_date": "2025-Q4",
+    "notes": "FY25E NT$3.5T = $113B, +22% YoY (3nm 主力)"
+  },
+  {
+    "ticker": "TSM",
+    "company": "TSMC",
+    "exchange": "NYSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "annual_revenue",
+    "value": 136,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/TSM/financials",
+    "source_date": "2026-Q4",
+    "notes": "FY26E NT$4.2T = $136B, +21% YoY (3nm + 2nm 量產)"
+  },
+  {
+    "ticker": "TSM",
+    "company": "TSMC",
+    "exchange": "NYSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "revenue_cagr_2023_2026",
+    "value": 25,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/TSM/financials",
+    "source_date": "2026-04",
+    "notes": "2023→2026 Revenue CAGR ~25%。HPC/AI segment 從 30% → 45%+。"
+  },
+  {
+    "ticker": "GOOG",
+    "company": "Alphabet",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "annual_revenue",
+    "value": 307,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/GOOG/financials",
+    "source_date": "2023-Q4",
+    "notes": "FY23 +9% YoY, 主要 Search+YouTube"
+  },
+  {
+    "ticker": "GOOG",
+    "company": "Alphabet",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "annual_revenue",
+    "value": 350,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/GOOG/financials",
+    "source_date": "2024-Q4",
+    "notes": "FY24 +14% YoY, Cloud +30% 加速"
+  },
+  {
+    "ticker": "GOOG",
+    "company": "Alphabet",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "annual_revenue",
+    "value": 400,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/GOOG/financials",
+    "source_date": "2025-Q4",
+    "notes": "FY25E +14% YoY, Gemini Advanced + AI Cloud"
+  },
+  {
+    "ticker": "GOOG",
+    "company": "Alphabet",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "annual_revenue",
+    "value": 456,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/GOOG/financials",
+    "source_date": "2026-Q4",
+    "notes": "FY26E +14% YoY, AI Overviews + Workspace AI monetize"
+  },
+  {
+    "ticker": "GOOG",
+    "company": "Alphabet",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "revenue_cagr_2023_2026",
+    "value": 14,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/GOOG/financials",
+    "source_date": "2026-04",
+    "notes": "2023→2026 Revenue CAGR ~14%。但 Cloud 部分 +30%/年遠快於整體。"
+  },
+  {
+    "ticker": "AMZN",
+    "company": "Amazon",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "annual_revenue",
+    "value": 574,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/AMZN/financials",
+    "source_date": "2023-Q4",
+    "notes": "FY23 +12% YoY, AWS $90.8B"
+  },
+  {
+    "ticker": "AMZN",
+    "company": "Amazon",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "annual_revenue",
+    "value": 638,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/AMZN/financials",
+    "source_date": "2024-Q4",
+    "notes": "FY24 +11% YoY, AWS $107B (+19%)"
+  },
+  {
+    "ticker": "AMZN",
+    "company": "Amazon",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "annual_revenue",
+    "value": 720,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/AMZN/financials",
+    "source_date": "2025-Q4",
+    "notes": "FY25E +13% YoY, AWS $130B+ (+22%)"
+  },
+  {
+    "ticker": "AMZN",
+    "company": "Amazon",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "annual_revenue",
+    "value": 800,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/AMZN/financials",
+    "source_date": "2026-Q4",
+    "notes": "FY26E +11% YoY, AWS AI services growth"
+  },
+  {
+    "ticker": "AMZN",
+    "company": "Amazon",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "revenue_cagr_2023_2026",
+    "value": 12,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/AMZN/financials",
+    "source_date": "2026-04",
+    "notes": "2023→2026 Revenue CAGR ~12%（最低）。但 AWS 部分 +20%/年遠強於 Retail。"
+  },
+  {
+    "ticker": "AVGO",
+    "company": "Broadcom",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "annual_revenue",
+    "value": 35.8,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/AVGO/financials",
+    "source_date": "2023-Q4",
+    "notes": "FY23 (end Oct 2023) +8% YoY, pre-VMware"
+  },
+  {
+    "ticker": "AVGO",
+    "company": "Broadcom",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "annual_revenue",
+    "value": 51.6,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/AVGO/financials",
+    "source_date": "2024-Q4",
+    "notes": "FY24 +44% YoY, VMware acquisition H2 + AI ASIC"
+  },
+  {
+    "ticker": "AVGO",
+    "company": "Broadcom",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "annual_revenue",
+    "value": 62,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/AVGO/financials",
+    "source_date": "2025-Q4",
+    "notes": "FY25E +20% YoY, AI ASIC $20B (Google + Meta)"
+  },
+  {
+    "ticker": "AVGO",
+    "company": "Broadcom",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "annual_revenue",
+    "value": 75,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/AVGO/financials",
+    "source_date": "2026-Q4",
+    "notes": "FY26E +21% YoY, AI ASIC $30B+ (Hock Tan 2027 target $60-90B)"
+  },
+  {
+    "ticker": "AVGO",
+    "company": "Broadcom",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "revenue_cagr_2023_2026",
+    "value": 28,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/AVGO/financials",
+    "source_date": "2026-04",
+    "notes": "2023→2026 Revenue CAGR ~28%。AI ASIC + VMware 雙引擎，最快 mega-cap 晶片廠。"
+  },
+  {
+    "ticker": "MU",
+    "company": "Micron Technology",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "annual_revenue",
+    "value": 15.5,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/MU/financials",
+    "source_date": "2023-Q4",
+    "notes": "FY23 (end Aug 2023) -49% YoY, DRAM cycle 谷底"
+  },
+  {
+    "ticker": "MU",
+    "company": "Micron Technology",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "annual_revenue",
+    "value": 25.1,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/MU/financials",
+    "source_date": "2024-Q4",
+    "notes": "FY24 +62% YoY, HBM3 量產 + DRAM 反彈"
+  },
+  {
+    "ticker": "MU",
+    "company": "Micron Technology",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "annual_revenue",
+    "value": 35,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/MU/financials",
+    "source_date": "2025-Q4",
+    "notes": "FY25E +39% YoY, HBM3e 量產 + AI demand"
+  },
+  {
+    "ticker": "MU",
+    "company": "Micron Technology",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "annual_revenue",
+    "value": 45,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/MU/financials",
+    "source_date": "2026-Q4",
+    "notes": "FY26E +29% YoY, HBM4 + DRAM 結構性短缺"
+  },
+  {
+    "ticker": "MU",
+    "company": "Micron Technology",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "revenue_cagr_2023_2026",
+    "value": 43,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/MU/financials",
+    "source_date": "2026-04",
+    "notes": "2023→2026 Revenue CAGR ~43%（第二高，僅次 NVDA）。但 2023 為週期低點，CAGR 偏高。"
+  },
+  {
+    "ticker": "DELL",
+    "company": "Dell Technologies",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "annual_revenue",
+    "value": 88.4,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/DELL/financials",
+    "source_date": "2023-Q4",
+    "notes": "FY24 (end Feb 2024) -14% YoY, PC 衰退"
+  },
+  {
+    "ticker": "DELL",
+    "company": "Dell Technologies",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "annual_revenue",
+    "value": 95.6,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/DELL/financials",
+    "source_date": "2024-Q4",
+    "notes": "FY25 +8% YoY, AI server backlog 啟動"
+  },
+  {
+    "ticker": "DELL",
+    "company": "Dell Technologies",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "annual_revenue",
+    "value": 108,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/DELL/financials",
+    "source_date": "2025-Q4",
+    "notes": "FY26E +13% YoY, AI server PowerEdge XE9680 量產"
+  },
+  {
+    "ticker": "DELL",
+    "company": "Dell Technologies",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "annual_revenue",
+    "value": 122,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/DELL/financials",
+    "source_date": "2026-Q4",
+    "notes": "FY27E +13% YoY, AI server backlog $5B+"
+  },
+  {
+    "ticker": "DELL",
+    "company": "Dell Technologies",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "revenue_cagr_2023_2026",
+    "value": 11,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/DELL/financials",
+    "source_date": "2026-04",
+    "notes": "2023→2026 Revenue CAGR ~11%（受 PC commodity 業務拖累）。AI server segment +50%/年。"
+  },
+  {
+    "ticker": "COHR",
+    "company": "Coherent",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "annual_revenue",
+    "value": 4.7,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/COHR/financials",
+    "source_date": "2023-Q4",
+    "notes": "FY23 (end Jun 2023) post II-VI merger 整合"
+  },
+  {
+    "ticker": "COHR",
+    "company": "Coherent",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "annual_revenue",
+    "value": 4.7,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/COHR/financials",
+    "source_date": "2024-Q4",
+    "notes": "FY24 持平, Networking 開始 ramp"
+  },
+  {
+    "ticker": "COHR",
+    "company": "Coherent",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "annual_revenue",
+    "value": 5.8,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/COHR/financials",
+    "source_date": "2025-Q4",
+    "notes": "FY25 +23% YoY, Networking +45% (AI optical)"
+  },
+  {
+    "ticker": "COHR",
+    "company": "Coherent",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "annual_revenue",
+    "value": 6.9,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/COHR/financials",
+    "source_date": "2026-Q4",
+    "notes": "FY26E +19% YoY, 1.6T transceiver supercycle"
+  },
+  {
+    "ticker": "COHR",
+    "company": "Coherent",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "revenue_cagr_2023_2026",
+    "value": 14,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/COHR/financials",
+    "source_date": "2026-04",
+    "notes": "2023→2026 Revenue CAGR ~14%。但 Networking segment +45%/年，是核心 AI driver。"
+  },
+  {
+    "ticker": "3231",
+    "company": "Wistron 緯創",
+    "exchange": "TWSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "annual_revenue",
+    "value": 28,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/3231/financials",
+    "source_date": "2023-Q4",
+    "notes": "FY23 NT$867B = $28B, AI server 啟動"
+  },
+  {
+    "ticker": "3231",
+    "company": "Wistron 緯創",
+    "exchange": "TWSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "annual_revenue",
+    "value": 35,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/3231/financials",
+    "source_date": "2024-Q4",
+    "notes": "FY24 NT$1,083B = $35B, +25% YoY"
+  },
+  {
+    "ticker": "3231",
+    "company": "Wistron 緯創",
+    "exchange": "TWSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "annual_revenue",
+    "value": 39,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/3231/financials",
+    "source_date": "2025-Q4",
+    "notes": "FY25 NT$1,200B = $39B, +11% YoY (AI 內部成長 +50%)"
+  },
+  {
+    "ticker": "3231",
+    "company": "Wistron 緯創",
+    "exchange": "TWSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "annual_revenue",
+    "value": 48,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/3231/financials",
+    "source_date": "2026-Q4",
+    "notes": "FY26E NT$1,500B = $48B, +23% YoY (NVIDIA HGX 全球出貨)"
+  },
+  {
+    "ticker": "3231",
+    "company": "Wistron 緯創",
+    "exchange": "TWSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "revenue_cagr_2023_2026",
+    "value": 20,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/3231/financials",
+    "source_date": "2026-04",
+    "notes": "2023→2026 Revenue CAGR ~20%。AI server 內部成長 +50%/年, 帶動整體加速。"
   }
 ];
 
@@ -1033,6 +1783,78 @@ function renderScatterChart() {
   c.innerHTML = svg.join('');
 }
 
+
+/* Chart 5: Annual Revenue Trend 2023-2026 (10 lines) */
+function renderRevenueTrendChart() {
+  const c = document.getElementById('revenue-chart');
+  if (!c) return;
+  c.innerHTML = '';
+  const W = 800, H = 400, PAD = 60;
+  const years = [2023, 2024, 2025, 2026];
+  const yMax = 900; // USD B
+  const svg = ['<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">'];
+  svg.push('<text x="' + (W/2) + '" y="22" text-anchor="middle" fill="currentColor" font-size="15" font-weight="600">Annual Revenue Trend (USD Billion, 2023-2026)</text>');
+  // Y axis (log-ish jumps)
+  const yTicks = [0, 50, 100, 200, 400, 800];
+  for (const v of yTicks) {
+    const y = H - PAD - (v / yMax) * (H - 2 * PAD);
+    svg.push('<line x1="' + PAD + '" y1="' + y + '" x2="' + (W - PAD) + '" y2="' + y + '" stroke="currentColor" stroke-opacity="0.12"/>');
+    svg.push('<text x="' + (PAD - 8) + '" y="' + (y + 4) + '" text-anchor="end" fill="currentColor" font-size="10" opacity="0.7">$' + v + 'B</text>');
+  }
+  const xStep = (W - 2 * PAD) / (years.length - 1);
+  for (const t of TICKER_ORDER) {
+    const meta = TICKER_META[t];
+    const points = years.map((y, i) => {
+      const r = DATA.find(x => x.ticker === t && x.category === 'annual_revenue' && x.year === y);
+      if (!r || r.value == null) return null;
+      return [PAD + i * xStep, H - PAD - (Math.min(r.value, yMax) / yMax) * (H - 2 * PAD), r.value];
+    });
+    const path = points.filter(p => p).map(p => p[0] + ',' + p[1]).join(' ');
+    svg.push('<polyline points="' + path + '" fill="none" stroke="' + meta.color + '" stroke-width="2" opacity="0.85"/>');
+    for (const p of points) {
+      if (!p) continue;
+      svg.push('<circle cx="' + p[0] + '" cy="' + p[1] + '" r="3.5" fill="' + meta.color + '"/>');
+    }
+    // Endpoint label
+    const last = points[points.length - 1];
+    if (last) svg.push('<text x="' + (last[0] + 6) + '" y="' + (last[1] + 4) + '" fill="' + meta.color + '" font-size="10" font-weight="600">' + meta.short + ' $' + (last[2] >= 1000 ? (last[2]/1000).toFixed(1) + 'T' : last[2] + 'B') + '</text>');
+  }
+  // X axis years
+  for (let i = 0; i < years.length; i++) {
+    svg.push('<text x="' + (PAD + i * xStep) + '" y="' + (H - PAD + 18) + '" text-anchor="middle" fill="currentColor" font-size="13" font-weight="500">' + years[i] + '</text>');
+  }
+  svg.push('<text x="' + (W/2) + '" y="' + (H - 8) + '" text-anchor="middle" fill="currentColor" font-size="10" opacity="0.7">注意：Y 軸非線性比例（使 small caps 與 mega-caps 都可視）</text>');
+  svg.push('</svg>');
+  c.innerHTML = svg.join('');
+}
+
+/* Chart 6: Revenue CAGR 2023-2026 ranking */
+function renderCAGRChart() {
+  const c = document.getElementById('cagr-chart');
+  if (!c) return;
+  c.innerHTML = '';
+  const W = 480, H = 380;
+  const cagrs = TICKER_ORDER.map(t => {
+    const r = DATA.find(x => x.ticker === t && x.category === 'revenue_cagr_2023_2026');
+    return { t, val: r ? r.value : 0 };
+  }).sort((a, b) => b.val - a.val);
+  const max = cagrs[0].val;
+  const svg = ['<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">'];
+  svg.push('<text x="' + (W/2) + '" y="22" text-anchor="middle" fill="currentColor" font-size="14" font-weight="600">Revenue CAGR 2023-2026 (%/year)</text>');
+  let yOff = 50;
+  for (const c2 of cagrs) {
+    const meta = TICKER_META[c2.t];
+    const w = (c2.val / max) * 320;
+    svg.push('<text x="20" y="' + yOff + '" fill="currentColor" font-size="11" font-weight="500">' + meta.flag + ' ' + meta.short + '</text>');
+    svg.push('<rect x="100" y="' + (yOff - 11) + '" width="' + w + '" height="14" fill="' + meta.color + '" opacity="0.85" rx="2"/>');
+    svg.push('<text x="' + (105 + w) + '" y="' + (yOff + 1) + '" fill="currentColor" font-size="11" font-weight="600">' + c2.val + '%</text>');
+    yOff += 30;
+  }
+  svg.push('<text x="20" y="' + (H - 8) + '" fill="currentColor" font-size="10" opacity="0.7">3 年年化成長率，越高越快</text>');
+  svg.push('</svg>');
+  c.innerHTML = svg.join('');
+}
+
 function renderFlatTable(rows) {
   const tbody = document.getElementById('table-body');
   tbody.innerHTML = '';
@@ -1066,6 +1888,8 @@ function renderAll() {
   renderMcapChart();
   renderAIRevChart();
   renderScatterChart();
+  renderRevenueTrendChart();
+  renderCAGRChart();
   renderFlatTable(rows);
 }
 
