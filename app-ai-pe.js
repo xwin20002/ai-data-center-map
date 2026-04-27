@@ -1,6 +1,6 @@
 /* G04 Phase 10 — AI Top-10 P/E Ratio Index
  * 10 ticker: NVDA / AMD / TSM / GOOG / AMZN / AVGO / MU / DELL / COHR / 3231 (Wistron)
- * Data 2026-04-27 · _research/phase10-ai-pe/ai-pe.jsonl (105 records)
+ * Data 2026-04-27 · _research/phase10-ai-pe/ai-pe.jsonl (155 records)
  *
  * Visualization: TTM vs Forward P/E + Market cap + AI revenue share + 1Y return
  */
@@ -1580,6 +1580,756 @@ const DATA = [
     "source_url": "https://finance.yahoo.com/quote/3231/financials",
     "source_date": "2026-04",
     "notes": "2023→2026 Revenue CAGR ~20%。AI server 內部成長 +50%/年, 帶動整體加速。"
+  },
+  {
+    "ticker": "NVDA",
+    "company": "NVIDIA Corp.",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "net_income",
+    "value": 29.8,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/NVDA/financials",
+    "source_date": "2023-Q4",
+    "notes": "FY24 (Jan 2024) 淨利 $29.8B (margin 49%), Hopper ramp"
+  },
+  {
+    "ticker": "NVDA",
+    "company": "NVIDIA Corp.",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "net_income",
+    "value": 72.9,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/NVDA/financials",
+    "source_date": "2024-Q4",
+    "notes": "FY25 (Jan 2025) 淨利 $72.9B (+145% YoY, margin 56%)"
+  },
+  {
+    "ticker": "NVDA",
+    "company": "NVIDIA Corp.",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "net_income",
+    "value": 113,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/NVDA/financials",
+    "source_date": "2025-Q4",
+    "notes": "FY26E 淨利 $113B (margin 56-57%), Blackwell + Stargate"
+  },
+  {
+    "ticker": "NVDA",
+    "company": "NVIDIA Corp.",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_income",
+    "value": 145,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/NVDA/financials",
+    "source_date": "2026-Q4",
+    "notes": "FY27E 淨利 $145B (margin 56%), Rubin + Scale"
+  },
+  {
+    "ticker": "NVDA",
+    "company": "NVIDIA Corp.",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_margin",
+    "value": 56,
+    "unit": "percent",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/NVDA/financials",
+    "source_date": "2026-04",
+    "notes": "NVDA 2026E net margin ~56%（最高）。半導體業歷史最強。Datacenter 毛利 ~73%，cost-of-revenue 主要是 TSMC 代工費。"
+  },
+  {
+    "ticker": "AMD",
+    "company": "AMD",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "net_income",
+    "value": 0.85,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/AMD/financials",
+    "source_date": "2023-Q4",
+    "notes": "2023 淨利 $0.85B (margin 3.7%), PC 衰退 + 重組"
+  },
+  {
+    "ticker": "AMD",
+    "company": "AMD",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "net_income",
+    "value": 1.6,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/AMD/financials",
+    "source_date": "2024-Q4",
+    "notes": "2024 淨利 $1.6B (margin 6.2%)"
+  },
+  {
+    "ticker": "AMD",
+    "company": "AMD",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "net_income",
+    "value": 4.5,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/AMD/financials",
+    "source_date": "2025-Q4",
+    "notes": "2025E 淨利 $4.5B (margin 14%), MI300 ramp"
+  },
+  {
+    "ticker": "AMD",
+    "company": "AMD",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_income",
+    "value": 8,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/AMD/financials",
+    "source_date": "2026-Q4",
+    "notes": "2026E 淨利 $8B (margin 20%), MI355X 量產"
+  },
+  {
+    "ticker": "AMD",
+    "company": "AMD",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_margin",
+    "value": 20,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/AMD/financials",
+    "source_date": "2026-04",
+    "notes": "AMD 2026E net margin ~20%。MI300/MI325 ASP 上升 + 規模經濟，但仍遠低於 NVDA 56%。"
+  },
+  {
+    "ticker": "TSM",
+    "company": "TSMC",
+    "exchange": "NYSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "net_income",
+    "value": 27,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/TSM/financials",
+    "source_date": "2023-Q4",
+    "notes": "2023 淨利 NT$839B = $27B (margin 39%)"
+  },
+  {
+    "ticker": "TSM",
+    "company": "TSMC",
+    "exchange": "NYSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "net_income",
+    "value": 37.6,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/TSM/financials",
+    "source_date": "2024-Q4",
+    "notes": "2024 淨利 NT$1,167B = $37.6B (margin 40%)"
+  },
+  {
+    "ticker": "TSM",
+    "company": "TSMC",
+    "exchange": "NYSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "net_income",
+    "value": 48.4,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/TSM/financials",
+    "source_date": "2025-Q4",
+    "notes": "2025E NT$1,500B = $48.4B (margin 43%)"
+  },
+  {
+    "ticker": "TSM",
+    "company": "TSMC",
+    "exchange": "NYSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_income",
+    "value": 59.7,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/TSM/financials",
+    "source_date": "2026-Q4",
+    "notes": "2026E NT$1,850B = $59.7B (margin 44%)"
+  },
+  {
+    "ticker": "TSM",
+    "company": "TSMC",
+    "exchange": "NYSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_margin",
+    "value": 44,
+    "unit": "percent",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/TSM/financials",
+    "source_date": "2026-04",
+    "notes": "TSMC 2026E net margin ~44%。代工龍頭結構性高 margin (3nm AI/HPC ASP premium)。foundry industry 第二名 Samsung 利潤率 <10%。"
+  },
+  {
+    "ticker": "GOOG",
+    "company": "Alphabet",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "net_income",
+    "value": 73.8,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/GOOG/financials",
+    "source_date": "2023-Q4",
+    "notes": "2023 淨利 $73.8B (margin 24%)"
+  },
+  {
+    "ticker": "GOOG",
+    "company": "Alphabet",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "net_income",
+    "value": 100.1,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/GOOG/financials",
+    "source_date": "2024-Q4",
+    "notes": "2024 淨利 $100.1B (margin 28.6%, 操作槓桿)"
+  },
+  {
+    "ticker": "GOOG",
+    "company": "Alphabet",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "net_income",
+    "value": 115,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/GOOG/financials",
+    "source_date": "2025-Q4",
+    "notes": "2025E 淨利 $115B (margin 28.7%)"
+  },
+  {
+    "ticker": "GOOG",
+    "company": "Alphabet",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_income",
+    "value": 130,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/GOOG/financials",
+    "source_date": "2026-Q4",
+    "notes": "2026E 淨利 $130B (margin 28.5%)"
+  },
+  {
+    "ticker": "GOOG",
+    "company": "Alphabet",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_margin",
+    "value": 29,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/GOOG/financials",
+    "source_date": "2026-04",
+    "notes": "GOOG 2026E net margin ~29%。Search 高 margin (~50%) 拉抬整體，但 Cloud + Other Bets 拖累。"
+  },
+  {
+    "ticker": "AMZN",
+    "company": "Amazon",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "net_income",
+    "value": 30.4,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/AMZN/financials",
+    "source_date": "2023-Q4",
+    "notes": "2023 淨利 $30.4B (margin 5.3%)"
+  },
+  {
+    "ticker": "AMZN",
+    "company": "Amazon",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "net_income",
+    "value": 59.2,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/AMZN/financials",
+    "source_date": "2024-Q4",
+    "notes": "2024 淨利 $59.2B (margin 9.3%, AWS profit acceleration)"
+  },
+  {
+    "ticker": "AMZN",
+    "company": "Amazon",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "net_income",
+    "value": 80,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/AMZN/financials",
+    "source_date": "2025-Q4",
+    "notes": "2025E 淨利 $80B (margin 11%)"
+  },
+  {
+    "ticker": "AMZN",
+    "company": "Amazon",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_income",
+    "value": 90,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/AMZN/financials",
+    "source_date": "2026-Q4",
+    "notes": "2026E 淨利 $90B (margin 11%, AI capex 重壓)"
+  },
+  {
+    "ticker": "AMZN",
+    "company": "Amazon",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_margin",
+    "value": 11,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/AMZN/financials",
+    "source_date": "2026-04",
+    "notes": "AMZN 2026E net margin ~11%。AWS 39% margin + Retail 5% margin 混合 (AWS 占獲利 70%+)。"
+  },
+  {
+    "ticker": "AVGO",
+    "company": "Broadcom",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "net_income",
+    "value": 14,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/AVGO/financials",
+    "source_date": "2023-Q4",
+    "notes": "FY23 淨利 $14B (margin 39%, pre-VMware)"
+  },
+  {
+    "ticker": "AVGO",
+    "company": "Broadcom",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "net_income",
+    "value": 5.9,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/AVGO/financials",
+    "source_date": "2024-Q4",
+    "notes": "FY24 淨利 $5.9B (margin 11%, VMware 收購重組費)"
+  },
+  {
+    "ticker": "AVGO",
+    "company": "Broadcom",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "net_income",
+    "value": 20,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/AVGO/financials",
+    "source_date": "2025-Q4",
+    "notes": "FY25E 淨利 $20B (margin 32%, VMware 整合)"
+  },
+  {
+    "ticker": "AVGO",
+    "company": "Broadcom",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_income",
+    "value": 26,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/AVGO/financials",
+    "source_date": "2026-Q4",
+    "notes": "FY26E 淨利 $26B (margin 35%)"
+  },
+  {
+    "ticker": "AVGO",
+    "company": "Broadcom",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_margin",
+    "value": 35,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/AVGO/financials",
+    "source_date": "2026-04",
+    "notes": "AVGO 2026E net margin ~35%。VMware 整合 + AI ASIC 高 margin 推升。"
+  },
+  {
+    "ticker": "MU",
+    "company": "Micron Technology",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "net_income",
+    "value": -5.8,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/MU/financials",
+    "source_date": "2023-Q4",
+    "notes": "FY23 淨損 -$5.8B (margin -37%, DRAM 週期低)"
+  },
+  {
+    "ticker": "MU",
+    "company": "Micron Technology",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "net_income",
+    "value": 0.78,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/MU/financials",
+    "source_date": "2024-Q4",
+    "notes": "FY24 淨利 $0.78B (margin 3%, 轉正)"
+  },
+  {
+    "ticker": "MU",
+    "company": "Micron Technology",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "net_income",
+    "value": 5.5,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/MU/financials",
+    "source_date": "2025-Q4",
+    "notes": "FY25E 淨利 $5.5B (margin 16%, HBM ramp)"
+  },
+  {
+    "ticker": "MU",
+    "company": "Micron Technology",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_income",
+    "value": 9,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/MU/financials",
+    "source_date": "2026-Q4",
+    "notes": "FY26E 淨利 $9B (margin 20%)"
+  },
+  {
+    "ticker": "MU",
+    "company": "Micron Technology",
+    "exchange": "NASDAQ",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_margin",
+    "value": 20,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/MU/financials",
+    "source_date": "2026-04",
+    "notes": "MU 2026E net margin ~20%。HBM3e 高 margin (~70%) 拉抬整體，但 commodity DRAM 週期波動大。"
+  },
+  {
+    "ticker": "DELL",
+    "company": "Dell Technologies",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "net_income",
+    "value": 3.2,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/DELL/financials",
+    "source_date": "2023-Q4",
+    "notes": "FY24 (Feb 2024) 淨利 $3.2B (margin 3.6%)"
+  },
+  {
+    "ticker": "DELL",
+    "company": "Dell Technologies",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "net_income",
+    "value": 4.6,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/DELL/financials",
+    "source_date": "2024-Q4",
+    "notes": "FY25 淨利 $4.6B (margin 4.8%)"
+  },
+  {
+    "ticker": "DELL",
+    "company": "Dell Technologies",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "net_income",
+    "value": 5.5,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/DELL/financials",
+    "source_date": "2025-Q4",
+    "notes": "FY26E 淨利 $5.5B (margin 5.1%)"
+  },
+  {
+    "ticker": "DELL",
+    "company": "Dell Technologies",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_income",
+    "value": 6.5,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/DELL/financials",
+    "source_date": "2026-Q4",
+    "notes": "FY27E 淨利 $6.5B (margin 5.3%)"
+  },
+  {
+    "ticker": "DELL",
+    "company": "Dell Technologies",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_margin",
+    "value": 5,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/DELL/financials",
+    "source_date": "2026-04",
+    "notes": "DELL 2026E net margin ~5%。OEM 整合品牌微利模式。AI server 即使 ramp 也只有 8-10% margin。"
+  },
+  {
+    "ticker": "COHR",
+    "company": "Coherent",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "net_income",
+    "value": -0.26,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/COHR/financials",
+    "source_date": "2023-Q4",
+    "notes": "FY23 淨損 -$260M (margin -5.5%, II-VI 整合費)"
+  },
+  {
+    "ticker": "COHR",
+    "company": "Coherent",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "net_income",
+    "value": -0.16,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/COHR/financials",
+    "source_date": "2024-Q4",
+    "notes": "FY24 淨損 -$160M (margin -3.4%)"
+  },
+  {
+    "ticker": "COHR",
+    "company": "Coherent",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "net_income",
+    "value": 0.05,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/COHR/financials",
+    "source_date": "2025-Q4",
+    "notes": "FY25 淨利 $50M (剛轉正, margin 0.9%)"
+  },
+  {
+    "ticker": "COHR",
+    "company": "Coherent",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_income",
+    "value": 0.7,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/COHR/financials",
+    "source_date": "2026-Q4",
+    "notes": "FY26E 淨利 $700M (margin 10%, 1.6T ramp)"
+  },
+  {
+    "ticker": "COHR",
+    "company": "Coherent",
+    "exchange": "NYSE",
+    "hq_country": "US",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_margin",
+    "value": 10,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/COHR/financials",
+    "source_date": "2026-04",
+    "notes": "COHR 2026E net margin ~10%。從虧損轉正後逐步攀升，InP 6-inch + 1.6T 推升毛利率。"
+  },
+  {
+    "ticker": "3231",
+    "company": "Wistron 緯創",
+    "exchange": "TWSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2023,
+    "category": "net_income",
+    "value": 0.77,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/3231/financials",
+    "source_date": "2023-Q4",
+    "notes": "2023 淨利 NT$24B = $770M (margin 2.8%)"
+  },
+  {
+    "ticker": "3231",
+    "company": "Wistron 緯創",
+    "exchange": "TWSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2024,
+    "category": "net_income",
+    "value": 0.9,
+    "unit": "USD_B",
+    "grade": "A",
+    "source_url": "https://finance.yahoo.com/quote/3231/financials",
+    "source_date": "2024-Q4",
+    "notes": "2024 淨利 NT$28B = $900M (margin 2.6%)"
+  },
+  {
+    "ticker": "3231",
+    "company": "Wistron 緯創",
+    "exchange": "TWSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2025,
+    "category": "net_income",
+    "value": 1.13,
+    "unit": "USD_B",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/3231/financials",
+    "source_date": "2025-Q4",
+    "notes": "2025E NT$35B = $1.13B (margin 2.9%)"
+  },
+  {
+    "ticker": "3231",
+    "company": "Wistron 緯創",
+    "exchange": "TWSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_income",
+    "value": 1.45,
+    "unit": "USD_B",
+    "grade": "C",
+    "source_url": "https://finance.yahoo.com/quote/3231/financials",
+    "source_date": "2026-Q4",
+    "notes": "2026E NT$45B = $1.45B (margin 3.0%)"
+  },
+  {
+    "ticker": "3231",
+    "company": "Wistron 緯創",
+    "exchange": "TWSE",
+    "hq_country": "TW",
+    "line": "ai-pe",
+    "year": 2026,
+    "category": "net_margin",
+    "value": 3,
+    "unit": "percent",
+    "grade": "B",
+    "source_url": "https://finance.yahoo.com/quote/3231/financials",
+    "source_date": "2026-04",
+    "notes": "Wistron 2026E net margin ~3%（最低）。AI server ODM 微利模式。緯穎子公司 6669 margin 較高 (~6%) 拉抬一些。"
   }
 ];
 
@@ -1855,6 +2605,78 @@ function renderCAGRChart() {
   c.innerHTML = svg.join('');
 }
 
+
+/* Chart 7: Net Income Trend 2023-2026 (10 lines) */
+function renderNetIncomeTrendChart() {
+  const c = document.getElementById('netincome-chart');
+  if (!c) return;
+  c.innerHTML = '';
+  const W = 800, H = 400, PAD = 60;
+  const years = [2023, 2024, 2025, 2026];
+  const yMin = -10;  // MU 2023 -5.8, COHR -0.26
+  const yMax = 160;  // NVDA 2026 145
+  const svg = ['<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">'];
+  svg.push('<text x="' + (W/2) + '" y="22" text-anchor="middle" fill="currentColor" font-size="15" font-weight="600">Net Income Trend (USD Billion, 2023-2026)</text>');
+  // Y axis ticks
+  const yTicks = [-10, 0, 30, 60, 100, 150];
+  for (const v of yTicks) {
+    const y = H - PAD - ((v - yMin) / (yMax - yMin)) * (H - 2 * PAD);
+    svg.push('<line x1="' + PAD + '" y1="' + y + '" x2="' + (W - PAD) + '" y2="' + y + '" stroke="currentColor" stroke-opacity="' + (v === 0 ? '0.4' : '0.12') + '"/>');
+    svg.push('<text x="' + (PAD - 8) + '" y="' + (y + 4) + '" text-anchor="end" fill="currentColor" font-size="10" opacity="0.7">$' + v + 'B</text>');
+  }
+  const xStep = (W - 2 * PAD) / (years.length - 1);
+  for (const t of TICKER_ORDER) {
+    const meta = TICKER_META[t];
+    const points = years.map((y, i) => {
+      const r = DATA.find(x => x.ticker === t && x.category === 'net_income' && x.year === y);
+      if (!r || r.value == null) return null;
+      const yPos = H - PAD - ((r.value - yMin) / (yMax - yMin)) * (H - 2 * PAD);
+      return [PAD + i * xStep, yPos, r.value];
+    });
+    const path = points.filter(p => p).map(p => p[0] + ',' + p[1]).join(' ');
+    svg.push('<polyline points="' + path + '" fill="none" stroke="' + meta.color + '" stroke-width="2" opacity="0.85"/>');
+    for (const p of points) {
+      if (!p) continue;
+      svg.push('<circle cx="' + p[0] + '" cy="' + p[1] + '" r="3.5" fill="' + meta.color + '"/>');
+    }
+    const last = points[points.length - 1];
+    if (last) svg.push('<text x="' + (last[0] + 6) + '" y="' + (last[1] + 4) + '" fill="' + meta.color + '" font-size="10" font-weight="600">' + meta.short + ' $' + last[2] + 'B</text>');
+  }
+  for (let i = 0; i < years.length; i++) {
+    svg.push('<text x="' + (PAD + i * xStep) + '" y="' + (H - PAD + 18) + '" text-anchor="middle" fill="currentColor" font-size="13" font-weight="500">' + years[i] + '</text>');
+  }
+  svg.push('<text x="' + (W/2) + '" y="' + (H - 8) + '" text-anchor="middle" fill="currentColor" font-size="10" opacity="0.7">NVDA 從 $30B → $145B 是 5x 擴張，最劇烈成長</text>');
+  svg.push('</svg>');
+  c.innerHTML = svg.join('');
+}
+
+/* Chart 8: Net Margin 2026 sorted bar */
+function renderNetMarginChart() {
+  const c = document.getElementById('netmargin-chart');
+  if (!c) return;
+  c.innerHTML = '';
+  const W = 480, H = 380;
+  const margins = TICKER_ORDER.map(t => {
+    const r = DATA.find(x => x.ticker === t && x.category === 'net_margin');
+    return { t, val: r ? r.value : 0 };
+  }).sort((a, b) => b.val - a.val);
+  const max = margins[0].val;
+  const svg = ['<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">'];
+  svg.push('<text x="' + (W/2) + '" y="22" text-anchor="middle" fill="currentColor" font-size="14" font-weight="600">2026E Net Margin (%)</text>');
+  let yOff = 50;
+  for (const m of margins) {
+    const meta = TICKER_META[m.t];
+    const w = (m.val / max) * 320;
+    svg.push('<text x="20" y="' + yOff + '" fill="currentColor" font-size="11" font-weight="500">' + meta.flag + ' ' + meta.short + '</text>');
+    svg.push('<rect x="100" y="' + (yOff - 11) + '" width="' + w + '" height="14" fill="' + meta.color + '" opacity="0.85" rx="2"/>');
+    svg.push('<text x="' + (105 + w) + '" y="' + (yOff + 1) + '" fill="currentColor" font-size="11" font-weight="600">' + m.val + '%</text>');
+    yOff += 30;
+  }
+  svg.push('<text x="20" y="' + (H - 8) + '" fill="currentColor" font-size="10" opacity="0.7">晶片廠 (NVDA/TSM/AVGO) 高 margin > Cloud (GOOG) > 系統商 (AMD/MU) > OEM/ODM (DELL/Wistron)</text>');
+  svg.push('</svg>');
+  c.innerHTML = svg.join('');
+}
+
 function renderFlatTable(rows) {
   const tbody = document.getElementById('table-body');
   tbody.innerHTML = '';
@@ -1890,6 +2712,8 @@ function renderAll() {
   renderScatterChart();
   renderRevenueTrendChart();
   renderCAGRChart();
+  renderNetIncomeTrendChart();
+  renderNetMarginChart();
   renderFlatTable(rows);
 }
 
