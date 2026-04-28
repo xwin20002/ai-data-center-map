@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Infra — NVIDIA Datacenter Segment Split (Local AI catching up?)</title>
+<meta name="description" content="NVIDIA Datacenter revenue split 2023-2027: Hyperscaler vs Enterprise on-prem vs Sovereign AI vs Neocloud — Local AI 是否正在跟上？">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<style>
+  .chart-wrap { background: var(--color-bg-card, rgba(255,255,255,0.02)); border: 1px solid var(--color-border, rgba(255,255,255,0.08)); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+  .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  @media (max-width: 900px) { .chart-grid { grid-template-columns: 1fr; } }
+  .chart-wrap svg text { fill: var(--color-text, #e5e7eb); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo-group">
+      <svg class="logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none">
+        <rect x="2" y="6" width="28" height="20" rx="3" stroke="currentColor" stroke-width="2"/>
+        <circle cx="9" cy="16" r="2.5" fill="currentColor"/><circle cx="16" cy="16" r="2.5" fill="currentColor"/><circle cx="23" cy="16" r="2.5" fill="currentColor"/>
+      </svg>
+      <h1 class="logo-text">AI Data Center Map</h1>
+    </div>
+    <div class="header-controls">
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="search-input" placeholder="Search segment...">
+      </div>
+      <button data-theme-toggle aria-label="Switch theme" class="theme-toggle">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="page-nav">
+  <div class="page-nav-inner">
+    <div class="nav-group active">
+      <button class="nav-group-btn">AI Infra</button>
+      <div class="nav-group-menu" role="menu">
+        <a href="./">AI Data Centers</a>
+        <a href="./gpu-cluster.html">GPU Clusters</a>
+        <a href="./subsea-cable.html">Subsea Cables</a>
+        <a href="./power-ai.html">Power &amp; Nuclear</a>
+        <a href="./gpu-market.html">NV GPU Market</a>
+        <a href="./ai-chip-alt.html">AI Chip Alt</a>
+        <a href="./country-compute.html">Country Compute Race</a>
+        <a href="./ai-capex.html">CSP / Neocloud Capex</a>
+        <a href="./nvda-segment.html" class="active">NVDA Segment Split</a>
+      </div>
+    </div>
+    <div class="nav-group"><button class="nav-group-btn">Semi Supply Chain</button><div class="nav-group-menu" role="menu"><a href="./fab-5nm.html">Sub-5nm Fabs</a><a href="./packaging.html">Advanced Packaging</a><a href="./hbm.html">HBM Capacity</a><a href="./euv.html">EUV Tools</a></div></div>
+    <div class="nav-group"><button class="nav-group-btn">AI Demand</button><div class="nav-group-menu" role="menu"><a href="./token-production.html">Token Production</a><a href="./workload-split.html">Workload Split</a><a href="./ai-demand.html">AI Demand</a><a href="./llm-market.html">LLM Market</a><a href="./local-llm.html">Local LLM (OSS)</a><a href="./ai-pe.html">AI Top-10 P/E</a><a href="./lab-compute.html">Lab Compute (GW)</a></div></div>
+    <div class="nav-group"><button class="nav-group-btn">Taiwan Supply Chain</button><div class="nav-group-menu" role="menu"><a href="./power-tw.html">Power Line (TW)</a><a href="./cooling-tw.html">Cooling Line (TW)</a><a href="./rack-tw.html">Rack Line (TW)</a></div></div>
+    <div class="nav-group"><button class="nav-group-btn">Components (Global)</button><div class="nav-group-menu" role="menu"><a href="./optical.html">Optical Line</a><a href="./connector.html">Connector / Cable Line</a></div></div>
+  </div>
+</nav>
+
+<main>
+  <section class="page-intro">
+    <h2 class="page-title">NVIDIA Datacenter Segment Split — Local AI 是否在跟上 Hyperscaler？</h2>
+    <p class="page-lede">追蹤 NVIDIA Datacenter 營收的 5 大客戶 segment 比例變化（2023-2027F）：🟦 <strong>CSP/Hyperscaler</strong>、🟪 Consumer Internet（xAI/Tesla/TikTok）、🟧 <strong>Enterprise on-prem（MGX 主場）</strong>、🟥 <strong>Sovereign AI</strong>、🟢 Neocloud。<strong>核心問答</strong>：<strong>Q: Local AI（Enterprise + Sovereign）是否在跟上？</strong> → <strong>Yes，明確</strong>。Local AI 占比從 2023 <strong>15%</strong> → 2027F <strong>36%</strong>（翻倍以上），與 CSP gap 從 50ppt → 7ppt（即將平分秋色）。<strong>Sovereign AI YoY +57%、Enterprise +52%</strong>是 2027 最快兩個 segment（vs CSP +25%）。MGX modular reference architecture 是 enabler — Foxconn/Quanta/Wistron/Asus/Supermicro 等 ODM 出貨給 mid-size enterprise + sovereign。</p>
+    <div class="last-verified-banner">
+      <span class="banner-label">Last verified:</span>
+      <span class="banner-value">2026-04-29</span>
+      <span class="banner-sep">·</span>
+      <span class="banner-label">Schema:</span>
+      <span class="banner-value">phase13-nvda-v1</span>
+      <span class="banner-sep">·</span>
+      <span class="banner-label">Source:</span>
+      <span class="banner-value">SemiAnalysis estimates</span>
+    </div>
+  </section>
+
+  <section class="stats-bar">
+    <div class="stat-item"><span class="stat-value" id="stat-total-2025">$0</span><span class="stat-label">2025E NVDA Datacenter</span></div>
+    <div class="stat-item"><span class="stat-value" id="stat-total-2027">$0</span><span class="stat-label">2027F NVDA Datacenter</span></div>
+    <div class="stat-item"><span class="stat-value" id="stat-local-share">0%</span><span class="stat-label">Local AI Share 2023→2027</span></div>
+    <div class="stat-item"><span class="stat-value" id="stat-csp-share">0%</span><span class="stat-label">CSP Share 2023→2027</span></div>
+  </section>
+
+  <section class="filters-bar">
+    <div class="filter-group">
+      <span class="filter-label">Segment:</span>
+      <button class="filter-btn active" data-segment="all">All</button>
+      <button class="filter-btn" data-segment="csp_hyperscaler">🟦 CSP</button>
+      <button class="filter-btn" data-segment="consumer_internet">🟪 Consumer</button>
+      <button class="filter-btn" data-segment="enterprise_onprem">🟧 Enterprise</button>
+      <button class="filter-btn" data-segment="sovereign_ai">🟥 Sovereign</button>
+      <button class="filter-btn" data-segment="neocloud">🟢 Neocloud</button>
+      <button class="filter-btn" data-segment="TOTAL">📊 Total</button>
+      <button class="filter-btn" data-segment="INSIGHT">📈 Insight</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Year:</span>
+      <button class="filter-btn active" data-year="all">All</button>
+      <button class="filter-btn" data-year="2023">2023</button>
+      <button class="filter-btn" data-year="2024">2024</button>
+      <button class="filter-btn" data-year="2025">2025</button>
+      <button class="filter-btn" data-year="2026">2026</button>
+      <button class="filter-btn" data-year="2027">2027</button>
+    </div>
+  </section>
+
+  <section class="data-table-section">
+    <h2 class="section-title">Datacenter Revenue Stacked by Segment（2023-2027F）</h2>
+    <div class="chart-wrap" id="stacked-chart"></div>
+  </section>
+
+  <section class="data-table-section">
+    <h2 class="section-title">Segment Share Evolution + Local AI vs CSP Gap</h2>
+    <div class="chart-grid">
+      <div class="chart-wrap" id="share-chart"></div>
+      <div class="chart-wrap" id="gap-chart"></div>
+    </div>
+  </section>
+
+  <section class="data-table-section">
+    <h2 class="section-title">2027F YoY Growth Rate per Segment</h2>
+    <div class="chart-wrap" id="growth-chart"></div>
+  </section>
+
+  <section class="data-table-section">
+    <h2 class="section-title">All Data Points (flat)</h2>
+    <p class="section-sublede">Phase 13 NVDA Segment 總計 <span id="dp-count">0</span> 條 data-points（5 segment × ~14 metric + 9 cross-segment + 5 total = 84 dp / Grade A 2、B 50、C 32）。</p>
+    <div class="table-wrapper">
+      <table id="data-table">
+        <thead><tr><th>Segment</th><th>Metric</th><th>Year</th><th>Grade</th><th>Value</th><th>Notes</th><th>Date</th><th>Source</th></tr></thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="methodology-section" id="methodology">
+    <div class="methodology-inner">
+      <h3 class="section-title">Methodology &amp; Disclaimer</h3>
+
+      <h4 class="methodology-subhead">5 Segment 定義</h4>
+      <ul class="methodology-list">
+        <li><strong>🟦 CSP/Hyperscaler</strong>：Microsoft / Google / Amazon / Meta / Oracle 等大型雲端服務商</li>
+        <li><strong>🟪 Consumer Internet</strong>：xAI (Memphis Colossus) + Tesla + TikTok + 其他 social media</li>
+        <li><strong>🟧 Enterprise on-prem</strong>：銀行 + 製造 + 醫療 + 電信 + 公部門 + 國防 — **本地 AI server，MGX 主場**</li>
+        <li><strong>🟥 Sovereign AI</strong>：國家級 AI infra（Saudi Humain $20B+ / UAE / Japan SoftBank Stargate / India Yotta+Reliance / S Korea Naver / 歐洲 sovereign cloud）</li>
+        <li><strong>🟢 Neocloud</strong>：CoreWeave / Lambda / Crusoe / Together / Fireworks 等 GPU-only cloud</li>
+      </ul>
+
+      <h4 class="methodology-subhead">用戶問題的 Three-layer Answer</h4>
+      <ul class="methodology-list">
+        <li><strong>Q1: Local AI 是否跟上 Hyperscaler？</strong></li>
+        <li><strong>A1: Yes — Local AI 占比 15% (2023) → 36% (2027F)，gap 從 50ppt 縮至 7ppt</strong>。但仍未超過 CSP（CSP 2027F 仍 43%）。</li>
+        <li><strong>Q2: 速度有多快？</strong></li>
+        <li><strong>A2: 快</strong>。2027F YoY growth: Sovereign +57% / Enterprise +52% / Neocloud +36% / Consumer +30% / **CSP +25%（最慢）**。Local AI 是 NVIDIA 未來 3 年最大成長 driver。</li>
+        <li><strong>Q3: MGX 角色？</strong></li>
+        <li><strong>A3: MGX 是 enabler</strong>。Modular GPU eXtensible reference design (GB200 NVL2/NVL36)，Foxconn/Quanta/Wistron/Asus/Supermicro 等 ODM 出貨。為 mid-size enterprise + sovereign 設計（不是 hyperscaler 大客戶 — 大客戶有自己的 custom rack design）。</li>
+      </ul>
+
+      <h4 class="methodology-subhead">關鍵 spotlights</h4>
+      <ul class="methodology-list">
+        <li><strong>NVDA Datacenter 2025 ~$200B → 2027F $380B</strong>（5 年 8x 從 2023 $47.5B）</li>
+        <li><strong>2027F segment 排名</strong>：CSP $163B > Consumer $61B > Enterprise $84B > Sovereign $53B > Neocloud $19B</li>
+        <li><strong>Sovereign AI 訂單列表</strong>（已揭露）：Saudi Humain $20B+ / UAE $10B+ / Japan SoftBank / India Yotta + Reliance Jio / S Korea Naver+SK Hynix / 歐洲多國 sovereign cloud</li>
+        <li><strong>Enterprise on-prem 加速因素</strong>：data sovereignty + AI privacy compliance + cost predictability + regulatory（特別是金融/醫療/政府）。Hyperscaler 服務雖便利但 enterprise 需 fully-on-prem 為主</li>
+        <li><strong>MGX OEM/ODM 受益鏈</strong>：Foxconn 2317 / Quanta 2382 / Wistron 3231 / Supermicro / Dell 等。MGX 量產 = 台廠 ODM 直接受惠（cross-link <a href="./rack-tw.html">Rack Line (TW)</a>）</li>
+      </ul>
+
+      <h4 class="methodology-subhead">與其他 page 的對話</h4>
+      <ul class="methodology-list">
+        <li><a href="./gpu-market.html">NV GPU Market</a>：Blackwell backlog 3.6M / GB200 出貨 = 滿足 5 segment 合計需求</li>
+        <li><a href="./lab-compute.html">Lab Compute (GW)</a>：frontier lab GW 部分屬於 CSP segment（OpenAI = MSFT/Oracle CSP）+ 部分屬於 Consumer Internet（xAI 自建）</li>
+        <li><a href="./ai-capex.html">CSP/Neocloud Capex</a>：CSP 占 NVDA 50% 對應 hyperscaler $300B+ capex 主要採購 NVIDIA</li>
+        <li><a href="./rack-tw.html">Rack Line (TW)</a>：MGX 出貨 = 台廠 ODM (鴻海/廣達/緯創) 直接受惠的 segment</li>
+        <li><a href="./country-compute.html">Country Compute Race</a>：Sovereign AI segment 對應各國家算力建設</li>
+      </ul>
+
+      <h4 class="methodology-subhead">Disclaimer</h4>
+      <ul class="methodology-list">
+        <li>本網站為<strong>研究與教育用途，不構成投資建議</strong></li>
+        <li>NVIDIA <strong>不官方揭露 segment split</strong>，本頁數字為 SemiAnalysis / The Information / 法人共識 estimate（B/C 級）</li>
+        <li>Datacenter 總額為 NVIDIA 10-K 揭露（A 級），但分項拆分為估算</li>
+        <li>2026/2027 為 forecast (C 級)</li>
+        <li>原始 data points 公開於 <code>_research/phase13-nvda-segment/</code></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-note">NVIDIA Datacenter Segment Split. Data 2026-04-29 from NVIDIA 10-K (Datacenter total) + SemiAnalysis / The Information segment estimates. Educational only.</p>
+  </div>
+</footer>
+
+<script src="./app-nvda-segment.js?v=20260429-nvda"></script>
+</body>
+</html>
